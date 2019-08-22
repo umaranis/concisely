@@ -33,9 +33,15 @@ void main() {
       "AAAAA");
   });
 
-  test('times_error', () {
+  test('times_error_message', () {
     expect(
       () => parseOrThrow("AAAA", char("A") * 5), 
-      throwsA((e) => e is ParseException && e.result.message.contains('expected')));
+      throwsA((e) => e is ParseException && e.result.message == '"A" expected'));
+  });
+
+  test('times_error_toString', () {
+    expect(
+      () => parseOrThrow("AAA", char("A") * 5), 
+      throwsA((e) => e is ParseException && e.result.toString() == 'Failure[line:1, col:4] "A" expected'));
   });
 }
