@@ -13,10 +13,7 @@ Future<String> readFile(String path) {
   return file.readAsString();   
 }
 
-void parse(String text) {
-  var object = Map();  
-
-  int pointer = 0;
+void parse(String text) {  
 
   Parser p = char("9");
   print(p.parse(Context(["99"], Position(0,0,0))).value); 
