@@ -1,3 +1,4 @@
+import 'package:dallang/combinator/or.dart';
 import 'package:dallang/context.dart';
 import 'package:dallang/result/result.dart';
 import 'combinator/and.dart';
@@ -8,6 +9,7 @@ abstract class Parser<T> {
 
   Parser operator &(Parser other) => AndParser(this, other);
   Parser operator *(int times) => TimesParser(this, times);
+  Parser operator |(Parser other) => OrParser(this, other);
 }
 
 

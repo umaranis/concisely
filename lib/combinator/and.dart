@@ -9,7 +9,7 @@ class AndParser extends Parser {
   AndParser(this.first, this.second);
 
   @override
-  Result<List> parse(Context context) {
+  Result parse(Context context) {
     final r1 = first.parse(context);
     if(r1.isSuccess) {
       final r2 = second.parse(r1.context);
