@@ -1,7 +1,5 @@
 import 'package:dallang/context.dart';
 
-import 'position.dart';
-
 abstract class Result<T> {
   Result(this.context);
 

@@ -1,5 +1,5 @@
 import 'package:dallang/context.dart';
-import 'package:dallang/result.dart';
+import 'package:dallang/result/result.dart';
 
 class Failure<T> extends Result<T> {
   Failure(Context context, this.message) : super(context);

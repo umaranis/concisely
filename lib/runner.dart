@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dallang/context.dart';
 import 'package:dallang/parser.dart';
 import 'package:dallang/position.dart';
-import 'package:dallang/result.dart';
+import 'package:dallang/result/result.dart';
 
 import 'exception.dart';
 

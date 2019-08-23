@@ -1,8 +1,8 @@
 import 'package:dallang/context.dart';
-import 'package:dallang/failure.dart';
 import 'package:dallang/parser.dart';
-import 'package:dallang/result.dart';
-import 'package:dallang/success.dart';
+import 'package:dallang/result/failure.dart';
+import 'package:dallang/result/result.dart';
+import 'package:dallang/result/success.dart';
 
 class TimesParser extends Parser<List> {
   final Parser parser;
