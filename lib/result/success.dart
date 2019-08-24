@@ -15,6 +15,6 @@ class Success<T> extends Result<T> {
   String get message => null;
 
   @override
-  String toString() => "Success[line:${context.pos.line + 1}, col:${context.pos.col + 1}] $value";
+  String toString() => "Success[line://TODO, col:${context.pos + 1}] $value"; // TODO: implement line number display
 
 }

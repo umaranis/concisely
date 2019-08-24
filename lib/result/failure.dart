@@ -14,6 +14,6 @@ class Failure<T> extends Result<T> {
   T get value => null;
 
   @override
-  toString() => "Failure[line:${context.pos.line + 1}, col:${context.pos.col + 1}] $message";
+  toString() => "Failure[line://TODO, col:${context.pos + 1}] $message"; // TODO: implement line number display
 
 }

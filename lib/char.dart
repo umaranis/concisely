@@ -15,13 +15,12 @@ class CharParser extends Parser<String> {
   CharParser(this.char, [this.message]);
 
   @override
-  Result<String> parse(Context context) {    
-    int col = context.pos.col;
-    if(context.colExists(col)) {
-      int code = toCharCode(char);
-      int result = context.getCharCode(col);
-      if(code == result) {
-        return Success(context.moveCol(1), String.fromCharCode(result));
+  Result<String> parse(Context context) {        
+    int next = context.seek();
+    if(next != Context.EOF) {
+      int code = toCharCode(char);      
+      if(code == next) {
+        return Success(context.move(1), char.toString());
       }     
       
     }

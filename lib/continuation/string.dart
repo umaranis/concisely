@@ -12,7 +12,7 @@ class StringParser extends Parser{
   Result parse(Context context) {
     var result = parser.parse(context);
     if(result.isSuccess) {
-      return Success(result.context, context.line.substring(context.pos.col, result.context.pos.col));    
+      return Success(result.context, context.substring(result.context));    
     }
     else {
       return result;
