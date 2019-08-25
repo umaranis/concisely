@@ -1,6 +1,6 @@
-import 'package:dallang/char.dart';
-import 'package:dallang/continuation/string.dart';
-import 'package:dallang/runner.dart';
+import 'package:conciseparser/char.dart';
+import 'package:conciseparser/continuation/string.dart';
+import 'package:conciseparser/runner.dart';
 import 'package:test/test.dart';
 
 void main() {

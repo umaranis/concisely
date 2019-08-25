@@ -1,7 +1,6 @@
-import 'package:dallang/dallang.dart' as dallang;
+import 'package:conciseparser/dallang.dart' as conciseparser;
 
-main(List<String> arguments) async{
-  print('Hello world: ${dallang.calculate()}!');
-  print(await dallang.readFile("./dal/test.dal"));
-  dallang.parse(await dallang.readFile("./dal/test.dal"));
+main(List<String> arguments) async{  
+  print(await conciseparser.readFile("./dal/test.dal"));
+  conciseparser.parse(await conciseparser.readFile("./dal/test.dal"));
 }

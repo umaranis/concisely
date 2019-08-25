@@ -1,8 +1,8 @@
-import 'package:dallang/context.dart';
-import 'package:dallang/parser.dart';
-import 'package:dallang/result/failure.dart';
-import 'package:dallang/result/result.dart';
-import 'package:dallang/result/success.dart';
+import 'package:conciseparser/context.dart';
+import 'package:conciseparser/parser.dart';
+import 'package:conciseparser/result/failure.dart';
+import 'package:conciseparser/result/result.dart';
+import 'package:conciseparser/result/success.dart';
 
 CharParser char(Object charCode, [String message]) {
   return CharParser(charCode);

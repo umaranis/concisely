@@ -1,4 +1,4 @@
-import 'package:dallang/context.dart';
+import 'package:conciseparser/context.dart';
 
 abstract class Result<T> {
   Result(this.context);

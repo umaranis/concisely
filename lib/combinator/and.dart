@@ -1,7 +1,7 @@
-import 'package:dallang/context.dart';
-import 'package:dallang/parser.dart';
-import 'package:dallang/result/result.dart';
-import 'package:dallang/result/success.dart';
+import 'package:conciseparser/context.dart';
+import 'package:conciseparser/parser.dart';
+import 'package:conciseparser/result/result.dart';
+import 'package:conciseparser/result/success.dart';
 
 class AndParser extends Parser {
   final Parser first, second;

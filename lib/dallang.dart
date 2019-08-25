@@ -1,11 +1,7 @@
 import 'dart:io';
-import 'package:dallang/char.dart';
-import 'package:dallang/context.dart';
-import 'package:dallang/parser.dart';
-
-int calculate() {
-  return 6 * 7;
-}
+import 'package:conciseparser/char.dart';
+import 'package:conciseparser/context.dart';
+import 'package:conciseparser/parser.dart';
 
 Future<String> readFile(String path) {
   var file = File(path);

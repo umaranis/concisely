@@ -1,6 +1,6 @@
-import 'package:dallang/combinator/or.dart';
-import 'package:dallang/context.dart';
-import 'package:dallang/result/result.dart';
+import 'package:conciseparser/combinator/or.dart';
+import 'package:conciseparser/context.dart';
+import 'package:conciseparser/result/result.dart';
 import 'combinator/and.dart';
 import 'combinator/times.dart';
 

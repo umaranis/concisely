@@ -1,6 +1,6 @@
-name: dallang
-description: A sample command-line application.
-# version: 1.0.0
+name: conciseparser
+description: A simple parser combinator library for Dart language.
+# version: 0.0.1
 # homepage: https://www.example.com
 # author: umaranis <mail@umaranis.com>
 
