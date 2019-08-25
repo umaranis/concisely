@@ -4,14 +4,14 @@ import 'package:conciseparser/result/failure.dart';
 import 'package:conciseparser/result/result.dart';
 import 'package:conciseparser/result/success.dart';
 
-class TimesParser extends Parser<List> {
+class MultipleTimesParser extends Parser<List> {
   final Parser parser;
   final int times;
 
-  TimesParser(this.parser, this.times);
+  MultipleTimesParser(this.parser, this.times);
 
   @override
-  Result<List> parse(Context context) {
+  Result<List> parse(Context context) {    
     var list = [];
     var current = context;
     for(int i = 0; i < times; i++) {

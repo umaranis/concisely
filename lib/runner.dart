@@ -4,6 +4,7 @@ import 'package:conciseparser/result/result.dart';
 
 import 'exception.dart';
 
+// TODO: Should it not parse the whole input or throw error
 T parseOrThrow<T>(String input, Parser parser) {  
   var result = parser.parse(Context(input, 0));
   if(result.isSuccess) {
