@@ -1,4 +1,5 @@
 import 'package:conciseparser/char.dart';
+import 'package:conciseparser/continuation/string.dart';
 import 'package:conciseparser/exception.dart';
 import 'package:conciseparser/runner.dart';
 import 'package:test/test.dart';
@@ -13,16 +14,14 @@ void main() {
 
   test('parse2Chars', () {
     expect(
-      parseOrThrow("9988", char("9") & char("9"))
-        .reduce((a, b) => a + b), 
+      parseOrThrow("9988", StringParser(char("9") & char("9"))), 
       "99");
   });
 
   test('times', () {
     var grammar = char("A") * 5;
     expect(
-      parseOrThrow("AAAAA", grammar)
-        .reduce((a, b) => a + b), 
+      parseOrThrow("AAAAA", grammar), 
       "AAAAA");
   });
 
@@ -35,15 +34,15 @@ void main() {
   test('times_error_toString', () {
     expect(
       () => parseOrThrow("AAA", char("A") * 5), 
-      throwsA((e) => e is ParseException && e.result.toString() == 'Failure[line:1, col:4] "A" expected'));
+      throwsA((e) => e is ParseException && e.result.toString() == 'Failure[pos:4] "A" expected'));
   });
 
   test('parseCharsTimes', () {     
-      var grammar = char("9") * 2 & char("8") * 2;       
-      List<dynamic> r = parseOrThrow("9988", grammar);
+      var grammar = StringParser(char("9") * 2 & char("8") * 2);       
+      final r = parseOrThrow("9988", grammar);
 
       expect(
-        r.reduce((a, b) => a + b).reduce((a, b) => a + b), 
+        r, 
         "9988");
   });
 }

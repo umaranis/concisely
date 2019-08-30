@@ -18,9 +18,9 @@ class Context {
     return Context(_input, pos + number);
   }
 
-  String substring(Context endContext) {
-    return _input.substring(pos, endContext.pos);
-  }
+  String substring(int offset) {
+    return _input.substring(pos, pos + offset);
+  } 
   
   static const int EOF = 0x1A;
 }

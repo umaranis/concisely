@@ -1,34 +1,45 @@
 import 'package:conciseparser/context.dart';
-import 'package:conciseparser/parser.dart';
+import 'package:conciseparser/fastParser.dart';
 import 'package:conciseparser/result/failure.dart';
 import 'package:conciseparser/result/result.dart';
 import 'package:conciseparser/result/success.dart';
 
-CharParser char(Object charCode, [String message]) {
+CharParser char(Object charCode) {
   return CharParser(charCode);
 }
 
-class CharParser extends Parser<String> {
-  final Object char;
-  final String message;
+class CharParser extends FastParser<String>{
+  final int charCode;  
 
-  CharParser(this.char, [this.message]);
+  CharParser(Object char) : this.charCode = toCharCode(char);
 
   @override
-  Result<String> parse(Context context) {        
+  Result<String> parse(Context context) {
     int next = context.seek();
-    if(next != Context.EOF) {
-      int code = toCharCode(char);      
-      if(code == next) {
-        return Success(context.move(1), char.toString());
-      }     
-      
+    if (charCode == next) {
+      return Success(context.move(1), String.fromCharCode(charCode));
     }
-
-    return Failure(context, message ?? '"${toReadableString(char)}" expected');
-      
+    return Failure(context, '"${toReadableString(charCode)}" expected');
   }
   
+  @override
+  int fastParse(Context context, int offset) {
+    int next = context.seek(offset);
+    if (charCode == next) {
+      return offset + 1;
+    }    
+    return -1;    
+  }
+
+  @override
+  String getFastParseResult(Context context, int initialOffset, int resultPosition) {
+    return String.fromCharCode(charCode);
+  }
+
+  @override
+  String getFastParseMessage() {
+    return String.fromCharCode(charCode);    
+  }
 }
 
 /// Converts an object to a character code.

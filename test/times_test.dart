@@ -18,4 +18,11 @@ void main() {
       parseOrThrow("AAA\nAA\nAA", grammar), 
       "AAA\nAA\n");
   });
+
+  test('times_list', () {
+    var grammar = char('A') * 3;            
+    expect(
+      parseOrThrow("AAA", grammar), 
+      "AAA");
+  });
 }
