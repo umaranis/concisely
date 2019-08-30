@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:conciseparser/char.dart';
 import 'package:conciseparser/context.dart';
 import 'package:conciseparser/parser.dart';
+import 'package:conciseparser/parser/char.dart';
 
 Future<String> readFile(String path) {
   var file = File(path);

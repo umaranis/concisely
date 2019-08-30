@@ -1,5 +1,5 @@
-import 'package:conciseparser/char.dart';
 import 'package:conciseparser/continuation/string.dart';
+import 'package:conciseparser/parser/char.dart';
 import 'package:conciseparser/runner.dart';
 import 'package:conciseparser/times.dart/times.dart';
 import 'package:test/test.dart';
