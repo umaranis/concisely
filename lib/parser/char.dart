@@ -1,44 +1,22 @@
-import 'package:conciseparser/context.dart';
-import 'package:conciseparser/fastParser.dart';
-import 'package:conciseparser/result/failure.dart';
-import 'package:conciseparser/result/result.dart';
-import 'package:conciseparser/result/success.dart';
+import 'package:conciseparser/baseParser/charParser.dart';
 
 CharParser char(Object charCode) {
   return CharParser(charCode);
 }
 
-class CharParser extends FastParser<String>{
+class CharParser extends CharBaseParser{
   final int charCode;  
 
   CharParser(Object char) : this.charCode = toCharCode(char);
 
   @override
-  Result<String> parse(Context context) {
-    int next = context.seek();
-    if (charCode == next) {
-      return Success(context.move(1), String.fromCharCode(charCode));
-    }
-    return Failure(context, '"${toReadableString(charCode)}" expected');
-  }
-  
-  @override
-  int fastParse(Context context, int offset) {
-    int next = context.seek(offset);
-    if (charCode == next) {
-      return offset + 1;
-    }    
-    return -1;    
-  }
-
-  @override
-  String getFastParseResult(Context context, int initialOffset, int resultPosition) {
-    return String.fromCharCode(charCode);
-  }
-
-  @override
   String getFastParseMessage() {
-    return String.fromCharCode(charCode);    
+    return '"${String.fromCharCode(charCode)}"';    
+  }
+
+  @override
+  bool verify(int value) {    
+    return value == this.charCode;
   }
 }
 

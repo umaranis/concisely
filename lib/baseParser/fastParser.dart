@@ -1,5 +1,5 @@
+import 'package:conciseparser/baseParser/parser.dart';
 import 'package:conciseparser/context.dart';
-import 'package:conciseparser/parser.dart';
 
 abstract class FastParser<T> extends Parser{
   

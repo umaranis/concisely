@@ -1,7 +1,6 @@
 import 'package:conciseparser/context.dart';
-import 'package:conciseparser/parser.dart';
 import 'package:conciseparser/result/result.dart';
-
+import 'baseParser/parser.dart';
 import 'exception.dart';
 
 // TODO: Should it not parse the whole input or throw error

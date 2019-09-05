@@ -25,4 +25,11 @@ void main() {
       () => parseOrThrow("12", grammar), 
       throwsA((e) => e is ParseException));
   });
+
+  test('digitFail', () {
+    var grammar = StringParser(digit);
+    expect(
+      () => parseOrThrow("A", grammar), 
+      throwsA((e) => e is ParseException));
+  });
 }
