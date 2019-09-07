@@ -1,5 +1,5 @@
-import 'package:conciseparser/parser/char/char.dart';
-import 'package:conciseparser/times.dart/times.dart';
+import 'package:concisely/parser/char/char.dart';
+import 'package:concisely/times.dart/times.dart';
 
 final newline = char('\n') 
                 | 

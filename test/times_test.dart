@@ -1,7 +1,7 @@
-import 'package:conciseparser/continuation/string.dart';
-import 'package:conciseparser/parser/char/char.dart';
-import 'package:conciseparser/runner.dart';
-import 'package:conciseparser/times.dart/times.dart';
+import 'package:concisely/continuation/string.dart';
+import 'package:concisely/parser/char/char.dart';
+import 'package:concisely/runner.dart';
+import 'package:concisely/times.dart/times.dart';
 import 'package:test/test.dart';
 
 void main() {

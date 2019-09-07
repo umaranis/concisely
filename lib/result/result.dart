@@ -1,4 +1,4 @@
-import 'package:conciseparser/context.dart';
+import 'package:concisely/context.dart';
 
 abstract class Result<T> {
   Result(this.context);

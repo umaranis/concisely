@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:conciseparser/context.dart';
-import 'package:conciseparser/parser/char/char.dart';
+import 'package:concisely/context.dart';
+import 'package:concisely/parser/char/char.dart';
 import 'parser/base/parser.dart';
 
 Future<String> readFile(String path) {

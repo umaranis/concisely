@@ -1,8 +1,8 @@
-import 'package:conciseparser/parser/base/parser.dart';
-import 'package:conciseparser/context.dart';
-import 'package:conciseparser/result/failure.dart';
-import 'package:conciseparser/result/result.dart';
-import 'package:conciseparser/result/success.dart';
+import 'package:concisely/parser/base/parser.dart';
+import 'package:concisely/context.dart';
+import 'package:concisely/result/failure.dart';
+import 'package:concisely/result/result.dart';
+import 'package:concisely/result/success.dart';
 
 class MultipleTimesParser extends Parser<List> {
   final Parser parser;

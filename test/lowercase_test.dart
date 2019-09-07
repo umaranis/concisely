@@ -1,7 +1,7 @@
-import 'package:conciseparser/continuation/string.dart';
-import 'package:conciseparser/exception.dart';
-import 'package:conciseparser/parser/char/lowercase.dart';
-import 'package:conciseparser/runner.dart';
+import 'package:concisely/continuation/string.dart';
+import 'package:concisely/exception.dart';
+import 'package:concisely/parser/char/lowercase.dart';
+import 'package:concisely/runner.dart';
 import 'package:test/test.dart';
 
 void main() {

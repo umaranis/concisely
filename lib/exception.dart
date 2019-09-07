@@ -1,4 +1,4 @@
-import 'package:conciseparser/result/result.dart';
+import 'package:concisely/result/result.dart';
 
 class ParseException implements Exception {
   final Result result;

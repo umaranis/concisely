@@ -1,5 +1,5 @@
-import 'package:conciseparser/parser/char/newline.dart';
-import 'package:conciseparser/runner.dart';
+import 'package:concisely/parser/char/newline.dart';
+import 'package:concisely/runner.dart';
 import 'package:test/test.dart';
 
 void main() {

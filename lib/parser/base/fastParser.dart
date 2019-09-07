@@ -1,5 +1,5 @@
-import 'package:conciseparser/parser/base/parser.dart';
-import 'package:conciseparser/context.dart';
+import 'package:concisely/parser/base/parser.dart';
+import 'package:concisely/context.dart';
 
 /// Reduces the memory allocation by not allocating memory during parsing.
 /// [char('A') * 3] produces 'AAA' instead of ['A','A','A']

@@ -1,8 +1,8 @@
-import 'package:conciseparser/parser/base/fastParser.dart';
-import 'package:conciseparser/parser/base/parser.dart';
-import 'package:conciseparser/times.dart/mutipleTimes.dart';
-import 'package:conciseparser/times.dart/mutipleTimesFast.dart';
-import 'package:conciseparser/times.dart/optional.dart';
+import 'package:concisely/parser/base/fastParser.dart';
+import 'package:concisely/parser/base/parser.dart';
+import 'package:concisely/times.dart/mutipleTimes.dart';
+import 'package:concisely/times.dart/mutipleTimesFast.dart';
+import 'package:concisely/times.dart/optional.dart';
 import 'optionalFast.dart';
 
 OptionalParser optional = OptionalParser(null);

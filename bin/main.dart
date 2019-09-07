@@ -1,6 +1,6 @@
-import 'package:conciseparser/dallang.dart' as conciseparser;
+import 'package:concisely/dallang.dart' as concisely;
 
 main(List<String> arguments) async{  
-  print(await conciseparser.readFile("./dal/test.dal"));
-  conciseparser.parse(await conciseparser.readFile("./dal/test.dal"));
+  print(await concisely.readFile("./dal/test.dal"));
+  concisely.parse(await concisely.readFile("./dal/test.dal"));
 }

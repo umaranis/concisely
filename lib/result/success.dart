@@ -1,6 +1,6 @@
 
-import 'package:conciseparser/context.dart';
-import 'package:conciseparser/result/result.dart';
+import 'package:concisely/context.dart';
+import 'package:concisely/result/result.dart';
 
 class Success<T> extends Result<T> {
   Success(Context context, this.value) : super(context);

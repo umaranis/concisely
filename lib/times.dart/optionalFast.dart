@@ -1,8 +1,8 @@
-import 'package:conciseparser/context.dart';
-import 'package:conciseparser/parser/base/fastParser.dart';
-import 'package:conciseparser/result/result.dart';
-import 'package:conciseparser/result/success.dart';
-import 'package:conciseparser/times.dart/optional.dart';
+import 'package:concisely/context.dart';
+import 'package:concisely/parser/base/fastParser.dart';
+import 'package:concisely/result/result.dart';
+import 'package:concisely/result/success.dart';
+import 'package:concisely/times.dart/optional.dart';
 
 class OptionalFastParser extends FastParser {
   final FastParser parser;
