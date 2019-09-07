@@ -1,4 +1,4 @@
-import 'package:conciseparser/baseParser/parser.dart';
+import 'package:conciseparser/parser/base/parser.dart';
 import 'package:conciseparser/context.dart';
 import 'package:conciseparser/result/failure.dart';
 import 'package:conciseparser/result/result.dart';

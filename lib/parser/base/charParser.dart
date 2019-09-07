@@ -1,5 +1,5 @@
 import 'package:conciseparser/context.dart';
-import 'package:conciseparser/baseParser/fastParser.dart';
+import 'package:conciseparser/parser/base/fastParser.dart';
 import 'package:conciseparser/result/failure.dart';
 import 'package:conciseparser/result/result.dart';
 import 'package:conciseparser/result/success.dart';

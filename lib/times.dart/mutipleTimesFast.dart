@@ -1,5 +1,5 @@
 import 'package:conciseparser/context.dart';
-import 'package:conciseparser/baseParser/fastParser.dart';
+import 'package:conciseparser/parser/base/fastParser.dart';
 import 'package:conciseparser/result/result.dart';
 import 'package:conciseparser/result/success.dart';
 import 'package:conciseparser/times.dart/mutipleTimes.dart';
@@ -33,6 +33,7 @@ class MultipleTimesFastParser extends FastParser {
     return result;     
   }
 
+  // TODO: Probably has a bug, doesn't make sense to added initialOffset and resultPosition
   @override
   String getFastParseResult(Context context, int initialOffset, int resultPosition) {
     return context.substring(initialOffset + resultPosition);

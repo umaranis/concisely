@@ -1,5 +1,5 @@
-import 'package:conciseparser/baseParser/fastParser.dart';
-import 'package:conciseparser/baseParser/parser.dart';
+import 'package:conciseparser/parser/base/fastParser.dart';
+import 'package:conciseparser/parser/base/parser.dart';
 import 'package:conciseparser/times.dart/mutipleTimes.dart';
 import 'package:conciseparser/times.dart/mutipleTimesFast.dart';
 import 'package:conciseparser/times.dart/optional.dart';

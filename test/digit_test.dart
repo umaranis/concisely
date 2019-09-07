@@ -1,6 +1,6 @@
 import 'package:conciseparser/continuation/string.dart';
 import 'package:conciseparser/exception.dart';
-import 'package:conciseparser/parser/digit.dart';
+import 'package:conciseparser/parser/char/digit.dart';
 import 'package:conciseparser/runner.dart';
 import 'package:test/test.dart';
 

@@ -1,4 +1,4 @@
-import 'package:conciseparser/baseParser/charParser.dart';
+import 'package:conciseparser/parser/base/charParser.dart';
 
 final UppercaseParser lowercase = UppercaseParser();
 
