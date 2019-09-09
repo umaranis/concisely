@@ -18,5 +18,9 @@ jobs:
       run: pub run test
     - name: Code Coverage
       run: pub run test_coverage
-    - name: Upload Coverage
-      run: bash <(curl -s https://codecov.io/bash) -t 022cedc6-d847-42fa-83b7-bcc7d87ac3e7
+    - name: Upload coverage to Codecov  
+      uses: codecov/codecov-action@v1.0.2
+      with:
+        token: 022cedc6-d847-42fa-83b7-bcc7d87ac3e7
+        file: coverage/lcov.info
+        
