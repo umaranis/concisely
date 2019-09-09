@@ -25,7 +25,7 @@ void main() {
       "AAAAA");
   });
 
-  test('times_error_message', () {
+  test('times error message', () {
     expect(
       () => parseOrThrow("AAAA", char("A") * 5), 
       throwsA((e) => e is ParseException && e.result.message == '"A" expected'));
