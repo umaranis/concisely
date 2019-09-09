@@ -17,6 +17,6 @@ jobs:
     - name: Run tests
       run: pub run test
     - name: Code Coverage
-      run: |
-        pub run test_coverage
-        bash <(curl -s https://codecov.io/bash) -t 022cedc6-d847-42fa-83b7-bcc7d87ac3e7
+      run: pub run test_coverage
+    - name: Upload Coverage
+      run: bash <(curl -s https://codecov.io/bash) -t 022cedc6-d847-42fa-83b7-bcc7d87ac3e7
