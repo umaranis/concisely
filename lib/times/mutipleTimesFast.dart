@@ -16,9 +16,8 @@ class MultipleTimesFastParser extends FastParser {
     if(result == -1) {
       return MultipleTimesParser(parser, times).parse(context);
     }   
-
-    // TODO: Seems like a bug, why move by times, probably wrong assumption that each parse is of 1 char
-    return Success(context.move(times), getFastParseResult(context, 0, times));
+    
+    return Success(context.move(times), getFastParseResult(context, 0, result));
   }
 
   @override

@@ -18,9 +18,17 @@ class Context {
     return Context(_input, pos + number);
   }
 
-  String substring(int offset) {
-    return _input.substring(pos, pos + offset);
+  /// Returns subString of the input source, from the current [pos] till [endPosition]
+  String substring(int endPosition) {
+    return _input.substring(pos, pos+ endPosition);
   } 
+
+  /// Returns subString of the input source, starting from an [offset] from the current [pos].
+  /// [length] is the number of characters to include in the subString.
+  String subStringFromOffset(int offset, int length) {
+    final startPos = pos + offset;
+    return _input.substring(startPos, startPos + length);
+  }
   
   static const int EOF = 0x1A;
 }
