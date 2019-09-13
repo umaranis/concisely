@@ -2,7 +2,7 @@ import 'package:concisely/combinator/and.dart';
 import 'package:concisely/combinator/or.dart';
 import 'package:concisely/context.dart';
 import 'package:concisely/result/result.dart';
-import 'package:concisely/times.dart/times.dart';
+import 'package:concisely/times/times.dart';
 
 abstract class Parser<T> {
   Result<T> parse(Context context);  
