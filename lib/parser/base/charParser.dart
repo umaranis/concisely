@@ -25,8 +25,8 @@ abstract class CharBaseParser extends FastParser<String>{
   }
 
   @override
-  String getFastParseResult(Context context, int initialOffset, int resultPosition) {
-    return String.fromCharCode(context.seek(initialOffset));
+  String getFastParseResult(Context context, int startPosition, int endPosition) {
+    return String.fromCharCode(context.seek(startPosition));
   }
 
   bool verify(int charCode);

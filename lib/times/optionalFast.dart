@@ -25,10 +25,9 @@ class OptionalFastParser extends FastParser {
     return result == -1? offset : result;
   }
 
-  // TODO: Probably has a bug, doesn't make sense to added initialOffset and resultPosition
   @override
-  String getFastParseResult(Context context, int initialOffset, int length) {
-    return context.subStringFromOffset(initialOffset, length);
+  String getFastParseResult(Context context, int startPosition, int endPosition) {
+    return context.subStringFromOffset(startPosition, endPosition);
   }
 
   @override

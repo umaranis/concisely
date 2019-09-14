@@ -20,14 +20,13 @@ class Context {
 
   /// Returns subString of the input source, from the current [pos] till [endPosition]
   String substring(int endPosition) {
-    return _input.substring(pos, pos+ endPosition);
+    return _input.substring(pos, pos + endPosition);
   } 
 
-  /// Returns subString of the input source, starting from an [offset] from the current [pos].
-  /// [length] is the number of characters to include in the subString.
-  String subStringFromOffset(int offset, int length) {
-    final startPos = pos + offset;
-    return _input.substring(startPos, startPos + length);
+  /// Returns subString of the input source based on [start] and [end] position. 
+  /// This is irrespective of the current [pos].  
+  String subStringFromOffset(int start, int end) {    
+    return _input.substring(start, end);
   }
   
   static const int EOF = 0x1A;

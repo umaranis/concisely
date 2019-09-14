@@ -11,11 +11,11 @@ abstract class FastParser<T> extends Parser{
   int fastParse(Context context, int offset);
   
   /// Produces the result of [fastParse].
-  /// Should be called after [fastParse] as it's return value has to be passed into [resultPosition].
+  /// Usually called after [fastParse] as it's return value has to be passed into [endPosition].
   /// 
   /// To reduce memory allocation, new [Context] objects are not created in fast parsing, 
-  /// rather [initialOffset] holds the offset where this parser started and [resultPosition] is where it ended.
-  T getFastParseResult(Context context, int initialOffset, int resultPosition);
+  /// rather [startPosition] holds the offset where this parser started and [endPosition] is where it ended.
+  T getFastParseResult(Context context, int startPosition, int endPosition);
 
   String getFastParseMessage();
 }

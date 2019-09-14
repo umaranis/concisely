@@ -33,10 +33,9 @@ class MultipleTimesFastParser extends FastParser {
     return result;     
   }
 
-  // TODO: Probably has a bug, doesn't make sense to added initialOffset and resultPosition
   @override
-  String getFastParseResult(Context context, int initialOffset, int resultPosition) {
-    return context.substring(initialOffset + resultPosition);
+  String getFastParseResult(Context context, int startPosition, int endPosition) {
+    return context.subStringFromOffset(startPosition, endPosition);
   }
 
   @override
