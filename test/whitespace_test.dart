@@ -60,4 +60,11 @@ void main() {
       () => parseOrThrow("a", grammar), 
       throwsA((e) => e is ParseException));
   });  
+
+    test('whitespace Unicode', () {
+    var grammar = StringParser(whitespace);
+    expect(
+      () => parseOrThrow("\u{5760}", grammar), 
+      throwsA((e) => e is ParseException));
+  });  
 }
