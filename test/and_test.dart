@@ -1,6 +1,6 @@
 import 'package:concisely/continuation/string.dart';
 import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/runner.dart';
+import 'package:concisely/executor.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,20 +1,20 @@
 import 'package:concisely/continuation/string.dart';
 import 'package:concisely/exception.dart';
 import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/runner.dart';
+import 'package:concisely/executor.dart';
 import 'package:test/test.dart';
 
 void main() { 
 
   test('parseChar', () {
     expect(
-      parseOrThrow("@ASSA#", char("@")), 
+      parseOrThrow("@", char("@")), 
       "@");
   });
 
   test('parse2Chars', () {
     expect(
-      parseOrThrow("9988", StringParser(char("9") & char("9"))), 
+      parseOrThrow("99", StringParser(char("9") & char("9"))), 
       "99");
   });
 

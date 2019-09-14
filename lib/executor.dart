@@ -1,10 +1,11 @@
 import 'package:concisely/context.dart';
+import 'package:concisely/parser/char/eof.dart';
 import 'package:concisely/result/result.dart';
 import 'parser/base/parser.dart';
 import 'exception.dart';
 
-// TODO: Should it not parse the whole input or throw error
-T parseOrThrow<T>(String input, Parser parser) {  
+T parseOrThrow<T>(String input, Parser parser) { 
+  parser = parser & eof;
   var result = parser.parse(Context(input, 0));
   if(result.isSuccess) {
     return result.value;
@@ -15,6 +16,7 @@ T parseOrThrow<T>(String input, Parser parser) {
 }
 
 Result parse(String input, Parser parser) {  
+  parser = parser & eof;
   var result = parser.parse(Context(input, 0));
   return result;  
 }

@@ -14,7 +14,7 @@ class AndParser extends Parser {
     if(r1.isSuccess) {
       final r2 = second.parse(r1.context);
       if(r2.isSuccess) {
-        return Success(r2.context, [r1.value, r2.value]);
+        return Success(r2.context, _combineResult(r1.value, r2.value));
       }
       else {
         return r2;
@@ -22,6 +22,18 @@ class AndParser extends Parser {
     }
     else {
       return r1;
+    }
+  }
+
+  Object _combineResult(Object r1, Object r2) {
+    if (r1 == null) {
+      return r2;      
+    } 
+    else if (r2 == null) {
+      return r1;
+    }
+    else {
+      return [r1, r2];
     }
   }
 

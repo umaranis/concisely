@@ -1,7 +1,7 @@
 import 'package:concisely/continuation/string.dart';
 import 'package:concisely/exception.dart';
 import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/runner.dart';
+import 'package:concisely/executor.dart';
 import 'package:test/test.dart';
 
 void main() {
