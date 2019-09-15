@@ -1,7 +1,7 @@
 import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/times/mutiple_times.dart';
-import 'package:concisely/times/mutipleTimesFast.dart';
+import 'package:concisely/times/mutiple_times_fast.dart';
 import 'package:concisely/times/optional.dart';
 import 'optionalFast.dart';
 
