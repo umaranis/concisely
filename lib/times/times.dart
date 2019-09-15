@@ -1,4 +1,4 @@
-import 'package:concisely/parser/base/fastParser.dart';
+import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/times/mutipleTimes.dart';
 import 'package:concisely/times/mutipleTimesFast.dart';
