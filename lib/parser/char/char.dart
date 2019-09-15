@@ -1,4 +1,4 @@
-import 'package:concisely/parser/base/charParser.dart';
+import 'package:concisely/parser/base/char_parser.dart';
 
 CharParser char(Object charCode) {
   return CharParser(charCode);

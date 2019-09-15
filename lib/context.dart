@@ -31,5 +31,3 @@ class Context {
   
   static const int EOF = 0x1A;
 }
-
-
