@@ -2,7 +2,7 @@ import 'package:concisely/context.dart';
 import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/result/result.dart';
 import 'package:concisely/result/success.dart';
-import 'package:concisely/times/mutipleTimes.dart';
+import 'package:concisely/times/mutiple_times.dart';
 
 class MultipleTimesFastParser extends FastParser {
   final FastParser parser;
