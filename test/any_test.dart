@@ -18,4 +18,11 @@ void main() {
       "12345");
   });
 
+  test('any failure', () {
+    var grammar = any * 5;
+    expectFailure(
+      parse("1234", grammar), 
+      "Any character");
+  });
+
 }
