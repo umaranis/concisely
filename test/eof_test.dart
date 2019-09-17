@@ -1,3 +1,4 @@
+import 'package:concisely/context.dart';
 import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/eof.dart';
@@ -17,5 +18,18 @@ void main() {
     expectFailure(
       parse("12", grammar), 
       "End of File expected");
+  });
+
+  test('eof empty string', () {
+    var grammar = eof;
+    expectSuccess(
+      parse("", grammar), 
+      null);
+  });
+
+  test('eof fast parse', () {
+    expect(
+      eof.fastParse(Context("", 0), 0), 
+      0);
   });
 }

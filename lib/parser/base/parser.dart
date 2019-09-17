@@ -1,6 +1,6 @@
-import 'package:concisely/combinator/and.dart';
-import 'package:concisely/combinator/or.dart';
 import 'package:concisely/context.dart';
+import 'package:concisely/parser/combiner/and.dart';
+import 'package:concisely/parser/combiner/or.dart';
 import 'package:concisely/result/result.dart';
 import 'package:concisely/times/times.dart';
 
