@@ -37,4 +37,7 @@ class ManyParser extends Parser<List> {
     }
   }
 
+  @override
+  String get label => parser.label + "* many";
+
 }

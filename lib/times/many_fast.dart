@@ -32,9 +32,7 @@ class ManyFastParser extends TimesFastParser {
   }  
 
   @override
-  String getFastParseMessage() {    
-    return parser.getFastParseMessage() + " * many times";
-  }
+  String get label => parser.label + " * many times";
 
   @override
   Parser getFallbackParser() {    

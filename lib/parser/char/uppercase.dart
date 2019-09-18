@@ -10,8 +10,7 @@ class UppercaseParser extends CharBaseParser{
   }
 
   @override
-  String getFastParseMessage() {
-    return "uppercase";    
-  }  
+  String get label => "uppercase";
+    
 }
 

@@ -2,8 +2,6 @@ import 'package:concisely/context.dart';
 import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/base/times_fast_parser.dart';
-import 'package:concisely/result/result.dart';
-import 'package:concisely/result/success.dart';
 import 'package:concisely/times/optional.dart';
 
 class OptionalFastParser extends TimesFastParser {
@@ -18,9 +16,7 @@ class OptionalFastParser extends TimesFastParser {
   }
 
   @override
-  String getFastParseMessage() {    
-    return parser.getFastParseMessage() + " * optional";
-  }
+  String get label => '${parser.label} optional';
 
   @override
   Parser getFallbackParser() {    

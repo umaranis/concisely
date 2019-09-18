@@ -16,7 +16,7 @@ class EOFParser extends FastParser {
     if (verify(value)) {
       return Success(context, null);
     }
-    return Failure(context, getFastParseMessage() + ' expected');
+    return Failure(context, label + ' expected');
   }
   
   @override
@@ -38,7 +38,6 @@ class EOFParser extends FastParser {
   }
 
   @override
-  String getFastParseMessage() {    
-    return 'End of File';
-  }
+  String get label => 'End of File';
+
 }

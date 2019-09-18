@@ -18,5 +18,8 @@ class StringParser extends Parser{
       return result;
     }
   }
+
+  @override
+  String get label => "String converter";
   
 }

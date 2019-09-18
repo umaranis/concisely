@@ -28,4 +28,7 @@ class MultipleTimesParser extends Parser {
     return Success(current, list);
   }
 
+  @override
+  String get label => '${parser.label} * ${times} times';
+
 }

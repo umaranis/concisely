@@ -37,6 +37,8 @@ class AndParser extends Parser {
     }
   }
 
+  @override
+  String get label => "${first.label} And ${second.label}";
 
 }
 

@@ -11,8 +11,7 @@ class AnyParser extends CharBaseParser{
   }
 
   @override
-  String getFastParseMessage() {
-    return "Any character";    
-  }  
+  String get label => "Any character";
+    
 }
 

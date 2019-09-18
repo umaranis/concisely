@@ -10,10 +10,7 @@ class DigitParser extends CharBaseParser{
   }
 
   @override
-  String getFastParseMessage() {
-    return "digit";    
-  }
-
-  
+  String get label => "digit";    
+    
 }
 

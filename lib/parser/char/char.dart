@@ -10,9 +10,7 @@ class CharParser extends CharBaseParser{
   CharParser(Object char) : this.charCode = toCharCode(char);
 
   @override
-  String getFastParseMessage() {
-    return '"${toReadableString(charCode)}"';    
-  }
+  String get label => '"${toReadableString(charCode)}"';
 
   @override
   bool verify(int value) {    

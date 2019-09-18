@@ -17,5 +17,8 @@ class OptionalParser extends Parser {
       return Success(context, null);
     }    
   }
+
+  @override
+  String get label => '${parser.label} optional';
   
 }

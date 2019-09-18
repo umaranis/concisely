@@ -15,9 +15,5 @@ abstract class FastParser<T> extends Parser{
   /// 
   /// To reduce memory allocation, new [Context] objects are not created in fast parsing, 
   /// rather [startPosition] holds the offset where this parser started and [endPosition] is where it ended.
-  T getFastParseResult(Context context, int startPosition, int endPosition);
-
-  // TODO: rename it to 'label'
-  /// Label for the parser like 'Any Character', 'letter', 'digit' etc.
-  String getFastParseMessage();
+  T getFastParseResult(Context context, int startPosition, int endPosition);  
 }

@@ -24,9 +24,7 @@ class MultipleTimesFastParser extends TimesFastParser {
   }
 
   @override
-  String getFastParseMessage() {    
-    return parser.getFastParseMessage() + " * " + times.toString() + " times";
-  }
+  String get label => "${parser.label} * ${times} times";
 
   @override
   Parser getFallbackParser() {    

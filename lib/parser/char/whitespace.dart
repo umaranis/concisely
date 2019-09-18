@@ -48,8 +48,7 @@ class WhitespaceParser extends CharBaseParser{
   }
 
   @override
-  String getFastParseMessage() {
-    return "whitespace";    
-  }  
+  String get label => "whitespace";
+  
 }
 

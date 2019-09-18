@@ -9,6 +9,7 @@ linter:
   rules:
     - camel_case_types
     - file_names
+    - annotate_overrides
 
 analyzer:
 #   exclude:

@@ -20,9 +20,11 @@ class OrParser extends Parser {
       return r2;
     }
     
-    return Failure(context, "[${r1.message}] or [${r2.message}]");
+    return Failure(context, "${label} expected");
   }
 
+  @override
+  String get label => "${first.label} Or ${second.label}";
 
 }
 

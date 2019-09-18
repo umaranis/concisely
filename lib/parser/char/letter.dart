@@ -10,8 +10,7 @@ class LetterParser extends CharBaseParser{
   }
 
   @override
-  String getFastParseMessage() {
-    return "letter";    
-  }  
+  String get label => "letter";
+    
 }
 

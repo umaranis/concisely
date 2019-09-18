@@ -12,7 +12,7 @@ abstract class CharBaseParser extends FastParser<String>{
     if (verify(value)) {
       return Success(context.move(1), String.fromCharCode(value));
     }
-    return Failure(context, getFastParseMessage() + ' expected');
+    return Failure(context, label + ' expected');
   }
   
   @override
