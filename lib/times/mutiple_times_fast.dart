@@ -12,12 +12,12 @@ class MultipleTimesFastParser extends FastParser {
 
   @override
   Result parse(Context context) {    
-    final result = fastParse(context, 0);    
+    final result = fastParse(context, context.pos);    
     if(result == -1) {
       return MultipleTimesParser(parser, times).parse(context);
     }   
     
-    return Success(context.move(times), getFastParseResult(context, 0, result));
+    return Success(context.moveTo(result), getFastParseResult(context, context.pos, result));
   }
 
   @override

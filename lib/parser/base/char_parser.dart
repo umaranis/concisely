@@ -16,10 +16,10 @@ abstract class CharBaseParser extends FastParser<String>{
   }
   
   @override
-  int fastParse(Context context, int offset) {
-    int value = context.seek(offset);
+  int fastParse(Context context, int position) {
+    int value = context.seekAt(position);
     if (verify(value)) {
-      return offset + 1;
+      return position + 1;
     }    
     return -1;    
   }
@@ -31,4 +31,3 @@ abstract class CharBaseParser extends FastParser<String>{
 
   bool verify(int charCode);
 }
-

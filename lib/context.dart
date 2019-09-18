@@ -4,8 +4,17 @@ class Context {
   
   const Context(this._input, this.pos);  
 
-  int seek([int forward = 0]) {
-    int position = this.pos + forward;
+  int seek([int offset = 0]) {
+    int position = this.pos + offset;
+    if(position < _input.length) {
+      return _input.codeUnitAt(position);
+    }
+    else {
+      return EOF;
+    }
+  }
+
+    int seekAt(int position) {    
     if(position < _input.length) {
       return _input.codeUnitAt(position);
     }
@@ -17,6 +26,10 @@ class Context {
   Context move(int number)  {
     return Context(_input, pos + number);
   }
+
+  Context moveTo(int pos) {
+    return Context(_input, pos);
+  } 
 
   /// Returns subString of the input source, from the current [pos] till [endPosition]
   String substring(int endPosition) {

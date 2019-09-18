@@ -11,18 +11,18 @@ class OptionalFastParser extends FastParser {
 
   @override
   Result parse(Context context) {    
-    final result = fastParse(context, 0);    
+    final result = fastParse(context, context.pos);    
     if(result == -1) {
       return OptionalParser(parser).parse(context);
     }   
 
-    return Success(context.move(result), getFastParseResult(context, 0, result));
+    return Success(context.moveTo(result), getFastParseResult(context, context.pos, result));
   }
 
   @override
-  int fastParse(Context context, int offset) {    
-    final result = parser.fastParse(context, offset);
-    return result == -1? offset : result;
+  int fastParse(Context context, int position) {    
+    final result = parser.fastParse(context, position);
+    return result == -1? position : result;
   }
 
   @override

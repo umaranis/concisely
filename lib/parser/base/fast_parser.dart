@@ -7,8 +7,8 @@ import 'package:concisely/context.dart';
 abstract class FastParser<T> extends Parser{
   
   /// Reduces memory allocation by not allocating memory for result and new context
-  /// As new context is not created, [offset] tells you where to start ahead of the current position.
-  int fastParse(Context context, int offset);
+  /// As new context is not created, [position] variable is used to track the current position.
+  int fastParse(Context context, int position);
   
   /// Produces the result of [fastParse].
   /// Usually called after [fastParse] as it's return value has to be passed into [endPosition].
@@ -17,5 +17,7 @@ abstract class FastParser<T> extends Parser{
   /// rather [startPosition] holds the offset where this parser started and [endPosition] is where it ended.
   T getFastParseResult(Context context, int startPosition, int endPosition);
 
+  // TODO: rename it to 'label'
+  /// Label for the parser like 'Any Character', 'letter', 'digit' etc.
   String getFastParseMessage();
 }

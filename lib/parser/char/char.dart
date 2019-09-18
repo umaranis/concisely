@@ -11,7 +11,7 @@ class CharParser extends CharBaseParser{
 
   @override
   String getFastParseMessage() {
-    return '"${String.fromCharCode(charCode)}"';    
+    return '"${toReadableString(charCode)}"';    
   }
 
   @override
