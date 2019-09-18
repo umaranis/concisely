@@ -4,6 +4,7 @@ import 'package:concisely/times/many.dart';
 import 'package:concisely/times/mutiple_times.dart';
 import 'package:concisely/times/mutiple_times_fast.dart';
 import 'package:concisely/times/optional.dart';
+import 'many_fast.dart';
 import 'optional_fast.dart';
 
 final OptionalParser optional = OptionalParser(null);
@@ -17,7 +18,7 @@ Parser timesFactory(Parser parser, Object operand) {
     return parser is FastParser? OptionalFastParser(parser) : OptionalParser(parser);
   }
   else if(operand == many) {
-    return ManyParser(parser);
+    return parser is FastParser? ManyFastParser(parser) : ManyParser(parser);
   }
 
   throw ArgumentError("Wrong arguments to Parser '*' operator.");
