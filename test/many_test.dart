@@ -6,7 +6,15 @@ import 'package:test/test.dart';
 import 'helper.dart';
 
 void main() {
+
   test('many', () {
+    var grammar = any * many;
+    expectSuccess(
+      parse("123ABC@", grammar), 
+      "123ABC@");
+  });  
+
+  test('many 1', () {
     var grammar = any * many;
     expectSuccess(
       parse("1", grammar), 
@@ -19,5 +27,7 @@ void main() {
       parse("1", grammar), 
       "Any");
   });
+
+
 
 }
