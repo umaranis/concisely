@@ -1,7 +1,7 @@
 import 'package:concisely/context.dart';
 
 abstract class Result<T> {
-  Result(this.context);
+  const Result(this.context);
 
   bool get isSuccess => false;
   bool get isFailure => false;

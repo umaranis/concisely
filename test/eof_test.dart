@@ -10,7 +10,7 @@ void main() {
     var grammar = digit & eof;
     expectSuccess(
       parse("1", grammar), 
-      "1");
+      ["1"]);
   });
 
   test('eof fail', () {

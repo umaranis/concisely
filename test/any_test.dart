@@ -7,6 +7,13 @@ void main() {
   test('any', () {
     var grammar = any;
     expectSuccess(
+      parse("12", grammar), 
+      "1");
+  });
+
+  test('any', () {
+    var grammar = any;
+    expectSuccess(
       parse("1", grammar), 
       "1");
   });

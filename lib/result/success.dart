@@ -3,7 +3,7 @@ import 'package:concisely/context.dart';
 import 'package:concisely/result/result.dart';
 
 class Success<T> extends Result<T> {
-  Success(Context context, this.value) : super(context);
+  const Success(Context context, this.value) : super(context);
 
   @override
   bool get isSuccess => true;
