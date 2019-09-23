@@ -1,17 +1,17 @@
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/context.dart';
+import 'package:concisely/parser/base/times_parser.dart';
 import 'package:concisely/result/failure.dart';
 import 'package:concisely/result/result.dart';
 import 'package:concisely/result/success.dart';
 
-class MultipleTimesParser extends Parser {
-  final Parser parser;
+class MultipleTimesParser extends TimesParser {  
   final int times;
 
-  MultipleTimesParser(this.parser, this.times);
+  MultipleTimesParser(Parser parser, this.times) : super(parser);
 
   @override
-  Result parse(Context context) {    
+  Result<List> parse(Context context) {    
     var list = [];
     var current = context;
     for(int i = 0; i < times; i++) {

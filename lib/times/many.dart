@@ -1,15 +1,15 @@
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/context.dart';
+import 'package:concisely/parser/base/times_parser.dart';
 import 'package:concisely/result/failure.dart';
 import 'package:concisely/result/result.dart';
 import 'package:concisely/result/success.dart';
 
 /// Repeats the given parser one or more times.
 /// Also called plus (+) or 1+ in some parsing systems.
-class ManyParser extends Parser<List> {
-  final Parser parser;  
+class ManyParser extends TimesParser {    
 
-  ManyParser(this.parser);
+  ManyParser(Parser parser) : super(parser);
 
   @override
   Result<List> parse(Context context) {    
