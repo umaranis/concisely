@@ -4,11 +4,10 @@ import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/base/times_fast_parser.dart';
 import 'package:concisely/times/mutiple_times.dart';
 
-class MultipleTimesFastParser extends TimesFastParser {
-  final FastParser parser;
+class MultipleTimesFastParser extends TimesFastParser {  
   final int times;
 
-  MultipleTimesFastParser(this.parser, this.times);
+  MultipleTimesFastParser(FastParser parser, this.times) : super(parser);
 
   @override
   int fastParse(Context context, int offset) {    

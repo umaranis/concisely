@@ -4,10 +4,9 @@ import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/base/times_fast_parser.dart';
 import 'many.dart';
 
-class ManyFastParser extends TimesFastParser {
-  final FastParser parser;
+class ManyFastParser extends TimesFastParser {  
 
-  ManyFastParser(this.parser);
+  ManyFastParser(FastParser parser) : super(parser);
   
   @override
   int fastParse(Context context, int position) {    

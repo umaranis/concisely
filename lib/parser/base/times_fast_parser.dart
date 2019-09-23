@@ -5,6 +5,10 @@ import 'package:concisely/result/result.dart';
 import 'package:concisely/result/success.dart';
 
 abstract class TimesFastParser extends FastParser {
+  final FastParser parser;
+
+  TimesFastParser(this.parser);
+  
   Parser getFallbackParser();
 
   @override

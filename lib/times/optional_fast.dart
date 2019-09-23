@@ -4,10 +4,9 @@ import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/base/times_fast_parser.dart';
 import 'package:concisely/times/optional.dart';
 
-class OptionalFastParser extends TimesFastParser {
-  final FastParser parser;
+class OptionalFastParser extends TimesFastParser {  
 
-  OptionalFastParser(this.parser);
+  OptionalFastParser(FastParser parser) : super(parser);
 
   @override
   int fastParse(Context context, int position) {    
