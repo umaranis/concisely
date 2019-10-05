@@ -5,7 +5,7 @@ import 'package:concisely/result/result.dart';
 import 'package:concisely/result/success.dart';
 
 abstract class TimesFastParser extends FastParser {
-  final FastParser parser;
+  FastParser parser;
 
   TimesFastParser(this.parser);
   
@@ -24,6 +24,14 @@ abstract class TimesFastParser extends FastParser {
   @override
   String getFastParseResult(Context context, int startPosition, int endPosition) {
     return context.subStringFromOffset(startPosition, endPosition);
+  }
+
+  @override  
+  Iterable<Parser> get children => [parser];
+
+  @override
+  void replace(Parser source, Parser target) { 
+    parser = target;
   }
 
 }

@@ -8,11 +8,14 @@ abstract class Parser<T> {
   Result<T> parse(Context context); 
 
   /// Label for the parser like 'Any Character', 'letter', 'digit' etc. 
-  String get label;
+  String get label;  
 
   Parser operator & (Parser other) => SequenceParser([this, other]);
   Parser operator * (Object times) => timesFactory(this, times);
   Parser operator | (Parser other) => ChoiceParser([this, other]);
+
+  Iterable<Parser> get children => const [];
+  void replace(Parser source, Parser target) {}
 }
 
 
