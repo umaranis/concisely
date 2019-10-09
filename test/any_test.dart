@@ -22,7 +22,7 @@ void main() {
     var grammar = any * 5;
     expectSuccess(
       parse("12345", grammar), 
-      "12345");
+      ['1','2','3','4','5']);
   });
 
   test('any failure', () {

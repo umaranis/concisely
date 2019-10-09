@@ -1,10 +1,11 @@
 import 'package:concisely/parser/base/parser.dart';
 
-abstract class TimesParser extends Parser {
+/// A parser enclosing a child parser
+abstract class ParentParser extends Parser {
 
   Parser parser;
 
-  TimesParser(this.parser);
+  ParentParser(this.parser);
 
   @override  
   Iterable<Parser> get children => [parser];

@@ -2,18 +2,19 @@ import 'package:concisely/context.dart';
 import 'package:concisely/debug/callbacks.dart';
 import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
+import 'package:concisely/result/output_type.dart';
 import 'package:concisely/result/result.dart';
 
-class WrapperParser extends FastParser {
+class WrapperParser extends Parser with FastParser {
   final Parser parser;
   final Callbacks callbacks;
 
   WrapperParser(this.parser, this.callbacks);  
 
   @override
-  Result parse(Context context) {    
+  Result parse(Context context, [OutputType outputType]) {    
     callbacks.preParse(PreParseContext(parser, context));
-    final result = parser.parse(context);
+    final result = parser.parse(context, outputType);
     callbacks.postParse(PostParseContext(parser, context, result));
     return result;
   }

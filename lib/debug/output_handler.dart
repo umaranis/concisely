@@ -1,0 +1,1 @@
+typedef void OutputHandler(Object object);

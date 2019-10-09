@@ -1,8 +1,8 @@
-
 import 'package:concisely/debug/callbacks.dart';
 import 'package:concisely/debug/wrap.dart';
 import 'package:concisely/debug/wrapper.dart';
 import 'package:concisely/parser/base/parser.dart';
+import 'output_handler.dart';
 
 WrapperParser progress(Parser p, [OutputHandler outputHandler = print]) {
 
@@ -16,6 +16,3 @@ WrapperParser progress(Parser p, [OutputHandler outputHandler = print]) {
   return wrap(p, c);
 
 }
-
-typedef void OutputHandler(Object object);
-

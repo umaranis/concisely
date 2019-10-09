@@ -1,13 +1,15 @@
 import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
-import 'package:concisely/times/many.dart';
-import 'package:concisely/times/mutiple_times.dart';
-import 'package:concisely/times/mutiple_times_fast.dart';
-import 'package:concisely/times/optional.dart';
+import 'many.dart';
 import 'many_fast.dart';
+import 'mutiple_times.dart';
+import 'mutiple_times_fast.dart';
+import 'optional.dart';
 import 'optional_fast.dart';
 
 final OptionalParser optional = OptionalParser(null);
+/// Repeats the given parser one or more times.
+/// Also called 'plus (+)' or '1+' in some parsing systems.
 final ManyParser many = ManyParser(null);
 
 Parser timesFactory(Parser parser, Object operand) {

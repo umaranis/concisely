@@ -1,6 +1,6 @@
 import 'package:concisely/parser/base/parser.dart';
 
-/// Combines of list of parsers to be applied in a sequence
+/// Contains a list of parsers
 abstract class ListParser extends Parser {
   final List<Parser> parsers;
 

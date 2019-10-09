@@ -5,11 +5,13 @@ import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/eof.dart';
 import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/times/times.dart';
+import 'package:concisely/parser/times/times.dart';
 import 'package:test/test.dart';
 
+import 'helper.dart';
+
 void main() {
-  test('email somewhat', () {
+  test('email somewhat progress', () {
 
     var grammar = letter 
                   & 
@@ -28,62 +30,93 @@ void main() {
 
     final log = 
 """
-* SequenceParser called    [Sequence]
+* SequenceFastParser called    [Sequence]
 * LetterParser called    [letter]
-** ManyParser called    [letter or digit or "."* many]
-** ChoiceParser called    [letter or digit or "."]
+** ManyFastParser called    [letter or digit or "." * many times]
+** ChoiceFastParser called    [letter or digit or "."]
 ** LetterParser called    [letter]
-*** ChoiceParser called    [letter or digit or "."]
+*** ChoiceFastParser called    [letter or digit or "."]
 *** LetterParser called    [letter]
-**** ChoiceParser called    [letter or digit or "."]
+**** ChoiceFastParser called    [letter or digit or "."]
 **** LetterParser called    [letter]
-***** ChoiceParser called    [letter or digit or "."]
+***** ChoiceFastParser called    [letter or digit or "."]
 ***** LetterParser called    [letter]
-****** ChoiceParser called    [letter or digit or "."]
+****** ChoiceFastParser called    [letter or digit or "."]
 ****** LetterParser called    [letter]
 ****** DigitParser called    [digit]
 ****** CharParser called    ["."]
-******* ChoiceParser called    [letter or digit or "."]
+******* ChoiceFastParser called    [letter or digit or "."]
 ******* LetterParser called    [letter]
-******** ChoiceParser called    [letter or digit or "."]
+******** ChoiceFastParser called    [letter or digit or "."]
 ******** LetterParser called    [letter]
-********* ChoiceParser called    [letter or digit or "."]
+********* ChoiceFastParser called    [letter or digit or "."]
 ********* LetterParser called    [letter]
-********** ChoiceParser called    [letter or digit or "."]
+********** ChoiceFastParser called    [letter or digit or "."]
 ********** LetterParser called    [letter]
-*********** ChoiceParser called    [letter or digit or "."]
+*********** ChoiceFastParser called    [letter or digit or "."]
 *********** LetterParser called    [letter]
-************ ChoiceParser called    [letter or digit or "."]
+************ ChoiceFastParser called    [letter or digit or "."]
 ************ LetterParser called    [letter]
 ************ DigitParser called    [digit]
 ************ CharParser called    ["."]
 ************ CharParser called    ["@"]
-************* ManyParser called    [letter or digit* many]
-************* ChoiceParser called    [letter or digit]
+************* ManyFastParser called    [letter or digit * many times]
+************* ChoiceFastParser called    [letter or digit]
 ************* LetterParser called    [letter]
-************** ChoiceParser called    [letter or digit]
+************** ChoiceFastParser called    [letter or digit]
 ************** LetterParser called    [letter]
-*************** ChoiceParser called    [letter or digit]
+*************** ChoiceFastParser called    [letter or digit]
 *************** LetterParser called    [letter]
-**************** ChoiceParser called    [letter or digit]
+**************** ChoiceFastParser called    [letter or digit]
 **************** LetterParser called    [letter]
-***************** ChoiceParser called    [letter or digit]
+***************** ChoiceFastParser called    [letter or digit]
 ***************** LetterParser called    [letter]
-****************** ChoiceParser called    [letter or digit]
+****************** ChoiceFastParser called    [letter or digit]
 ****************** LetterParser called    [letter]
 ****************** DigitParser called    [digit]
 ****************** CharParser called    ["."]
 ******************* MultipleTimesFastParser called    [letter * 3 times]
-******************* LetterParser called    [letter]   <fast parse>
-******************** LetterParser called    [letter]   <fast parse>
-********************* LetterParser called    [letter]   <fast parse>
+******************* LetterParser called    [letter]
+******************** LetterParser called    [letter]
+********************* LetterParser called    [letter]
 ********************** EOFParser called    [End of File]
 """;
     
     final sb = StringBuffer();
     WrapperParser p = progress(grammar, (obj) => sb.writeln(obj.toString()));              
     final r = parse("hello.world@gmail.com", p);
+    //print(sb.toString());
     expect(r.isSuccess, true);
     expect(sb.toString(), log);
+  });
+
+  test('email somewhat progress print', () {
+
+    var grammar = letter 
+                  & 
+                  (letter | digit | char('.') ) * many
+                  &
+                  char('@')
+                  &
+                  (letter | digit) * many
+                  & 
+                  char('.')
+                  &
+                  letter * 3
+                  &
+                  eof
+                  ;
+   
+    expectSuccess(
+      parse("hello.world@gmail.com", progress(grammar)), 
+      [
+        'h',
+        ['e', 'l', 'l', 'o', '.', 'w', 'o', 'r', 'l', 'd'],
+        '@',
+        ['g', 'm', 'a', 'i', 'l'],
+        '.',
+        ['c', 'o', 'm']
+      ]
+    );
   });
 }

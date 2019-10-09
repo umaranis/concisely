@@ -1,5 +1,6 @@
-import 'package:concisely/continuation/string.dart';
+
 import 'package:concisely/exception.dart';
+import 'package:concisely/parser/base/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
 import 'package:concisely/executor.dart';
 import 'package:test/test.dart';
@@ -7,14 +8,14 @@ import 'package:test/test.dart';
 void main() { 
 
   test('orParser', () {
-    var grammar = StringParser((char("A") * 5 | char("G") * 5) & (char("G") | char("K")));
+    var grammar = (char("A") * 5 | char("G") * 5) & (char("G") | char("K")) > string;
     expect(
       parseOrThrow("AAAAAG", grammar), 
       "AAAAAG");
   });
 
   test('orParserError', () {
-    var grammar = StringParser(char("F") * 5 | char("G") * 5) & (char("G") | char("G"));
+    var grammar = (char("F") * 5 | char("G") * 5) & (char("G") | char("G")) > string;
     expect(
       () => parseOrThrow("AAAAAGG", grammar)
         .reduce((a, b) => a + b), 

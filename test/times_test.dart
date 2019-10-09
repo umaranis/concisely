@@ -1,4 +1,5 @@
-import 'package:concisely/continuation/string.dart';
+
+import 'package:concisely/parser/base/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
 import 'package:concisely/executor.dart';
 import 'package:test/test.dart';
@@ -6,7 +7,7 @@ import 'package:test/test.dart';
 void main() {
 
   test('7times', () {
-    var grammar = StringParser( (char('A') | char('\n')) * 7 );            
+    var grammar =  (char('A') | char('\n')) * 7   > string;            
     expect(
       parseOrThrow("AAA\nAA\n", grammar), 
       "AAA\nAA\n");
@@ -16,6 +17,6 @@ void main() {
     var grammar = char('A') * 3;            
     expect(
       parseOrThrow("AAA", grammar), 
-      "AAA");
+      ['A','A','A']);
   });
 }
