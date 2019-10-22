@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 import 'helper.dart';
 
 void main() {
-  test('optional', () {
+  test('optional fast parser', () {
 
     var grammar = 
       char("A") * 5
@@ -20,7 +20,20 @@ void main() {
     expectSuccess(
       parse("AAAAA", grammar), 
       "AAAAA");
-  }); 
+  });
 
-  
+  test('optional', () {
+
+    var grammar =
+        char("A") * 5
+        &
+        char("G") * 2 * optional
+    ;
+
+    expectSuccess(
+        parse("AAAAA", grammar),
+        [['A', 'A', 'A', 'A', 'A']]);
+  });
+
+
 }
