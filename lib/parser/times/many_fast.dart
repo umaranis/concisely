@@ -29,9 +29,6 @@ class ManyFastParser extends ManyParser with FastParser, DefaultFastParseResult,
         return position;
       }
     }   
-  }  
-
-  @override
-  String get label => parser.label + " * many times";
+  }
 
 }

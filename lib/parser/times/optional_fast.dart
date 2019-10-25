@@ -15,7 +15,4 @@ class OptionalFastParser extends OptionalParser with FastParser, DefaultFastPars
     return result == -1? position : result;
   }
 
-  @override
-  String get label => '${parser.label} optional'; 
-
 }

@@ -40,6 +40,6 @@ class ManyParser extends ParentParser {
   }
 
   @override
-  String get label => parser.label + " * many";
+  String get label => parser.label + " * many times";
 
 }

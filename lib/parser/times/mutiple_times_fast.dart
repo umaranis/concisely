@@ -22,7 +22,4 @@ class MultipleTimesFastParser extends MultipleTimesParser with FastParser, Defau
     return result;     
   }
 
-  @override
-  String get label => "${parser.label} * ${times} times";  
-
 }

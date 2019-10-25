@@ -34,7 +34,4 @@ class MinTimesFastParser extends MinTimesParser with FastParser, DefaultFastPars
     }   
   }  
 
-  @override
-  String get label => parser.label + " * many times";
-
 }
