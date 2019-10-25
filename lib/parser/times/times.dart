@@ -1,5 +1,6 @@
 import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
+import 'package:concisely/parser/times/between_times.dart';
 import 'package:concisely/parser/times/min_times.dart';
 import 'package:concisely/parser/times/min_times_fast.dart';
 import 'many.dart';
@@ -15,6 +16,9 @@ final OptionalParser optional = OptionalParser(null);
 final ManyParser many = ManyParser(null);
 MinTimesParser min(int min) {
   return MinTimesParser(null, min);
+}
+BetweenTimesParser between(int min, int max) {
+  return BetweenTimesParser(null, min, max);
 }
 
 Parser timesFactory(Parser parser, Object operand) {
@@ -34,6 +38,10 @@ Parser timesFactory(Parser parser, Object operand) {
       operand.parser = parser;
       return operand;
     }
+  }
+  else if(operand is BetweenTimesParser) {
+    operand.parser = parser;
+    return operand;
   }
 
   throw ArgumentError("Wrong arguments to Parser '*' operator.");
