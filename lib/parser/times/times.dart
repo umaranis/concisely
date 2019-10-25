@@ -1,6 +1,7 @@
 import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/times/min_times.dart';
+import 'package:concisely/parser/times/min_times_fast.dart';
 import 'many.dart';
 import 'many_fast.dart';
 import 'mutiple_times.dart';
@@ -27,8 +28,12 @@ Parser timesFactory(Parser parser, Object operand) {
     return parser is FastParser? ManyFastParser(parser) : ManyParser(parser);
   }
   else if(operand is MinTimesParser) {
-    operand.parser = parser;
-    return operand;
+    if(parser is FastParser) {
+      return MinTimesFastParser(parser, operand.min);
+    } else {
+      operand.parser = parser;
+      return operand;
+    }
   }
 
   throw ArgumentError("Wrong arguments to Parser '*' operator.");
