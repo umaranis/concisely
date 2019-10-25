@@ -3,6 +3,7 @@ import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/times/between_times.dart';
 import 'package:concisely/parser/times/min_times.dart';
 import 'package:concisely/parser/times/min_times_fast.dart';
+import 'between_times_fast.dart';
 import 'many.dart';
 import 'many_fast.dart';
 import 'mutiple_times.dart';
@@ -40,8 +41,13 @@ Parser timesFactory(Parser parser, Object operand) {
     }
   }
   else if(operand is BetweenTimesParser) {
-    operand.parser = parser;
-    return operand;
+    if(parser is FastParser) {
+      return BetweenTimesFastParser(parser, operand.min, operand.max);
+    }
+    else {
+      operand.parser = parser;
+      return operand;
+    }
   }
 
   throw ArgumentError("Wrong arguments to Parser '*' operator.");
