@@ -1,6 +1,6 @@
 import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
-import 'package:concisely/parser/times/min.dart';
+import 'package:concisely/parser/times/min_times.dart';
 import 'many.dart';
 import 'many_fast.dart';
 import 'mutiple_times.dart';
@@ -12,8 +12,8 @@ final OptionalParser optional = OptionalParser(null);
 /// Repeats the given parser one or more times.
 /// Also called 'plus (+)' or '1+' in some parsing systems.
 final ManyParser many = ManyParser(null);
-MinParser min(int min) {
-  return MinParser(null, min);
+MinTimesParser min(int min) {
+  return MinTimesParser(null, min);
 }
 
 Parser timesFactory(Parser parser, Object operand) {
@@ -26,7 +26,7 @@ Parser timesFactory(Parser parser, Object operand) {
   else if(operand == many) {
     return parser is FastParser? ManyFastParser(parser) : ManyParser(parser);
   }
-  else if(operand is MinParser) {
+  else if(operand is MinTimesParser) {
     operand.parser = parser;
     return operand;
   }

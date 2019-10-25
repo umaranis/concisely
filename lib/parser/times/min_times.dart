@@ -9,10 +9,10 @@ import 'package:concisely/result/success.dart';
 
 /// Repeats the given parser [min] or more times.
 /// e.g. letter * min(5) // match 5 or more letters
-class MinParser extends ParentParser {
+class MinTimesParser extends ParentParser {
   /// minimum number of times the parser is repeated
   final int min;
-  MinParser(Parser parser, this.min) : super(parser);
+  MinTimesParser(Parser parser, this.min) : super(parser);
 
   @override
   Result parse(Context context, [OutputType outputType]) {    
