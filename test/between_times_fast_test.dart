@@ -76,7 +76,7 @@ void main() {
 
   test('between 1 trace', () {
     var grammar = letter * between(1,1)
-    ;
+      > string;
     expectTrace(grammar, 'a', 'a', 'BetweenTimesFastParser');
   });
 
@@ -84,6 +84,12 @@ void main() {
     var grammar = letter * between(1,10)
         > string;
     expectProgress(grammar, 'a', 'a', '<fast parse>');
+  });
+
+  test('between 1 slow parse', () {
+    var grammar = (letter > list) * between(1,10)
+        > string;
+    expectProgress(grammar, 'a', 'a', '<fast parse>', false);
   });
 
 }

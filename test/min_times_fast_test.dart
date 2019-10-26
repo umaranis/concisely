@@ -60,4 +60,10 @@ void main() {
     expectProgress(grammar, 'a', 'a', '<fast parse>');
   });
 
+  test('min 1 slow parse', () {
+    var grammar = (letter > list) * min(1)
+        > string;
+    expectProgress(grammar, 'a', 'a', '<fast parse>', false);
+  });
+
 }
