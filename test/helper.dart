@@ -19,18 +19,32 @@ void expectFailure(Result r, [Object message]) {
   }
 }
 
-void expectTrace(Parser grammar, String input, Object result, String log) {
-  final sb = StringBuffer();
-  WrapperParser p = trace(grammar, (obj) => sb.writeln(obj.toString()));
-  final r = parse(input, p);
-  expect(r.isSuccess, true);
-  expect(sb.toString().contains(log), true, reason: 'Actual trace log does not contain expected log');
+/// Applies the grammar to given input and ensures that:
+/// 1  - parsing is successful
+/// 2  - matches the expected output
+/// 3a - actual trace log contains the given log message if [logMatches] is true
+/// 3b - actual trace log does not contain the given log message if [logMatches] is false
+void expectTrace(Parser grammar, String input, Object result, String log, [bool logMatches = true]) {
+  _expectLog(trace , 'trace', grammar, input, result, log, logMatches);
 }
 
-void expectProgress(Parser grammar, String input, Object result, String log) {
+/// Applies the grammar to given input and ensures that:
+/// 1  - parsing is successful
+/// 2  - matches the expected output
+/// 3a - actual progress log contains the given log message if [logMatches] is true
+/// 3b - actual progress log does not contain the given log message if [logMatches] is false
+void expectProgress(Parser grammar, String input, Object result, String log, [bool logMatches = true]) {
+  _expectLog(progress, 'progress', grammar, input, result, log, logMatches);
+}
+
+void _expectLog(Function loggerFunction, String loggerName, Parser grammar, String input, Object result, String log, bool logMatches) {
   final sb = StringBuffer();
-  WrapperParser p = progress(grammar, (obj) => sb.writeln(obj.toString()));
+  WrapperParser p = loggerFunction(grammar, (obj) => sb.writeln(obj.toString()));
   final r = parse(input, p);
   expect(r.isSuccess, true);
-  expect(sb.toString().contains(log), true, reason: 'Actual progress log does not contain expected log');
+  expect(r.value, result);
+  var message = logMatches ?
+  'Actual ' + loggerName + ' log does not contain expected log' :
+  'Actual ' + loggerName + ' log does contain the unexpected log';
+  expect(sb.toString().contains(log), logMatches, reason: message);
 }
