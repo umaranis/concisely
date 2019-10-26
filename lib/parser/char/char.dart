@@ -30,7 +30,7 @@ int toCharCode(Object element) {
   return value.codeUnitAt(0);
 }
 
-/// Converts a character to a readable string.
+/// Converts a character or string to a readable string.
 String toReadableString(Object element) {
   if (element is String && element.length > 1) {
     final buffer = StringBuffer();

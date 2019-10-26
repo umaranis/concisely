@@ -50,5 +50,14 @@ void main() {
         ['c', 'o', 'm']
       ]
     );
-  });  
+  });
+
+  test('tree trace', () {
+    var grammar = char("A") * 5 & char("G") * 2   > tree;
+    expectTrace(grammar, "AAAAAGG",
+      [['A', 'A', 'A', 'A', 'A'], ['G', 'G']],
+      'TreeTransformer'
+    );
+  });
+
 }
