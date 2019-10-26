@@ -1,3 +1,4 @@
+import 'package:concisely/parser/base/transformer.dart';
 import 'package:concisely/parser/char/any.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/digit.dart';
@@ -26,6 +27,14 @@ void main() {
     expectFailure(
       parse("1", grammar), 
       "Any");
+  });
+
+  test('many failure, fast parse', () {
+    var grammar = digit & any * many
+      > string;
+    expectFailure(
+        parse("1", grammar),
+        "Any");
   });
 
 
