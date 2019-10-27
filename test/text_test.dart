@@ -1,3 +1,4 @@
+import 'package:concisely/debug/trace.dart';
 import 'package:concisely/exception.dart';
 import 'package:concisely/parser/base/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
@@ -5,6 +6,7 @@ import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/char/whitespace.dart';
 import 'package:concisely/parser/text/text.dart';
+import 'package:concisely/parser/times/times.dart';
 import 'package:test/test.dart';
 
 import 'helper.dart';
@@ -46,6 +48,24 @@ void main() {
     var grammar = letter * 5 & whitespace & text('world!') & char('!')
       > string;
     expectTrace(grammar, 'hello world!!', 'hello world!!', 'TextParser  ["world!"]   <fast parse>\n    Success[12]:');
+  });
+
+  test('text fast parsing fail', () {
+    var grammar = letter * 5 & whitespace & text('world!') & text('!')
+        > string;
+    expectFailure(parse('hello world!', trace(grammar)));
+  });
+
+  test('text fast string transformer', () {
+    var grammar = text('hello') & whitespace & letter * many
+        > string;
+    expectTrace(grammar, 'hello world', 'hello world', 'StringFastTransformer');
+  });
+
+  test('text fast parsing result', () {
+    var grammar = (text('hello') > string) & (whitespace > list)
+        > string;
+    expectSuccess(parse('hello world', trace(grammar)), 'hello ');
   });
 
   test('text label', () {

@@ -6,7 +6,7 @@ import 'package:concisely/parser/base/times_fast_parser.dart';
 
 import 'between_times.dart';
 
-class BetweenTimesFastParser extends BetweenTimesParser with FastParser, DefaultFastParseResult, TimesFastParser, IntrusiveFastParser {
+class BetweenTimesFastParser extends BetweenTimesParser with FastParser, DefaultFastParseResult, ParentFastParser, IntrusiveFastParser {
 
   BetweenTimesFastParser(FastParser parser, int min, int max) : super(parser, min, max);
   

@@ -5,7 +5,7 @@ import 'package:concisely/parser/base/intrusive_fast_parser.dart';
 import 'package:concisely/parser/base/times_fast_parser.dart';
 import 'optional.dart';
 
-class OptionalFastParser extends OptionalParser with FastParser, DefaultFastParseResult, TimesFastParser, IntrusiveFastParser {  
+class OptionalFastParser extends OptionalParser with FastParser, DefaultFastParseResult, ParentFastParser, IntrusiveFastParser {
 
   OptionalFastParser(FastParser parser) : super(parser);
 

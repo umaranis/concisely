@@ -5,7 +5,7 @@ import 'package:concisely/parser/base/intrusive_fast_parser.dart';
 import 'package:concisely/parser/base/times_fast_parser.dart';
 import 'package:concisely/parser/times/min_times.dart';
 
-class MinTimesFastParser extends MinTimesParser with FastParser, DefaultFastParseResult, TimesFastParser, IntrusiveFastParser {
+class MinTimesFastParser extends MinTimesParser with FastParser, DefaultFastParseResult, ParentFastParser, IntrusiveFastParser {
 
   MinTimesFastParser(FastParser parser, int min) : super(parser, min);
   

@@ -5,7 +5,7 @@ import 'package:concisely/parser/base/intrusive_fast_parser.dart';
 import 'package:concisely/parser/base/times_fast_parser.dart';
 import 'mutiple_times.dart';
 
-class MultipleTimesFastParser extends MultipleTimesParser with FastParser, DefaultFastParseResult, TimesFastParser, IntrusiveFastParser {  
+class MultipleTimesFastParser extends MultipleTimesParser with FastParser, DefaultFastParseResult, ParentFastParser, IntrusiveFastParser {
   
   MultipleTimesFastParser(FastParser parser, int times) : super(parser, times);
 

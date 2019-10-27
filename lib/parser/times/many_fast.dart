@@ -5,7 +5,7 @@ import 'package:concisely/parser/base/intrusive_fast_parser.dart';
 import 'package:concisely/parser/base/times_fast_parser.dart';
 import 'many.dart';
 
-class ManyFastParser extends ManyParser with FastParser, DefaultFastParseResult, TimesFastParser, IntrusiveFastParser {  
+class ManyFastParser extends ManyParser with FastParser, DefaultFastParseResult, ParentFastParser, IntrusiveFastParser {
 
   ManyFastParser(FastParser parser) : super(parser);
   

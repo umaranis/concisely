@@ -9,7 +9,7 @@ class ListTransformer extends Transformer {
   ListTransformer(Parser parser) : super(parser);
 
   @override
-  String get label => 'String Tranformer';
+  String get label => 'List Tranformer';
 
   @override
   Result parse(Context context, [OutputType outputType]) {
