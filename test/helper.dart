@@ -46,5 +46,6 @@ void _expectLog(Function loggerFunction, String loggerName, Parser grammar, Stri
   var message = logMatches ?
   'Actual ' + loggerName + ' log does not contain expected log' :
   'Actual ' + loggerName + ' log does contain the unexpected log';
+  message += '\n>> Expected: ' + log + '\n>> Actual: ' + sb.toString();
   expect(sb.toString().contains(log), logMatches, reason: message);
 }
