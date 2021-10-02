@@ -1,7 +1,7 @@
 name: concisely
 description: A simple parser combinator library for Dart language.
 # version: 0.0.1
-# homepage: https://www.example.com
+# homepage: https://umaranis.com
 # author: umaranis <mail@umaranis.com>
 
 environment:

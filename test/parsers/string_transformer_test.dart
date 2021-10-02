@@ -1,3 +1,4 @@
+import 'package:concisely/debug/trace.dart';
 import 'package:concisely/parser/base/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
 import 'package:concisely/executor.dart';
@@ -6,21 +7,15 @@ import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/times/times.dart';
 import 'package:test/test.dart';
 
-import 'helper.dart';
+import '../helper.dart';
 
 void main() {
-  test('default', () {
-    var grammar = char("A") * 5 & char("G") * 2;
-    expect(
-      parseOrThrow("AAAAAGG", grammar), 
-      [['A', 'A', 'A', 'A', 'A'], ['G', 'G']]);
-  });
-
-  test('tree', () {
-    var grammar = char("A") * 5 & char("G") * 2   > tree;
+  
+  test('list', () {
+    var grammar = char("A") * 5 & char("G") * 2   > string;
     expectSuccess(
-      parse("AAAAAGG", grammar), 
-      [['A', 'A', 'A', 'A', 'A'], ['G', 'G']]);
+      parse("AAAAAGG", trace(grammar)), 
+      "AAAAAGG");
   });
 
   test('email somewhat', () {
@@ -36,28 +31,19 @@ void main() {
                   &
                   letter * 3
                   
-                  > tree
+                  > string
                   ;
 
     expectSuccess(
       parse("hello.world@gmail.com", grammar), 
-      [
-        'h',
-        ['e', 'l', 'l', 'o', '.', 'w', 'o', 'r', 'l', 'd'],
-        '@',
-        ['g', 'm', 'a', 'i', 'l'],
-        '.',
-        ['c', 'o', 'm']
-      ]
+      "hello.world@gmail.com"
     );
   });
 
-  test('tree trace', () {
-    var grammar = char("A") * 5 & char("G") * 2   > tree;
-    expectTrace(grammar, "AAAAAGG",
-      [['A', 'A', 'A', 'A', 'A'], ['G', 'G']],
-      'TreeTransformer'
-    );
+  test('list choice', () {
+    var grammar = (char("A") * 5 & char('C')) | (char("A") * 5 & char('G') * 2)   > string;
+    expectSuccess(
+      parse("AAAAAGG", trace(grammar)), 
+      "AAAAAGG");
   });
-
 }

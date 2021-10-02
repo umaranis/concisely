@@ -1,7 +1,7 @@
 import 'package:concisely/parser/char/any.dart';
 import 'package:concisely/executor.dart';
 import 'package:test/test.dart';
-import 'helper.dart';
+import '../helper.dart';
 
 void main() {
   test('any', () {
