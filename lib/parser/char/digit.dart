@@ -10,7 +10,7 @@ class DigitParser extends CharBaseParser{
   }
 
   @override
-  String get label => "digit";    
+  String get label => 'digit';
     
 }
 

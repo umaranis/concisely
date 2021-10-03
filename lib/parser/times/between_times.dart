@@ -24,7 +24,7 @@ class BetweenTimesParser extends ParentParser {
     var current = context;
 
     var result;
-    int index = 0;
+    var index = 0;
     for(; index < min; index++) {
       result = parser.parse(current, outputType);
       if (result.isSuccess) {
@@ -51,6 +51,6 @@ class BetweenTimesParser extends ParentParser {
   }
 
   @override
-  String get label => parser.label + " * " + min.toString() + " to " + max.toString() + " times";
+  String get label => parser.label + ' * ' + min.toString() + ' to ' + max.toString() + ' times';
 
 }
