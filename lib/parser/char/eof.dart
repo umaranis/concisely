@@ -6,6 +6,7 @@ import 'package:concisely/result/output_type.dart';
 import 'package:concisely/result/result.dart';
 import 'package:concisely/result/success.dart';
 
+/// matches with end of input
 final EOFParser eof = EOFParser();
 
 /// Parses End of File.

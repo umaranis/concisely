@@ -1,5 +1,6 @@
 import 'package:concisely/parser/base/char_parser.dart';
 
+/// matches the given character
 CharParser char(Object charCode) {
   return CharParser(charCode);
 }
@@ -7,14 +8,14 @@ CharParser char(Object charCode) {
 class CharParser extends CharBaseParser{
   final int charCode;  
 
-  CharParser(Object char) : this.charCode = toCharCode(char);
+  CharParser(Object char) : charCode = toCharCode(char);
 
   @override
   String get label => '"${toReadableString(charCode)}"';
 
   @override
   bool verify(int value) {    
-    return value == this.charCode;
+    return value == charCode;
   }
 }
 

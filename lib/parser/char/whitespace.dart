@@ -1,5 +1,6 @@
 import 'package:concisely/parser/base/char_parser.dart';
 
+/// matches whitespace (space, tab or newline)
 final WhitespaceParser whitespace = WhitespaceParser();
 
 class WhitespaceParser extends CharBaseParser{
@@ -48,7 +49,7 @@ class WhitespaceParser extends CharBaseParser{
   }
 
   @override
-  String get label => "whitespace";
+  String get label => 'whitespace';
   
 }
 
