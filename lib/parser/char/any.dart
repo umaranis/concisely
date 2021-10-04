@@ -12,7 +12,7 @@ class AnyParser extends CharBaseParser{
   }
 
   @override
-  String get label => "Any character";
+  String get label => 'Any character';
     
 }
 

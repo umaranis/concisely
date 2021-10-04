@@ -4,7 +4,7 @@ import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/times/times.dart';
 import 'package:test/test.dart';
-import '../helper.dart';
+import '../../helper.dart';
 
 void main() {
 
@@ -12,23 +12,23 @@ void main() {
     var grammar = any * min(3)
         > string;
     expectSuccess(
-        parse("123ABC@", grammar),
-        "123ABC@");
+        parse('123ABC@', grammar),
+        '123ABC@');
   });
 
   test('min pass - any 7', () {
     var grammar = any * min(7)
         > string;
     expectSuccess(
-        parse("123ABC@", grammar),
-        "123ABC@");
+        parse('123ABC@', grammar),
+        '123ABC@');
   });
 
   test('min fail', () {
     var grammar = any * min(8)
         > string;
     expectFailure(
-        parse("123ABC@", grammar),
+        parse('123ABC@', grammar),
         );
   });
 
@@ -36,7 +36,7 @@ void main() {
     var grammar = letter * min(0)
         > string;
     expectSuccess(
-        parse("a", grammar),
+        parse('a', grammar),
         'a');
   });
 
@@ -44,7 +44,7 @@ void main() {
     var grammar = letter * min(1)
         > string;
     expectSuccess(
-        parse("a", grammar),
+        parse('a', grammar),
         'a');
   });
 

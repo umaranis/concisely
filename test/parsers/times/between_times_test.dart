@@ -5,7 +5,7 @@ import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/times/times.dart';
 import 'package:test/test.dart';
-import '../helper.dart';
+import '../../helper.dart';
 
 void main() {
 

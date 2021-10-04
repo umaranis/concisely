@@ -19,7 +19,7 @@ class ChoiceParser extends ListParser {
       }         
     }
 
-    return Failure(context, "${label} expected");
+    return Failure(context, '$label expected');
   }
 
   @override
