@@ -13,7 +13,7 @@ class TreeTransformer extends Transformer {
 
   @override
   Result parse(Context context, [OutputType outputType]) {
-    return parser.parse(context, OutputType.tree);    
+    return p.parse(context, OutputType.tree);
   }
   
 }

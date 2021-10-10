@@ -11,7 +11,7 @@ class StringFastTransformer extends StringTransformer with FastParser, ParentFas
 
   @override
   int fastParse(Context context, int position) {
-    return (parser as FastParser).fastParse(context, position);
+    return (p as FastParser).fastParse(context, position);
   }
   
 }

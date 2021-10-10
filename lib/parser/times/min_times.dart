@@ -21,7 +21,7 @@ class MinTimesParser extends ParentParser {
     
     var result;
     for(int i = 0; i < min; i++) {
-      result = parser.parse(current, outputType);
+      result = p.parse(current, outputType);
       if (result.isSuccess) {
         combiner.append(result.value);
         current = result.context;
@@ -32,7 +32,7 @@ class MinTimesParser extends ParentParser {
     }
     
     while(true) {
-      result = parser.parse(current, outputType);
+      result = p.parse(current, outputType);
       if(result.isSuccess) {
         combiner.append(result.value);
         current = result.context;
@@ -44,6 +44,6 @@ class MinTimesParser extends ParentParser {
   }
 
   @override
-  String get label => parser.label + " * " + min.toString() + " times or more";
+  String get label => p.label + " * " + min.toString() + " times or more";
 
 }

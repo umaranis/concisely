@@ -25,7 +25,7 @@ abstract class Parser<T> {
     if(this is FastParser && transformer is StringTransformer) {
       return StringFastTransformer(this);
     } else {
-      transformer.parser = this;
+      transformer.p = this;
       return transformer;
     }
   }

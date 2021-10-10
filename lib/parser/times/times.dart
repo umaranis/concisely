@@ -38,7 +38,7 @@ Parser timesFactory(Parser parser, Object operand) {
     if(parser is FastParser) {
       return MinTimesFastParser(parser, operand.min);
     } else {
-      operand.parser = parser;
+      operand.p = parser;
       return operand;
     }
   }
@@ -47,7 +47,7 @@ Parser timesFactory(Parser parser, Object operand) {
       return BetweenTimesFastParser(parser, operand.min, operand.max);
     }
     else {
-      operand.parser = parser;
+      operand.p = parser;
       return operand;
     }
   }

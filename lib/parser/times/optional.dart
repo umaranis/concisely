@@ -11,7 +11,7 @@ class OptionalParser extends ParentParser {
 
   @override
   Result parse(Context context, [OutputType outputType]) {
-    var r = parser.parse(context, outputType);
+    var r = p.parse(context, outputType);
     if(r.isSuccess) {
       return r;
     }
@@ -21,6 +21,6 @@ class OptionalParser extends ParentParser {
   }
 
   @override
-  String get label => '${parser.label} optional';
+  String get label => '${p.label} optional';
   
 }

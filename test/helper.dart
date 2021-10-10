@@ -1,3 +1,4 @@
+import 'package:concisely/context.dart';
 import 'package:concisely/debug/progress.dart';
 import 'package:concisely/debug/trace.dart';
 import 'package:concisely/debug/wrapper.dart';
@@ -11,11 +12,17 @@ void expectSuccess(Result r, Object expected) {
   expect(r.value, expected);  
 }
 
+void expectParse(Parser p, String input, Object expectedResult) {
+  var actual = p.parse(Context(input, 0));
+  expect(actual.isSuccess, true, reason: actual.toString());
+  expect(actual.value, expectedResult);
+}
+
 void expectFailure(Result r, [Object message]) {
-  String resultString = r.toString();
-  expect(r.isFailure, true, reason: "Failure expected instead of Success");
+  var resultString = r.toString();
+  expect(r.isFailure, true, reason: 'Failure expected instead of Success');
   if(message != null) {
-    expect(resultString.contains(message), true, reason: "Error message is not matching: \n >> " + resultString + "\n >> " + message );  
+    expect(resultString.contains(message), true, reason: 'Error message is not matching: \n >> ' + resultString + '\n >> ' + message );
   }
 }
 

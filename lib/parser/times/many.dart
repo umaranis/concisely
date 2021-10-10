@@ -18,7 +18,7 @@ class ManyParser extends ParentParser {
     final combiner = getCombiner(outputType);
     var current = context;
     
-    var result = parser.parse(current, outputType);
+    var result = p.parse(current, outputType);
     if(result.isSuccess) {
       combiner.append(result.value);
       current = result.context;
@@ -28,7 +28,7 @@ class ManyParser extends ParentParser {
     }
     
     while(true) {
-      result = parser.parse(current, outputType);
+      result = p.parse(current, outputType);
       if(result.isSuccess) {
         combiner.append(result.value);
         current = result.context;
@@ -40,6 +40,6 @@ class ManyParser extends ParentParser {
   }
 
   @override
-  String get label => parser.label + ' * many times';
+  String get label => p.label + ' * many times';
 
 }

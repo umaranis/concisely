@@ -32,7 +32,7 @@ class SequenceParser extends ListParser {
   }      
 
   @override
-  String get label => "Sequence";
+  String get label => 'Sequence';
 
   @override
   Parser operator & (Parser other) {
