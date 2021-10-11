@@ -4,22 +4,23 @@ import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:test/test.dart';
 
-import '../helper.dart';
+import '../../helper.dart';
 
 void main() {
   test('default', () {
-    var grammar = char("A") * 5 & char("G") * 2;
+    var grammar = char('A') * 5 & char('G') * 2;
     expect(
-      parseOrThrow("AAAAAGG", grammar), 
+      parseOrThrow('AAAAAGG', grammar),
       [['A', 'A', 'A', 'A', 'A'], ['G', 'G']]);
   });
 
   test('tree', () {
-    var grammar = char("A") * 5 & char("G") * 2   > tree;
+    var grammar = char('A') * 5 & char('G') * 2   > type.tree;
     expectSuccess(
-      parse("AAAAAGG", grammar), 
+      parse('AAAAAGG', grammar),
       [['A', 'A', 'A', 'A', 'A'], ['G', 'G']]);
   });
 
@@ -36,11 +37,11 @@ void main() {
                   &
                   letter * 3
                   
-                  > tree
+                  > type.tree
                   ;
 
     expectSuccess(
-      parse("hello.world@gmail.com", grammar), 
+      parse('hello.world@gmail.com', grammar),
       [
         'h',
         ['e', 'l', 'l', 'o', '.', 'w', 'o', 'r', 'l', 'd'],
@@ -53,8 +54,8 @@ void main() {
   });
 
   test('tree trace', () {
-    var grammar = char("A") * 5 & char("G") * 2   > tree;
-    expectTrace(grammar, "AAAAAGG",
+    var grammar = char('A') * 5 & char('G') * 2   > type.tree;
+    expectTrace(grammar, 'AAAAAGG',
       [['A', 'A', 'A', 'A', 'A'], ['G', 'G']],
       'TreeTransformer'
     );

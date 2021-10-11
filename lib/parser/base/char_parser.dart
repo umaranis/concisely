@@ -10,7 +10,7 @@ abstract class CharBaseParser extends Parser with FastParser{
 
   @override
   Result<String> parse(Context context, [OutputType outputType]) {
-    int value = context.seek();
+    var value = context.seek();
     if (verify(value)) {
       return Success(context.move(1), String.fromCharCode(value));
     }
@@ -19,7 +19,7 @@ abstract class CharBaseParser extends Parser with FastParser{
   
   @override
   int fastParse(Context context, int position) {
-    int value = context.seekAt(position);
+    var value = context.seekAt(position);
     if (verify(value)) {
       return position + 1;
     }    

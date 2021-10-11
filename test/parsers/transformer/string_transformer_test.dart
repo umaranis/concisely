@@ -5,17 +5,18 @@ import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:test/test.dart';
 
-import '../helper.dart';
+import '../../helper.dart';
 
 void main() {
   
   test('list', () {
-    var grammar = char("A") * 5 & char("G") * 2   > string;
+    var grammar = char('A') * 5 & char('G') * 2   > type.string;
     expectSuccess(
-      parse("AAAAAGG", trace(grammar)), 
-      "AAAAAGG");
+      parse('AAAAAGG', trace(grammar)),
+      'AAAAAGG');
   });
 
   test('email somewhat', () {
@@ -31,19 +32,19 @@ void main() {
                   &
                   letter * 3
                   
-                  > string
+                  > type.string
                   ;
 
     expectSuccess(
-      parse("hello.world@gmail.com", grammar), 
-      "hello.world@gmail.com"
+      parse('hello.world@gmail.com', grammar),
+      'hello.world@gmail.com'
     );
   });
 
   test('list choice', () {
-    var grammar = (char("A") * 5 & char('C')) | (char("A") * 5 & char('G') * 2)   > string;
+    var grammar = (char('A') * 5 & char('C')) | (char('A') * 5 & char('G') * 2)   > type.string;
     expectSuccess(
-      parse("AAAAAGG", trace(grammar)), 
-      "AAAAAGG");
+      parse('AAAAAGG', trace(grammar)),
+      'AAAAAGG');
   });
 }

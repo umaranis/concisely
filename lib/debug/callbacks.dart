@@ -2,10 +2,10 @@ import 'package:concisely/context.dart';
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/result/result.dart';
 
-typedef void PreParse(PreParseContext c);
-typedef void PostParse(PostParseContext c);
-typedef void PreFastParse(PreFastParseContext c);
-typedef void PostFastParse(PostFastParseContext c);
+typedef PreParse = void Function(PreParseContext c);
+typedef PostParse = void Function(PostParseContext c);
+typedef PreFastParse = void Function(PreFastParseContext c);
+typedef PostFastParse = void Function(PostFastParseContext c);
 
 class Callbacks {
 

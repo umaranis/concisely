@@ -3,6 +3,7 @@ import 'package:concisely/parser/char/any.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:test/test.dart';
 import '../../helper.dart';
 
@@ -10,7 +11,7 @@ void main() {
 
   test('min pass', () {
     var grammar = any * min(3)
-        > string;
+        > type.string;
     expectSuccess(
         parse('123ABC@', grammar),
         '123ABC@');
@@ -18,7 +19,7 @@ void main() {
 
   test('min pass - any 7', () {
     var grammar = any * min(7)
-        > string;
+        > type.string;
     expectSuccess(
         parse('123ABC@', grammar),
         '123ABC@');
@@ -26,7 +27,7 @@ void main() {
 
   test('min fail', () {
     var grammar = any * min(8)
-        > string;
+        > type.string;
     expectFailure(
         parse('123ABC@', grammar),
         );
@@ -34,7 +35,7 @@ void main() {
 
   test('min 1', () {
     var grammar = letter * min(0)
-        > string;
+        > type.string;
     expectSuccess(
         parse('a', grammar),
         'a');
@@ -42,7 +43,7 @@ void main() {
 
   test('min 1', () {
     var grammar = letter * min(1)
-        > string;
+        > type.string;
     expectSuccess(
         parse('a', grammar),
         'a');
@@ -50,19 +51,19 @@ void main() {
 
   test('min 1 trace', () {
     var grammar = letter * min(1)
-        > string;
+        > type.string;
     expectTrace(grammar, 'a', 'a', 'MinTimesFastParser');
   });
 
   test('min 1 fast parse', () {
     var grammar = letter * min(1)
-      > string;
+      > type.string;
     expectProgress(grammar, 'a', 'a', '<fast parse>');
   });
 
   test('min 1 slow parse', () {
-    var grammar = (letter > list) * min(1)
-        > string;
+    var grammar = (letter > type.list) * min(1)
+        > type.string;
     expectProgress(grammar, 'a', 'a', '<fast parse>', false);
   });
 

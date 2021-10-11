@@ -11,42 +11,42 @@ void main() {
   test('min pass', () {
     var grammar = any * min(3);
     expectSuccess(
-        parse("123ABC@", grammar),
+        parse('123ABC@', grammar),
         ['1', '2', '3', 'A', 'B', 'C', '@']);
   });
 
   test('min pass - any 7', () {
     var grammar = any * min(7);
     expectSuccess(
-        parse("123ABC@", grammar),
+        parse('123ABC@', grammar),
         ['1', '2', '3', 'A', 'B', 'C', '@']);
   });
 
   test('min fail', () {
     var grammar = any * min(8);
     expectFailure(
-        parse("123ABC@", grammar),
+        parse('123ABC@', grammar),
         );
   });
 
   test('min 1', () {
     var grammar = letter * min(0);
     expectSuccess(
-        parse("a", grammar),
+        parse('a', grammar),
         ['a']);
   });
 
   test('min 1', () {
     var grammar = letter * min(1);
     expectSuccess(
-        parse("a", grammar),
+        parse('a', grammar),
         ['a']);
   });
 
   test('min 1', () {
     var grammar = letter * min(1);
     expectSuccess(
-        parse("a", trace(grammar)),
+        parse('a', trace(grammar)),
         ['a']);
   });
 

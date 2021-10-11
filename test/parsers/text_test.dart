@@ -7,6 +7,7 @@ import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/char/whitespace.dart';
 import 'package:concisely/parser/text/text.dart';
 import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:test/test.dart';
 
 import '../helper.dart';
@@ -14,16 +15,16 @@ import '../helper.dart';
 void main() {
 
   test('text', () {
-    var grammar = text("hello world");
+    var grammar = text('hello world');
     expect(
-        parseOrThrow("hello world", grammar),
-        "hello world");
+        parseOrThrow('hello world', grammar),
+        'hello world');
   });
 
   test('text exception', () {
     var grammar = text('game');
     expect(
-            () => parseOrThrow("gam", grammar),
+            () => parseOrThrow('gam', grammar),
         throwsA((e) => e is ParseException));
   });
 
@@ -46,25 +47,25 @@ void main() {
 
   test('text fast parsing', () {
     var grammar = letter * 5 & whitespace & text('world!') & char('!')
-      > string;
+      > type.string;
     expectTrace(grammar, 'hello world!!', 'hello world!!', 'TextParser  ["world!"]   <fast parse>\n    Success[12]:');
   });
 
   test('text fast parsing fail', () {
     var grammar = letter * 5 & whitespace & text('world!') & text('!')
-        > string;
+        > type.string;
     expectFailure(parse('hello world!', trace(grammar)));
   });
 
   test('text fast string transformer', () {
     var grammar = text('hello') & whitespace & letter * many
-        > string;
+        > type.string;
     expectTrace(grammar, 'hello world', 'hello world', 'StringFastTransformer');
   });
 
   test('text fast parsing result', () {
-    var grammar = (text('hello') > string) & (whitespace > list)
-        > string;
+    var grammar = (text('hello') > type.string) & (whitespace > type.list)
+        > type.string;
     expectSuccess(parse('hello world', trace(grammar)), 'hello ');
   });
 

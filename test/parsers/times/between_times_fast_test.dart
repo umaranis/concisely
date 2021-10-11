@@ -5,6 +5,7 @@ import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:test/test.dart';
 import '../../helper.dart';
 
@@ -12,83 +13,83 @@ void main() {
 
   test('between pass', () {
     var grammar = any * between(3, 6)
-    > string;
+        > type.string;
     expectSuccess(
-        parse("123ABC@", grammar),
-        "123ABC");
+        parse('123ABC@', grammar),
+        '123ABC');
   });
 
   test('between pass - any 7', () {
     var grammar = any * between(7, 7)
-        > string;
+        > type.string;
     expectSuccess(
-        parse("123ABC@", grammar),
-        "123ABC@");
+        parse('123ABC@', grammar),
+        '123ABC@');
   });
 
   test('between fail', () {
     var grammar = any * between(8,10)
-        > string;
+        > type.string;
     expectFailure(
-        parse("123ABC@", grammar),
+        parse('123ABC@', grammar),
         );
   });
 
   test('between 0 to 1', () {
     var grammar = letter * between(0,1)
-        > string;
+        > type.string;
     expectSuccess(
-        parse("a", grammar),
+        parse('a', grammar),
         'a');
   });
 
   test('between 1', () {
     var grammar = letter * between(1,1)
-        > string;
+        > type.string;
     expectSuccess(
-        parse("a", grammar),
+        parse('a', grammar),
         'a');
   });
 
   test('between 1 trace', () {
     var grammar = letter * between(1, 1)
-        > string;
+        > type.string;
     expectSuccess(
-        parse("a", trace(grammar)),
+        parse('a', trace(grammar)),
         'a');
   });
 
   test('between as optional', () {
     var grammar = letter * between(0, 1)
-        > string;
+        > type.string;
     expectSuccess(
-        parse("", trace(grammar)),
+        parse('', trace(grammar)),
         '');
   });
 
   test('between times parser among others', () {
     var grammar = letter * 2 & digit * between(2, 5) & letter * 2
-        > string;
+        > type.string;
     expectSuccess(
-        parse("AB1234AB", grammar),
-        "AB1234AB");
+        parse('AB1234AB', grammar),
+        'AB1234AB');
   });
 
   test('between 1 trace', () {
     var grammar = letter * between(1,1)
-      > string;
+      > type.string;
     expectTrace(grammar, 'a', 'a', 'BetweenTimesFastParser');
   });
 
   test('between 1 fast parse', () {
     var grammar = letter * between(1,10)
-        > string;
+        > type.string;
     expectProgress(grammar, 'a', 'a', '<fast parse>');
   });
 
   test('between 1 slow parse', () {
-    var grammar = (letter > list) * between(1,10)
-        > string;
+    var grammar = (letter > type.list) * between(1,10)
+        > type.string;
     expectProgress(grammar, 'a', 'a', '<fast parse>', false);
   });
 
