@@ -1,14 +1,9 @@
 import 'package:concisely/context.dart';
-import 'package:concisely/parser/base/parent_parser.dart';
-import 'package:concisely/parser/base/transformer.dart';
 import 'package:concisely/parser/combiner/choice.dart';
 import 'package:concisely/parser/combiner/choice_fast.dart';
 import 'package:concisely/parser/combiner/sequence.dart';
 import 'package:concisely/parser/combiner/sequence_fast.dart';
 import 'package:concisely/parser/times/times.dart';
-import 'package:concisely/parser/transformer/map_transformer.dart';
-import 'package:concisely/parser/transformer/string_fast_transformer.dart';
-import 'package:concisely/parser/transformer/string_transformer.dart';
 import 'package:concisely/result/output_type.dart';
 import 'package:concisely/result/result.dart';
 

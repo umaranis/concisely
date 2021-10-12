@@ -1,10 +1,8 @@
-import 'package:concisely/debug/trace.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/base/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
 import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/eof.dart';
-import 'package:concisely/parser/char/whitespace.dart';
 import 'package:concisely/parser/combiner/reference.dart';
 import 'package:concisely/parser/times/times.dart';
 import 'package:concisely/parser/transformer/map_transformer.dart';
