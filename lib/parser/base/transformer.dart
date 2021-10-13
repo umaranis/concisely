@@ -1,6 +1,7 @@
 import 'package:concisely/parser/other/failure_parser.dart';
 import 'package:concisely/parser/base/parent_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
+import 'package:concisely/parser/transformer/bool_transformer.dart';
 import 'package:concisely/parser/transformer/float_transformer.dart';
 import 'package:concisely/parser/transformer/int_transformer.dart';
 import 'package:concisely/parser/transformer/list_transformer.dart';
@@ -51,6 +52,9 @@ class TypeTransformers {
   /// Transforms the results into a floating point number (double)
   /// parsing 123 with   digit.many & char('.') & digit.many > type.float   gives us <br/> 123.0
   Transformer get float => FloatTransformer(ConstantFailureParser());
+  /// Transforms the results into a Boolean value (bool)
+  /// parsing 'True' with   letter.many > type.bool   gives us <br/> true
+  Transformer get bool => BooleanTransformer(ConstantFailureParser());
 }
 
 /// Provides a number of transformation to change to type of the result.
