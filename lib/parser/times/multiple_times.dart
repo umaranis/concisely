@@ -13,7 +13,7 @@ class MultipleTimesParser extends ParentParser {
   MultipleTimesParser(Parser parser, this.times) : super(parser);
 
   @override
-  Result parse(Context context, [OutputType outputType]) {    
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {    
     final combiner = getCombiner(outputType);
     var current = context;
     for(int i = 0; i < times; i++) {
@@ -23,7 +23,7 @@ class MultipleTimesParser extends ParentParser {
         current = result.context;
       }
       else {
-        return Failure(current, result.message);
+        return Failure(current, result.message!); // result.message can't be null for Failure
       }
     }   
 

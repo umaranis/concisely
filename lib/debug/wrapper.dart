@@ -12,7 +12,7 @@ class WrapperParser extends Parser with FastParser {
   WrapperParser(this.parser, this.callbacks);  
 
   @override
-  Result parse(Context context, [OutputType outputType]) {    
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {    
     callbacks.preParse(PreParseContext(parser, context));
     final result = parser.parse(context, outputType);
     callbacks.postParse(PostParseContext(parser, context, result));

@@ -5,14 +5,13 @@ import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/eof.dart';
 import 'package:concisely/parser/combiner/reference.dart';
 import 'package:concisely/parser/times/times.dart';
-import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:test/test.dart';
 
 import '../helper.dart';
 
 void main() {
   group('number in multiple brackets', () {
-    final number = ref();
+    final number = ref;
     number.p = digit.many | char('(') & number & char(')');
 
     test('number', () {
@@ -46,7 +45,7 @@ void main() {
   });
   
   group('expression', () {
-    final term = ref(), prod = ref(), prim = ref(), add = ref(), mul = ref(), parens = ref(), number = ref();
+    final term = ref, prod = ref, prim = ref, add = ref, mul = ref, parens = ref, number = ref;
 
     add.p = prod & char('+') & term;
     term.p = add | prod;

@@ -9,10 +9,10 @@ class StringTransformer extends Transformer {
   StringTransformer(Parser parser) : super(parser);
 
   @override
-  String get label => 'String Tranformer';
+  String get label => 'String Transformer';
 
   @override
-  Result parse(Context context, [OutputType outputType]) {
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     return p.parse(context, OutputType.string);
   }
   

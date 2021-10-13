@@ -12,7 +12,7 @@ class SequenceParser extends ListParser {
   SequenceParser(List<Parser> parsers) : super(parsers);
 
   @override
-  Result parse(Context context, [OutputType outputType]) {
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     final combiner = getCombiner(outputType);    
     var currentResult;
     for (var parser in parsers) {

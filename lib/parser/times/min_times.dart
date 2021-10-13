@@ -15,7 +15,7 @@ class MinTimesParser extends ParentParser {
   MinTimesParser(Parser parser, this.min) : super(parser);
 
   @override
-  Result parse(Context context, [OutputType outputType]) {    
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {    
     final combiner = getCombiner(outputType);
     var current = context;
     

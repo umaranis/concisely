@@ -10,7 +10,7 @@ class ChoiceParser extends ListParser {
   ChoiceParser(List<Parser> parsers) : super(parsers);
 
   @override
-  Result parse(Context context, [OutputType outputType]) {
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {
 
     for (var p in parsers) {
       var r = p.parse(context, outputType);

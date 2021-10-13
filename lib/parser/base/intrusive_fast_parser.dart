@@ -8,7 +8,7 @@ import 'package:concisely/result/success.dart';
 mixin IntrusiveFastParser on FastParser {
 
   @override
-  Result parse(Context context, [OutputType outputType]) {
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     if(outputType != OutputType.string) {
       return super.parse(context, outputType);
     }

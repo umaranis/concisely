@@ -14,7 +14,7 @@ class ManyParser extends ParentParser {
   ManyParser(Parser parser) : super(parser);
 
   @override
-  Result parse(Context context, [OutputType outputType]) {    
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {    
     final combiner = getCombiner(outputType);
     var current = context;
     
@@ -24,7 +24,7 @@ class ManyParser extends ParentParser {
       current = result.context;
     }
     else {
-      return Failure(current, result.message);
+      return Failure(current, result.message!); // `result.isSuccess == false` means it is a Failure record where message is not nullable
     }
     
     while(true) {

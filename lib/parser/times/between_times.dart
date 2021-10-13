@@ -19,7 +19,7 @@ class BetweenTimesParser extends ParentParser {
   BetweenTimesParser(Parser parser, this.min, this.max) : super(parser);
 
   @override
-  Result parse(Context context, [OutputType outputType]) {
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     final combiner = getCombiner(outputType);
     var current = context;
 

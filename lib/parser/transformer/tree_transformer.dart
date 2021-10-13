@@ -12,7 +12,7 @@ class TreeTransformer extends Transformer {
   String get label => 'Tree Tranformer';
 
   @override
-  Result parse(Context context, [OutputType outputType]) {
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     return p.parse(context, OutputType.tree);
   }
   

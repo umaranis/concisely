@@ -13,7 +13,7 @@ class ZeroOrMoreParser extends ParentParser {
   ZeroOrMoreParser(Parser parser) : super(parser);
 
   @override
-  Result parse(Context context, [OutputType outputType]) {    
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {    
     final combiner = getCombiner(outputType);
     var current = context;
     

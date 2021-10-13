@@ -8,20 +8,34 @@ import 'package:concisely/parser/times/zero_or_more_fast.dart';
 import 'between_times_fast.dart';
 import 'many.dart';
 import 'many_fast.dart';
-import 'mutiple_times.dart';
-import 'mutiple_times_fast.dart';
+import 'multiple_times.dart';
+import 'multiple_times_fast.dart';
 import 'optional.dart';
 import 'optional_fast.dart';
 
-final OptionalParser optional = OptionalParser(null);
+enum TimesParameterType { Optional, Many, Min, Between }
+
+class TimesParameter {
+  final TimesParameterType type;
+  final int min;
+  final int max;
+
+
+  const TimesParameter(this.type, this.min, this.max);
+}
+
+final optional = TimesParameter(TimesParameterType.Optional, -1, -1);
+
 /// Repeats the given parser one or more times.
 /// Also called 'plus (+)' or '1+' in some parsing systems.
-final ManyParser many = ManyParser(null);
-MinTimesParser min(int min) {
-  return MinTimesParser(null, min);
+final many = TimesParameter(TimesParameterType.Many, -1, -1);
+
+TimesParameter min(int min) {
+  return TimesParameter(TimesParameterType.Min, min, -1);
 }
-BetweenTimesParser between(int min, int max) {
-  return BetweenTimesParser(null, min, max);
+
+TimesParameter between(int min, int max) {
+  return TimesParameter(TimesParameterType.Between, min, max);
 }
 
 Parser timesFactory(Parser parser, Object operand) {
@@ -34,21 +48,19 @@ Parser timesFactory(Parser parser, Object operand) {
   else if(operand == many) {
     return parser is FastParser? ManyFastParser(parser) : ManyParser(parser);
   }
-  else if(operand is MinTimesParser) {
+  else if((operand as TimesParameter).type == TimesParameterType.Min) {
     if(parser is FastParser) {
       return MinTimesFastParser(parser, operand.min);
     } else {
-      operand.p = parser;
-      return operand;
+      return MinTimesParser(parser, operand.min);
     }
   }
-  else if(operand is BetweenTimesParser) {
+  else if(operand.type == TimesParameterType.Between) {
     if(parser is FastParser) {
       return BetweenTimesFastParser(parser, operand.min, operand.max);
     }
     else {
-      operand.p = parser;
-      return operand;
+      return BetweenTimesParser(parser, operand.min, operand.max);
     }
   }
 
@@ -59,20 +71,20 @@ extension TimesParser on Parser {
 
   Parser times(int times, {int max = 0}) {
     if(max == 0) {
-      return this is FastParser? MultipleTimesFastParser(this, times) : MultipleTimesParser(this, times);
+      return this is FastParser? MultipleTimesFastParser(this as FastParser, times) : MultipleTimesParser(this, times);
     }
     else {
-      return this is FastParser? BetweenTimesFastParser(this, times, max) : BetweenTimesParser(this, times, max);
+      return this is FastParser? BetweenTimesFastParser(this as FastParser, times, max) : BetweenTimesParser(this, times, max);
     }
   }
 
   Parser minTimes(int min) {
-    return this is FastParser? MinTimesFastParser(this, min) : MinTimesParser(this, min);
+    return this is FastParser? MinTimesFastParser(this as FastParser, min) : MinTimesParser(this, min);
   }
 
-  Parser get many => this is FastParser? ManyFastParser(this) : ManyParser(this);
+  Parser get many => this is FastParser? ManyFastParser(this as FastParser) : ManyParser(this);
 
-  Parser get optional => this is FastParser? OptionalFastParser(this) : OptionalParser(this);
+  Parser get optional => this is FastParser? OptionalFastParser(this as FastParser) : OptionalParser(this);
 
-  Parser get zeroOrMore => this is FastParser? ZeroOrMoreFastParser(this) : ZeroOrMoreParser(this);
+  Parser get zeroOrMore => this is FastParser? ZeroOrMoreFastParser(this as FastParser) : ZeroOrMoreParser(this);
 }

@@ -4,7 +4,6 @@ import 'package:concisely/parser/base/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/times/times.dart';
-import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:test/test.dart';
 
 import '../helper.dart';

@@ -7,7 +7,6 @@ import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/char/whitespace.dart';
 import 'package:concisely/parser/text/text.dart';
 import 'package:concisely/parser/times/times.dart';
-import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:test/test.dart';
 
 import '../helper.dart';

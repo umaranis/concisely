@@ -11,9 +11,9 @@ import 'package:test/test.dart';
 import '../../helper.dart';
 
 void main() {
-  group('number in multiple brackets', () {
+  group('convert to integer', () {
     final number = ref;
-    number.p = (digit.many > type.string.map((r) => int.parse(r)))  |  char('(') & number & char(')');
+    number.p = (digit.many > type.int)  |  char('(') & number & char(')');
 
     test('number', () {
       expectParse(number,
@@ -21,16 +21,14 @@ void main() {
           123);
     });
 
-    test('number in brackets', () {
-      expectParse(number > type.string,
-          '(12)',
-          '(12)');
+    test('decimal', () {
+      expectParse(number,
+          '123.45',
+          123);
     });
 
-    test('number in brackets (result in list)', () {
-      expectParse(number > type.list,
-          '(12)',
-          ['(',12 ,')']);
+    test('decimal fail', () {
+      expectFailure(parse('123.45', number & eof));
     });
 
     test('number in many brackets', () {

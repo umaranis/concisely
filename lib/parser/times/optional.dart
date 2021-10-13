@@ -10,7 +10,7 @@ class OptionalParser extends ParentParser {
   OptionalParser(Parser parser) : super(parser);
 
   @override
-  Result parse(Context context, [OutputType outputType]) {
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     var r = p.parse(context, outputType);
     if(r.isSuccess) {
       return r;

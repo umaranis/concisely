@@ -17,7 +17,7 @@ class TextParser extends Parser with FastParser {
   TextParser(this.text);
 
   @override
-  Result parse(Context context, [OutputType outputType]) {
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     for(int i = 0; i < text.length; i++) {
       if(context.seek(i) != text.codeUnitAt(i)) {
         return Failure(context, '"$text" expected');

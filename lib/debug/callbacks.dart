@@ -14,7 +14,7 @@ class Callbacks {
   final PreFastParse preFastParse;
   final PostFastParse postFastParse;
 
-  Callbacks({this.preParse, this.postParse, this.preFastParse, this.postFastParse});
+  Callbacks({required this.preParse, required this.postParse, required this.preFastParse, required this.postFastParse});
 }
 
 abstract class CallbackContext {

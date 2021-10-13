@@ -14,7 +14,7 @@ final EOFParser eof = EOFParser();
 class EOFParser extends Parser with FastParser {
   
   @override
-  Result<String> parse(Context context, [OutputType outputType]) {
+  Result<String> parse(Context context, [OutputType outputType = OutputType.tree]) {
     int value = context.seek();
     if (verify(value)) {
       return Success(context, null);
@@ -32,7 +32,7 @@ class EOFParser extends Parser with FastParser {
   }
 
   @override
-  String getFastParseResult(Context context, int startPosition, int endPosition) {
+  String? getFastParseResult(Context context, int startPosition, int endPosition) {
     return null;
   }
   

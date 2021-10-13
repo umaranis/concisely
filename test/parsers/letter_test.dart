@@ -3,7 +3,6 @@ import 'package:concisely/exception.dart';
 import 'package:concisely/parser/base/transformer.dart';
 import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/executor.dart';
-import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:test/test.dart';
 
 void main() {

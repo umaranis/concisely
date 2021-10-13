@@ -6,9 +6,9 @@ abstract class Result<T> {
   bool get isSuccess => false;
   bool get isFailure => false;
 
-  String get message;
+  String? get message;
 
-  T get value;
+  T? get value;
 
   final Context context; 
 

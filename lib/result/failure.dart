@@ -11,7 +11,7 @@ class Failure<T> extends Result<T> {
   final String message;
 
   @override  
-  T get value => null;
+  T? get value => null;
 
   @override
   toString() => "Failure[pos:${context.pos + 1}] $message";

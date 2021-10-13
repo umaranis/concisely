@@ -9,10 +9,10 @@ class ListTransformer extends Transformer {
   ListTransformer(Parser parser) : super(parser);
 
   @override
-  String get label => 'List Tranformer';
+  String get label => 'List Transformer';
 
   @override
-  Result parse(Context context, [OutputType outputType]) {
+  Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     return p.parse(context, OutputType.list);
   }
   

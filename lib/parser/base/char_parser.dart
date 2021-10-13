@@ -9,7 +9,7 @@ import 'package:concisely/result/success.dart';
 abstract class CharBaseParser extends Parser with FastParser{
 
   @override
-  Result<String> parse(Context context, [OutputType outputType]) {
+  Result<String> parse(Context context, [OutputType outputType = OutputType.tree]) {
     var value = context.seek();
     if (verify(value)) {
       return Success(context.move(1), String.fromCharCode(value));
