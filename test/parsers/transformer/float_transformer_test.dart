@@ -11,11 +11,11 @@ import 'package:test/test.dart';
 import '../../helper.dart';
 
 void main() {
-  group('convert to integer', () {
+  group('convert to float', () {
     final number = ref;
-    number.p = (digit.many > type.int)  |  char('(') & number & char(')');
+    number.p = (digit.many & (char('.') & digit.many).optional > type.float)  |  char('(') & number & char(')');
 
-    test('number', () {
+    test('integer', () {
       expectParse(number,
           '123',
           123);
@@ -24,11 +24,11 @@ void main() {
     test('decimal', () {
       expectParse(number,
           '123.45',
-          123);
+          123.45);
     });
 
     test('decimal fail', () {
-      expectFailure(parse('123.45', number & eof));
+      expectFailure(parse('123.4.5', number & eof));
     });
 
     test('number in many brackets', () {
@@ -51,22 +51,22 @@ void main() {
     mul.p     = prim & char('*') & prod > map((r) => r[0] * r[2]);
     prod.p    = mul | prim;
     parens.p  = char('(') & term & char(')') > map((r) => r[1]);
-    number.p  = digit.many > type.int;
+    number.p  = digit.many & (char('.') & digit.many).optional > type.float;
     prim.p    = parens | number;
 
     final start = term & eof > map((r) => r[0]);
 
-    test('1+2*3', () {
+    test('1.2+2*3', () {
       expectParse(start,
-          '1+2*3',
-          7
+          '1.2+2*3',
+          7.2
       );
     });
 
     test('(1+2)*3', () {
       expectParse(start,
-          '(1+2)*3',
-          9
+          '(1.2+2)*3',
+          9.600000000000001
       );
     });
 
