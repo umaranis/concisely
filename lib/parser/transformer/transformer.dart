@@ -1,3 +1,5 @@
+import 'package:concisely/parser/base/exceptions.dart';
+import 'package:concisely/parser/combiner/sequence.dart';
 import 'package:concisely/parser/other/failure_parser.dart';
 import 'package:concisely/parser/base/parent_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
@@ -6,11 +8,10 @@ import 'package:concisely/parser/transformer/float_transformer.dart';
 import 'package:concisely/parser/transformer/int_transformer.dart';
 import 'package:concisely/parser/transformer/list_transformer.dart';
 import 'package:concisely/parser/transformer/map_transformer.dart';
-import 'package:concisely/parser/transformer/string_fast_transformer.dart';
+import 'package:concisely/parser/transformer/space_transformer.dart';
 import 'package:concisely/parser/transformer/string_transformer.dart';
 import 'package:concisely/parser/transformer/tree_transformer.dart';
-
-import 'fast_parser.dart';
+import 'package:concisely/parser/base/fast_parser.dart';
 
 abstract class Transformer extends ParentParser {
   Transformer(Parser parser) : super(parser);
@@ -28,6 +29,14 @@ extension TransformerExtensions on Parser {
       }
       parent.p = this;
       return transformer;
+    }
+    else if(transformer is SpaceTransformer) {
+      if(this is SequenceParser) {
+        return (transformer as SpaceTransformer).transform(this as SequenceParser);
+      }
+      else {
+        throw GrammarMalformed("Malformed Grammar: space.trim transformer can only work on Sequence(&) Parser. '${this.label}' encountered.");
+      }
     }
     else {
       transformer.p = this;
@@ -60,3 +69,9 @@ class TypeTransformers {
 /// Provides a number of transformation to change to type of the result.
 /// For example, tree, list, string etc.
 TypeTransformers type = TypeTransformers();
+
+class SpaceTransformers {
+  Transformer get trim => SpaceTrimTransformer(ConstantFailureParser());
+}
+
+SpaceTransformers space = SpaceTransformers();

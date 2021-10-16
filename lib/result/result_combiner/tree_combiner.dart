@@ -4,7 +4,7 @@ class TreeResultCombiner extends ResultCombiner {
   final resultTree = [];
 
   @override
-  void append(Object value) {
+  void append(Object? value) {
     resultTree.add(value);
   }
 

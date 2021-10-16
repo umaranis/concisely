@@ -1,4 +1,4 @@
-import 'package:concisely/parser/base/transformer.dart';
+import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/char/any.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/char.dart';
@@ -6,44 +6,44 @@ import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/times/times.dart';
 import 'package:test/test.dart';
-import '../../helper.dart';
+import '../../expect_parse_helper.dart';
 
 void main() {
 
   test('zeroOrMore', () {
     var grammar = any.zeroOrMore;
-    expectSuccess(
-      parse('123ABC@', grammar),
+    expectParse.pass(grammar,
+      '123ABC@',
       ['1', '2', '3', 'A', 'B', 'C', '@']);
   });  
 
   test('zeroOrMore 1', () {
     var grammar = any.zeroOrMore;
-    expectSuccess(
-      parse('1', grammar),
+    expectParse.pass(grammar,
+      '1',
       ['1']);
   });
 
   test('zeroOrMore 0', () {
     var grammar = char('f').zeroOrMore;
-    expectSuccess(
-        parse('1', grammar),
-        []);
+    expectParse.pass(grammar,
+        '1',
+        null);
   });
 
   test('zeroOrMore, fast parse', () {
     var grammar = (digit & letter).zeroOrMore
       > type.string;
-    expectSuccess(
-        parse('1a2bc3', grammar),
+    expectParse.pass(grammar,
+        '1a2bc3',
         '1a2b');
   });
 
   test('zeroOrMore, 0 matches, fast parse', () {
     var grammar = (digit & letter).zeroOrMore
         > type.string;
-    expectSuccess(
-        parse('a2bc3', grammar),
+    expectParse.pass(grammar,
+        'a2bc3',
         '');
   });
 

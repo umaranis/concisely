@@ -22,7 +22,7 @@ class SequenceFastParser extends SequenceParser with FastParser, DefaultFastPars
   }
 
   @override
-  Parser operator & (Parser other) {
+  SequenceParser operator & (Parser other) {
     parsers.add(other);
     return other is FastParser? this : SequenceParser(parsers);
   }

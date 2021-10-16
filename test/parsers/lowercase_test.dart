@@ -1,5 +1,5 @@
 import 'package:concisely/exception.dart';
-import 'package:concisely/parser/base/transformer.dart';
+import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/char/lowercase.dart';
 import 'package:concisely/executor.dart';
 import 'package:test/test.dart';

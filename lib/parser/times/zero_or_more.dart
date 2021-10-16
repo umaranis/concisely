@@ -1,6 +1,10 @@
+import 'package:concisely/parser/base/default_fast_parse_result.dart';
+import 'package:concisely/parser/base/fast_parser.dart';
+import 'package:concisely/parser/base/intrusive_fast_parser.dart';
 import 'package:concisely/parser/base/parent_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/context.dart';
+import 'package:concisely/parser/base/times_fast_parser.dart';
 import 'package:concisely/result/output_type.dart';
 import 'package:concisely/result/result.dart';
 import 'package:concisely/result/result_combiner/result_combiner.dart';
@@ -26,7 +30,8 @@ class ZeroOrMoreParser extends ParentParser {
         current = result.context;
       }
       else {
-        return Success(current, combiner.result);
+        Object? result = isEmptyList(combiner.result) ? null : combiner.result;
+        return Success(current, result);
       }
     }
   }
@@ -34,4 +39,32 @@ class ZeroOrMoreParser extends ParentParser {
   @override
   String get label => p.label + ' * 0 or more times';
 
+}
+
+
+
+class ZeroOrMoreFastParser extends ZeroOrMoreParser with FastParser, DefaultFastParseResult, ParentFastParser, IntrusiveFastParser {
+
+  ZeroOrMoreFastParser(FastParser parser) : super(parser);
+
+  @override
+  int fastParse(Context context, int position) {
+
+    int result;
+
+    while(true) {
+      result = fastParser.fastParse(context, position);
+      if(result != -1) {
+        position = result;
+      }
+      else {
+        return position;
+      }
+    }
+  }
+
+}
+
+bool isEmptyList(Object? result) {
+  return result is List && result.isEmpty;
 }

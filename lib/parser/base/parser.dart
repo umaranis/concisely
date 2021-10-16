@@ -13,9 +13,9 @@ abstract class Parser<T> {
   Result<T?> parse(Context context, [OutputType outputType = OutputType.tree]);
 
   /// Label for the parser like 'Any Character', 'letter', 'digit' etc. 
-  String get label;  
+  String get label;
 
-  Parser operator & (Parser other) => (this is FastParser && other is FastParser)? SequenceFastParser([this, other]) : SequenceParser([this, other]);
+  SequenceParser operator & (Parser other) => (this is FastParser && other is FastParser)? SequenceFastParser([this, other]) : SequenceParser([this, other]);
   Parser operator * (Object times) => timesFactory(this, times);
   Parser operator | (Parser other) => (this is FastParser && other is FastParser)? ChoiceFastParser([this, other]) : ChoiceParser([this, other]);
 

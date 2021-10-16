@@ -4,7 +4,7 @@ class ListResultCombiner extends ResultCombiner {
   final resultList = [];
 
   @override
-  void append(Object value) {
+  void append(Object? value) {
     if(value is List) {
       resultList.addAll(value);
     } 

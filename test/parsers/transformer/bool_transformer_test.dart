@@ -1,5 +1,5 @@
 import 'package:concisely/executor.dart';
-import 'package:concisely/parser/base/transformer.dart';
+import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/char/eof.dart';
 import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/times/times.dart';

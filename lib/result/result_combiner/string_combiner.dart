@@ -4,7 +4,7 @@ class StringResultCombiner extends ResultCombiner {
   final StringBuffer stringResult = StringBuffer();
 
   @override
-  void append(Object value) {
+  void append(Object? value) {
     stringResult.write(value);
   }
 

@@ -2,6 +2,7 @@ import 'package:concisely/context.dart';
 import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/eof.dart';
+import 'package:concisely/parser/transformer/skip_transformer.dart';
 import 'package:test/test.dart';
 import '../helper.dart';
 
@@ -24,7 +25,7 @@ void main() {
     var grammar = eof;
     expectSuccess(
       parse("", grammar), 
-      null);
+      blank);
   });
 
   test('eof fast parse', () {

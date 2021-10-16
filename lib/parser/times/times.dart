@@ -4,7 +4,6 @@ import 'package:concisely/parser/times/between_times.dart';
 import 'package:concisely/parser/times/min_times.dart';
 import 'package:concisely/parser/times/min_times_fast.dart';
 import 'package:concisely/parser/times/zero_or_more.dart';
-import 'package:concisely/parser/times/zero_or_more_fast.dart';
 import 'between_times_fast.dart';
 import 'many.dart';
 import 'many_fast.dart';
@@ -86,5 +85,10 @@ extension TimesParser on Parser {
 
   Parser get optional => this is FastParser? OptionalFastParser(this as FastParser) : OptionalParser(this);
 
+  /// Repeats the given parser zero or more times.
+  /// Also called 'star (*)' or '0+' in some parsing systems.
+  /// Returns results in an array by default.
+  /// Parsing 'abc' with `letter.zeroOrMore` will return ['a','b','c']
+  /// Parsing '123' with `letter.zeroOrMore` will return []
   Parser get zeroOrMore => this is FastParser? ZeroOrMoreFastParser(this as FastParser) : ZeroOrMoreParser(this);
 }

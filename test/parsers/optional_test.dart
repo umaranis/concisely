@@ -1,6 +1,6 @@
 import 'package:concisely/debug/trace.dart';
 import 'package:concisely/debug/wrapper.dart';
-import 'package:concisely/parser/base/transformer.dart';
+import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/times/times.dart';
@@ -20,7 +20,7 @@ void main() {
 
     expectSuccess(
         parse('AAAAA', grammar),
-        [['A', 'A', 'A', 'A', 'A']]);
+        [['A', 'A', 'A', 'A', 'A'], null]);
   });
 
   test('optional fast parser', () {

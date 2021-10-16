@@ -4,7 +4,7 @@ import 'package:concisely/result/result_combiner/string_combiner.dart';
 import 'package:concisely/result/result_combiner/tree_combiner.dart';
 
 abstract class ResultCombiner {
-  void append(Object value);
+  void append(Object? value);
   Object get result;
 }
 

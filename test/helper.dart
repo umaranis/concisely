@@ -7,17 +7,20 @@ import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/result/result.dart';
 import 'package:test/test.dart';
 
+@deprecated
 void expectSuccess(Result r, Object? expected) {
   expect(r.isSuccess, true, reason: r.toString());
   expect(r.value, expected);  
 }
 
+@deprecated
 void expectParse(Parser p, String input, Object expectedResult) {
   var actual = p.parse(Context(input, 0));
   expect(actual.isSuccess, true, reason: actual.toString());
   expect(actual.value, expectedResult);
 }
 
+@deprecated
 void expectFailure(Result r, [String message = '']) {
   var resultString = r.toString();
   expect(r.isFailure, true, reason: 'Failure expected instead of Success');

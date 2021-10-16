@@ -1,6 +1,7 @@
 import 'package:concisely/context.dart';
 import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
+import 'package:concisely/parser/transformer/skip_transformer.dart';
 import 'package:concisely/result/failure.dart';
 import 'package:concisely/result/output_type.dart';
 import 'package:concisely/result/result.dart';
@@ -14,10 +15,10 @@ final EOFParser eof = EOFParser();
 class EOFParser extends Parser with FastParser {
   
   @override
-  Result<String> parse(Context context, [OutputType outputType = OutputType.tree]) {
+  Result<Object?> parse(Context context, [OutputType outputType = OutputType.tree]) {
     int value = context.seek();
     if (verify(value)) {
-      return Success(context, null);
+      return Success(context, blank);
     }
     return Failure(context, label + ' expected');
   }

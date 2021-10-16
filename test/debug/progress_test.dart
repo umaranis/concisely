@@ -8,7 +8,7 @@ import 'package:concisely/parser/char/letter.dart';
 import 'package:concisely/parser/times/times.dart';
 import 'package:test/test.dart';
 
-import '../helper.dart';
+import '../expect_parse_helper.dart';
 
 void main() {
   test('email somewhat progress', () {
@@ -107,8 +107,8 @@ void main() {
                   eof
                   ;
    
-    expectSuccess(
-      parse("hello.world@gmail.com", progress(grammar)), 
+    expectParse.pass(progress(grammar),
+      "hello.world@gmail.com",
       [
         'h',
         ['e', 'l', 'l', 'o', '.', 'w', 'o', 'r', 'l', 'd'],

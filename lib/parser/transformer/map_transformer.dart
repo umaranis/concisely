@@ -1,6 +1,6 @@
 import 'package:concisely/context.dart';
 import 'package:concisely/parser/base/parser.dart';
-import 'package:concisely/parser/base/transformer.dart';
+import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/other/failure_parser.dart';
 import 'package:concisely/result/output_type.dart';
 import 'package:concisely/result/result.dart';
