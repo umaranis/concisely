@@ -85,7 +85,7 @@ SequenceFastParser  [Sequence]
       Failure[11]: digit expected
       CharParser  ["."]
       Failure[11]: "." expected
-    Failure[11]: letter or digit or "." expected
+    Failure[11]: "." expected
   Success[11]: [e, l, l, o, ., w, o, r, l, d]
   CharParser  ["@"]
   Success[12]: @
@@ -115,7 +115,7 @@ SequenceFastParser  [Sequence]
       Failure[17]: letter expected
       DigitParser  [digit]
       Failure[17]: digit expected
-    Failure[17]: letter or digit expected
+    Failure[17]: digit expected
   Success[17]: [g, m, a, i, l]
   CharParser  ["."]
   Success[18]: .

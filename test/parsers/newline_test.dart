@@ -23,7 +23,7 @@ void main() {
     final grammar = newline * 2;
     expectFailure(
       parse("\n2", grammar),
-      "\\n"
+      "\\r"
     );
   });
 }

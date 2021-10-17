@@ -5,6 +5,8 @@ import 'package:concisely/result/failure.dart';
 import 'package:concisely/result/output_type.dart';
 import 'package:concisely/result/result.dart';
 
+/// Evaluates a list of parsers till one of them is successful.
+/// If none of the parsers is successful, then returns the last failure
 class ChoiceParser extends ListParser {
   
   ChoiceParser(List<Parser> parsers) : super(parsers);
@@ -12,14 +14,15 @@ class ChoiceParser extends ListParser {
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
 
+    var r;
     for (var p in parsers) {
-      var r = p.parse(context, outputType);
+      r = p.parse(context, outputType);
       if(r.isSuccess) {
         return r;
       }         
     }
 
-    return Failure(context, '$label expected');
+    return r;
   }
 
   @override

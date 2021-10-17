@@ -12,6 +12,8 @@ mixin SpaceTransformer {
   SequenceParser transform(SequenceParser parser);
 }
 
+final spaceTrim = whitespace.zeroOrMore.skip;
+
 /// Transforms the grammar to skip whitespaces between parsers in a sequence (&)
 /// `char('1') & char('+') & char('2') > space.trim`     is transformed to      `whitespace.zeroOrMore & char('1') & whitespace.zeroOrMore & char('+') & whitespace.zeroOrMore & char('2') & whitespace.zeroOrMore`
 class SpaceTrimTransformer extends Transformer with SpaceTransformer {
@@ -24,8 +26,6 @@ class SpaceTrimTransformer extends Transformer with SpaceTransformer {
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     throw UnimplementedError();
   }
-
-  var spaceTrim = whitespace.zeroOrMore.skip;
 
   @override
   SequenceParser transform(SequenceParser parser) {
