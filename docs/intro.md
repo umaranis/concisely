@@ -31,7 +31,7 @@ Some key features are:
 | ------ | ----------  | -------- |
 | & | combines parsers in a sequence | `char('a') & char('b')` - parses 'ab' <br/> `'item'.p & digit` - parser 'item1', 'item2', 'item3' etc. |
 | &#124; | combines parsers with Choice operator. <br/>Returns the result of first parser if it's successful otherwise second. | <code>'hello'.p &#124; 'welcome'.p</code> - parses 'hello' or 'welcome' |
-| && | same as '&' but expects whitespace between the two parsers  | `'Hello' && 'World!'` - parsers 'Hello World!' (but not 'HelloWorld!')
+| + | same as '&' but trim any whitespace between the two parsers  | `'Hello' && 'World!'` - parsers 'Hello World!' (also 'HelloWorld!')
 
 **Repeating parsers**: repeat a parser a number of times
 

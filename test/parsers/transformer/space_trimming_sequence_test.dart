@@ -9,6 +9,7 @@ import 'package:concisely/parser/char/eof.dart';
 import 'package:concisely/parser/combiner/reference.dart';
 import 'package:concisely/parser/times/times.dart';
 import 'package:concisely/parser/transformer/map_transformer.dart';
+import 'package:concisely/parser/transformer/trimming_parser.dart';
 import 'package:test/test.dart';
 import '../../expect_parse_helper.dart';
 
@@ -22,6 +23,12 @@ void main() {
     test('number', () {
       expectParse.pass(expression,
           '123',
+          123);
+    });
+
+    test('number with whitespaces', () {
+      expectParse.pass(expression.trim,
+          ' 123  ',
           123);
     });
 
@@ -60,7 +67,7 @@ void main() {
     number.p  = digit.many > type.int;
     prim.p    = parens | number;
 
-    final start = term + eof > pick(0);
+    final start = term.trim + eof > pick(0);
 
     test('1+2*3', () {
       expectParse.pass(start,
@@ -93,6 +100,13 @@ void main() {
     test('( 1 + 2 ) * 3 ', () {
       expectParse.pass(start,
           '( 1 + 2 ) * 3 ',
+          [[1, '+', 2], '*', 3]
+      );
+    });
+
+    test(' ( 1 + 2 ) * 3 ', () {
+      expectParse.pass(start,
+          ' ( 1 + 2 ) * 3 ',
           [[1, '+', 2], '*', 3]
       );
     });
