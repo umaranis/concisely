@@ -1,9 +1,9 @@
 import 'package:concisely/parser/base/char_parser.dart';
 
 /// matches a character if it is a lower case alphabet (a-z)
-final UppercaseParser lowercase = UppercaseParser();
+final LowercaseParser lowercase = LowercaseParser();
 
-class UppercaseParser extends CharBaseParser{
+class LowercaseParser extends CharBaseParser{
 
   @override
   bool verify(int charCode) {    
@@ -11,7 +11,7 @@ class UppercaseParser extends CharBaseParser{
   }
 
   @override
-  String get label => 'uppercase';
+  String get label => 'lowercase';
     
 }
 
