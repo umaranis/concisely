@@ -6,7 +6,7 @@ import 'package:concisely/result/output_type.dart';
 import 'package:concisely/result/result.dart';
 import 'package:concisely/result/success.dart';
 
-abstract class CharBaseParser extends Parser with FastParser{
+abstract class CharBaseParser extends Parser with FastParser {
 
   @override
   Result<String> parse(Context context, [OutputType outputType = OutputType.tree]) {

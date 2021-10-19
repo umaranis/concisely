@@ -1,14 +1,37 @@
+import 'package:concisely/debug/trace.dart';
+import 'package:concisely/executor.dart';
 import 'package:concisely/parser/base/char_parser.dart';
+import 'package:concisely/parser/base/parser.dart';
+import 'package:concisely/parser/char/range.dart';
+import 'package:concisely/parser/combiner/choice.dart';
+import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/transformer/map_transformer.dart';
+import 'package:concisely/parser/transformer/pick_transformer.dart';
+import 'package:concisely/parser/transformer/transformer.dart';
 
-/// matches the given character
-CharParser char(Object charCode) {
-  return CharParser(charCode);
+import 'any.dart';
+
+// matches the a character based on the given pattern
+// '-' has a special meaning as it specifies character range. If you want to match '-' rather than specifying the range, make sure '-' is the first character in the pattern. For example, char('-+/*) or char('-').
+Parser char(String pattern) {
+  if(pattern.length == 1) {
+    return CharParser(pattern);
+  }
+
+  return parse(pattern, charPatternGrammar).value as Parser;
+}
+
+Parser get charPatternGrammar {
+  var charSingle = any > map((c) => CharParser(c));
+  var charRange = any & char('-') & any > pick(0,2).map((r) => CharRangeParser(r[0], r[1]));
+  var start = (charRange | charSingle).many > map((r) => ChoiceParser((r as List).cast<Parser>())); // converting List<dynamic> to List<Parser>
+  return start;
 }
 
 class CharParser extends CharBaseParser{
   final int charCode;  
 
-  CharParser(Object char) : charCode = toCharCode(char);
+  CharParser(String char) : charCode = toCharCode(char);
 
   @override
   String get label => '"${toReadableString(charCode)}"';
