@@ -17,6 +17,14 @@ class ExpectParseHelper {
       expect(resultString.contains(message), true, reason: 'Error message is not matching: \n >> ' + resultString + '\n >> ' + message );
     }
   }
+
+  /// expect an exception
+  void exception(Parser p, String input, Type exceptionType) {
+    expect(
+      () => p.parse(Context(input, 0)),
+      throwsA((e) => e.runtimeType ==  exceptionType)
+    );
+  }
 }
 
 final expectParse = ExpectParseHelper();

@@ -8,7 +8,7 @@ import 'package:concisely/parser/times/times.dart';
 import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:test/test.dart';
 
-import '../../helper.dart';
+import '../../expect_parse_helper.dart';
 
 void main() {
   group('convert to float', () {
@@ -16,29 +16,29 @@ void main() {
     number.p = (digit.many & (char('.') & digit.many).optional > type.float)  |  char('(') & number & char(')');
 
     test('integer', () {
-      expectParse(number,
+      expectParse.pass(number,
           '123',
           123);
     });
 
     test('decimal', () {
-      expectParse(number,
+      expectParse.pass(number,
           '123.45',
           123.45);
     });
 
     test('decimal fail', () {
-      expectFailure(parse('123.4.5', number & eof));
+      expectParse.fail(number & eof, '123.4.5');
     });
 
     test('number in many brackets', () {
-      expectParse(number > type.list,
+      expectParse.pass(number > type.list,
           '(((12)))',
           ['(', '(', '(', 12, ')', ')', ')']);
     });
 
     test('brackets mismatch', () {
-      expectFailure(parse('(((12))', number));
+      expectParse.fail(number, '(((12))');
     });
 
   });
@@ -57,14 +57,14 @@ void main() {
     final start = term & eof > map((r) => r[0]);
 
     test('1.2+2*3', () {
-      expectParse(start,
+      expectParse.pass(start,
           '1.2+2*3',
           7.2
       );
     });
 
     test('(1+2)*3', () {
-      expectParse(start,
+      expectParse.pass(start,
           '(1.2+2)*3',
           9.600000000000001
       );

@@ -35,6 +35,7 @@ class PickOneTransformer extends Transformer {
 }
 
 /// Transforms the result of a successful parse that by returning the elements at given indexes of a list.
+/// @throws RangeError if given index is out of bound
 class PickManyTransformer extends Transformer {
   final List<int> indexes;
   PickManyTransformer(Parser parser, this.indexes) : super(parser);
@@ -88,6 +89,7 @@ extension PickExtensions on SequenceParser {
   /// Transforms the result of a successful parse by returning the elements at given indexes of a list.
   ///
   /// @returns Results of pick transform are returned in an array if multiple indexes are given, otherwise just a single value is returned. <br/>
+  /// @throws RangeError if given index is out of bound
   ///
   /// Examples:
   ///
@@ -106,6 +108,7 @@ extension PickExtensions on SequenceParser {
 /// Transforms the result of a successful parse by returning the elements at given indexes of a list.
 ///
 /// @returns Results of pick transform are returned in an array if multiple indexes are given, otherwise just a single value is returned. <br/>
+/// @throws RangeError if given index is out of bound
 ///
 /// Examples:
 ///

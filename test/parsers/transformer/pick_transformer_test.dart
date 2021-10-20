@@ -87,4 +87,16 @@ void main() {
         ['1', '2', '3', '4', '6', '8', '9', '0', '1']);
   });
 
+  test('pick(0,1) - fail - not a list', () {
+    expectParse.fail(char('1') > pick(0,1),
+        '1',
+        'is not a list');
+  });
+
+  test('pick(0,1,2) - fail - index out of bound', () {
+    expectParse.exception(char('1') & char('2') > pick(0,1,2),
+        '12',
+        RangeError);
+  });
+
 }
