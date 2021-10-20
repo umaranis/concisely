@@ -71,4 +71,13 @@ void main() {
 
   });
 
+  test('pick failure', () {
+    var grammar = char('0') & char('1') & char('2') & char('3') & char('4') & char('5') &
+        char('6') & char('7') & char('8') & char('9') & char('0') & char('1') & char('2')
+        > pick(1,2,3,4,6,6,8,9,10,11);
+    expectParse.pass(grammar,
+        '0123456789012',
+        ['1', '2', '3', '4', '6', '8', '9', '0', '1']);
+  });
+
 }

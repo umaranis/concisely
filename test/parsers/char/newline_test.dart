@@ -2,7 +2,7 @@ import 'package:concisely/parser/char/newline.dart';
 import 'package:concisely/executor.dart';
 import 'package:test/test.dart';
 
-import '../helper.dart';
+import '../../helper.dart';
 
 void main() {  
 

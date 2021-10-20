@@ -63,4 +63,4 @@ Some key features are:
 
 | Example | Parser | Sample Text |
 | ------ | ----------  | -------- |
-| Sql Select | 'select'.p && column.separatedBy(',') & 'from'.p tablename & 'where'.p <br/> text('select') & column.separatedBy(',') & text('from') tablename & text('where') | select name, age, title, address from person |
+| Sql Select | 'select'.p + column.separatedBy(',') + 'from'.p tablename + 'where'.p <br/> text('select') & column.separatedBy(',') & text('from') tablename & text('where') | select name, age, title, address from person |
