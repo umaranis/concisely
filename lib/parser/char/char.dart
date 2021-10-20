@@ -1,4 +1,3 @@
-import 'package:concisely/debug/trace.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/base/char_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
@@ -11,8 +10,18 @@ import 'package:concisely/parser/transformer/transformer.dart';
 
 import 'any.dart';
 
-// matches the a character based on the given pattern
-// '-' has a special meaning as it specifies character range. If you want to match '-' rather than specifying the range, make sure '-' is the first character in the pattern. For example, char('-+/*) or char('-').
+/// matches the a character based on the given pattern
+///
+/// Examples:
+///
+///     char('a') - parses 'a'
+///     char('ab') - parses character 'a' or 'b'
+///     char('a-z') or lowercase - parsers any character from 'a' to 'z'
+///     char('A-Z') or uppercase - parses any character from 'A' to 'Z'
+///     char('a-zA-z') or letter - parses any alphabet character
+///     char('0-9') or digit - parses any character from '0' to '9'
+///
+/// Note: '-' has a special meaning as it specifies character range. If you want to match '-' rather than specifying the range, make sure '-' is the first character in the pattern. For example, char('-+/*) or char('-').
 Parser char(String pattern) {
   if(pattern.length == 1) {
     return CharParser(pattern);
