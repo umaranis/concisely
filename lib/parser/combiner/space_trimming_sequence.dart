@@ -16,7 +16,6 @@ extension SpaceTrimmingSequenceExtensions on Parser {
 }
 
 extension SpaceTrimmingSequenceExtensions2 on SequenceParser {
-  @override
   SequenceParser operator +(Parser other) {
     parsers.add(spaceTrim);
     parsers.add(other);
@@ -25,7 +24,6 @@ extension SpaceTrimmingSequenceExtensions2 on SequenceParser {
 }
 
 extension SpaceTrimmingSequenceExtensions3 on SequenceFastParser {
-  @override
   SequenceParser operator +(Parser other) {
     parsers.add(spaceTrim);
     parsers.add(other);

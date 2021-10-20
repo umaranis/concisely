@@ -1,5 +1,3 @@
-import 'package:concisely/debug/trace.dart';
-import 'package:concisely/executor.dart';
 import 'package:concisely/parser/combiner/space_trimming_sequence.dart';
 import 'package:concisely/parser/transformer/pick_transformer.dart';
 import 'package:concisely/parser/transformer/transformer.dart';
@@ -8,7 +6,6 @@ import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/eof.dart';
 import 'package:concisely/parser/combiner/reference.dart';
 import 'package:concisely/parser/times/times.dart';
-import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:concisely/parser/transformer/trimming_parser.dart';
 import 'package:test/test.dart';
 import '../../expect_parse_helper.dart';
