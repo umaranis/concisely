@@ -22,5 +22,8 @@ class ConstantFailureParser extends Parser {
     return Failure(context, 'Constant Failure Parser encountered');
   }
 
+  @override
+  bool hasEqualProperties(ConstantFailureParser other) => true;
+
 }
 

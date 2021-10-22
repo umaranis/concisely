@@ -2,35 +2,28 @@
 import 'package:concisely/exception.dart';
 import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/executor.dart';
 import 'package:test/test.dart';
+import '../../expect_parse_helper.dart';
+
 
 void main() {
   test('digit', () {
     var grammar = digit > type.string;
-    expect(
-      parseOrThrow('1', grammar),
-      '1');
+    expectParse.pass(grammar, '1', '1');
   });
 
   test('digits', () {
     var grammar = digit * 3 > type.string;
-    expect(
-      parseOrThrow('123', grammar),
-      '123');
+    expectParse.pass(grammar, '123', '123');
   });
 
-  test('digitsFail', () {
+  test('digits fail', () {
     var grammar = digit * 3 > type.string;
-    expect(
-      () => parseOrThrow('12', grammar),
-      throwsA((e) => e is ParseException));
+    expectParse.fail(grammar, '12');
   });
 
-  test('digitFail', () {
+  test('digit fail', () {
     var grammar = digit > type.string;
-    expect(
-      () => parseOrThrow('A', grammar),
-      throwsA((e) => e is ParseException));
+    expectParse.fail(grammar, 'A');
   });
 }

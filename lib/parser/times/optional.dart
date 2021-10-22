@@ -22,5 +22,8 @@ class OptionalParser extends ParentParser {
 
   @override
   String get label => '${p.label} optional';
+
+  @override
+  bool hasEqualProperties(OptionalParser other) => true;
   
 }

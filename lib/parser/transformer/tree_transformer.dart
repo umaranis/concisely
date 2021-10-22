@@ -15,5 +15,8 @@ class TreeTransformer extends Transformer {
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     return p.parse(context, OutputType.tree);
   }
+
+  @override
+  bool hasEqualProperties(TreeTransformer other) => true;
   
 }

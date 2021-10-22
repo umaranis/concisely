@@ -12,6 +12,9 @@ class DigitParser extends CharBaseParser{
 
   @override
   String get label => 'digit';
+
+  @override
+  bool hasEqualProperties(DigitParser other) => true;
     
 }
 

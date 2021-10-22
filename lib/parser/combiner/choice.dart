@@ -33,7 +33,10 @@ class ChoiceParser extends ListParser {
   Parser operator | (Parser other) {
     parsers.add(other);
     return this;
-  } 
+  }
+
+  @override
+  bool hasEqualProperties(ChoiceParser other) => true;
 
 }
 

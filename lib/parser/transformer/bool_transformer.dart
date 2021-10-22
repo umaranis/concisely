@@ -39,4 +39,7 @@ class BooleanTransformer extends Transformer {
     }
   }
 
+  @override
+  bool hasEqualProperties(BooleanTransformer other) => true;
+
 }

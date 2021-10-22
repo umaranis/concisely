@@ -1,3 +1,4 @@
+import 'package:collection/src/list_extensions.dart';
 import 'package:concisely/context.dart';
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/combiner/sequence.dart';
@@ -32,6 +33,9 @@ class PickOneTransformer extends Transformer {
       return result;
     }
   }
+
+  @override
+  bool hasEqualProperties(PickOneTransformer other) => this.index == other.index;
 }
 
 /// Transforms the result of a successful parse that by returning the elements at given indexes of a list.
@@ -64,6 +68,9 @@ class PickManyTransformer extends Transformer {
       return result;
     }
   }
+
+  @override
+  bool hasEqualProperties(PickManyTransformer other) => this.indexes.equals(other.indexes);
   
 }
 

@@ -8,7 +8,7 @@ abstract class ParentParser extends Parser {
   ParentParser(this.p);
 
   @override  
-  Iterable<Parser> get children => [p];
+  List<Parser> get children => [p];
 
   @override
   void replace(Parser source, Parser target) { 

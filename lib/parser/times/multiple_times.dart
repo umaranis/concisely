@@ -33,4 +33,7 @@ class MultipleTimesParser extends ParentParser {
   @override
   String get label => '${p.label} * ${times} times';
 
+  @override
+  bool hasEqualProperties(MultipleTimesParser other) => this.times == other.times;
+
 }

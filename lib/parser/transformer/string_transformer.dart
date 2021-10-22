@@ -19,6 +19,9 @@ class StringTransformer extends Transformer {
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     return p.parse(context, OutputType.string);
   }
+
+  @override
+  bool hasEqualProperties(StringTransformer other) => true;
   
 }
 

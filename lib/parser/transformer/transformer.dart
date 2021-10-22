@@ -4,6 +4,7 @@ import 'package:concisely/parser/other/failure_parser.dart';
 import 'package:concisely/parser/base/parent_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/transformer/bool_transformer.dart';
+import 'package:concisely/parser/transformer/consume_transformer.dart';
 import 'package:concisely/parser/transformer/float_transformer.dart';
 import 'package:concisely/parser/transformer/int_transformer.dart';
 import 'package:concisely/parser/transformer/list_transformer.dart';
@@ -22,7 +23,7 @@ extension TransformerExtensions on Parser {
     if(this is FastParser && transformer is StringTransformer) {
       return StringFastTransformer(this);
     }
-    else if (transformer is MapTransformer) {
+    else if (transformer is MapTransformer || transformer is ConsumeTransformer) {
       ParentParser parent = transformer;
       while(parent.p != ConstantFailureParser()) {
         parent = parent.p as ParentParser;

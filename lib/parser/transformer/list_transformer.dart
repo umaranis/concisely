@@ -15,5 +15,8 @@ class ListTransformer extends Transformer {
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     return p.parse(context, OutputType.list);
   }
+
+  @override
+  bool hasEqualProperties(ListTransformer other) => true;
   
 }

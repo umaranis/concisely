@@ -28,6 +28,9 @@ class SkipTransformer extends Transformer {
     }
   }
 
+  @override
+  bool hasEqualProperties(SkipTransformer other) => true;
+
 }
 
 extension SkipExtensions on Parser {
@@ -36,7 +39,7 @@ extension SkipExtensions on Parser {
 
 class Blank {
   @override
-  String toString() => '<blank>';
+  String toString() => '';
 }
 
 /// Skipped by Sequence Parser (not included in the list)

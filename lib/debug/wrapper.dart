@@ -34,5 +34,13 @@ class WrapperParser extends Parser with FastParser {
   getFastParseResult(Context context, int startPosition, int endPosition) {    
     return (parser as FastParser).getFastParseResult(context, startPosition, endPosition);
   }
+
+  @override
+  bool hasEqualProperties(WrapperParser other) {
+    return this.callbacks.preParse == other.callbacks.preParse
+        && this.callbacks.preFastParse == other.callbacks.preFastParse
+        && this.callbacks.postParse == other.callbacks.postParse
+        && this.callbacks.postFastParse == other.callbacks.postFastParse;
+  }
   
 }

@@ -44,4 +44,7 @@ class TextParser extends Parser with FastParser {
   @override
   String get label => '"${toReadableString(text)}"';
 
+  @override
+  bool hasEqualProperties(TextParser other) => this.text == other.text;
+
 }

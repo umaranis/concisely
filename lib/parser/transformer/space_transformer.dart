@@ -57,5 +57,8 @@ class SpaceTrimTransformer extends Transformer with SpaceTransformer {
   bool isSpaceTrimParser(Parser parser) {
     return parser == spaceTrim;
   }
+
+  @override
+  bool hasEqualProperties(SpaceTrimTransformer other) => true;
   
 }

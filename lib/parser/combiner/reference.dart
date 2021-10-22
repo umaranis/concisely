@@ -15,6 +15,9 @@ class ParserReference extends ParentParser {
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
     return p.parse(context, outputType);
   }
+
+  @override
+  bool hasEqualProperties(ParserReference other) => true;
 }
 
 /// Reference to a parser

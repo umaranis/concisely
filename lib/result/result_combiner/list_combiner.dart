@@ -1,3 +1,4 @@
+import 'package:concisely/parser/transformer/skip_transformer.dart';
 import 'package:concisely/result/result_combiner/result_combiner.dart';
 
 class ListResultCombiner extends ResultCombiner {
@@ -8,7 +9,7 @@ class ListResultCombiner extends ResultCombiner {
     if(value is List) {
       resultList.addAll(value);
     } 
-    else {
+    else if (value != blank) {
       resultList.add(value);
     }
   }

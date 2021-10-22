@@ -13,5 +13,10 @@ class CharRangeParser extends CharBaseParser {
   bool verify(int charCode) {
     return charCode >= startChar && charCode <= endChar;
   }
+
+  @override
+  bool hasEqualProperties(CharRangeParser other) {
+    return this.startChar == other.startChar && this.endChar == other.endChar;
+  }
   
 }

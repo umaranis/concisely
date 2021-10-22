@@ -1,3 +1,4 @@
+import 'package:concisely/parser/transformer/skip_transformer.dart';
 import 'package:concisely/result/result_combiner/result_combiner.dart';
 
 class TreeResultCombiner extends ResultCombiner {
@@ -5,7 +6,9 @@ class TreeResultCombiner extends ResultCombiner {
 
   @override
   void append(Object? value) {
-    resultTree.add(value);
+    if (value != blank) {
+      resultTree.add(value);
+    }
   }
 
   @override  

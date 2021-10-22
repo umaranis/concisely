@@ -36,4 +36,7 @@ class FloatTransformer extends Transformer {
     }
   }
 
+  @override
+  bool hasEqualProperties(FloatTransformer other) => true;
+
 }

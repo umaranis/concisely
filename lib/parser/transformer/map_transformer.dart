@@ -6,7 +6,7 @@ import 'package:concisely/result/output_type.dart';
 import 'package:concisely/result/result.dart';
 import 'package:concisely/result/success.dart';
 
-typedef MapCallback<T, R> = R Function(T);
+typedef MapCallback<T> = Object Function(T value);
 
 class MapTransformer extends Transformer {
   final MapCallback callback;
@@ -25,6 +25,9 @@ class MapTransformer extends Transformer {
       return result;
     }
   }
+
+  @override
+  bool hasEqualProperties(MapTransformer other) => this.callback == other.callback;
   
 }
 

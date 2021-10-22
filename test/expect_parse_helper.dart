@@ -25,6 +25,10 @@ class ExpectParseHelper {
       throwsA((e) => e.runtimeType ==  exceptionType)
     );
   }
+
+  void equalGrammar(Parser one, Parser two) {
+    expect(one.equals(two), true);
+  }
 }
 
 final expectParse = ExpectParseHelper();

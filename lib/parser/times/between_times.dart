@@ -53,4 +53,7 @@ class BetweenTimesParser extends ParentParser {
   @override
   String get label => p.label + ' * ' + min.toString() + ' to ' + max.toString() + ' times';
 
+  @override
+  bool hasEqualProperties(BetweenTimesParser other) => this.min == other.min && this.max == other.max;
+
 }

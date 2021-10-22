@@ -50,6 +50,9 @@ class WhitespaceParser extends CharBaseParser{
 
   @override
   String get label => 'whitespace';
+
+  @override
+  bool hasEqualProperties(WhitespaceParser other) => true;
   
 }
 

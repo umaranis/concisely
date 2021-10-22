@@ -12,6 +12,9 @@ class LowercaseParser extends CharBaseParser{
 
   @override
   String get label => 'lowercase';
+
+  @override
+  bool hasEqualProperties(LowercaseParser other) => true;
     
 }
 

@@ -39,6 +39,9 @@ class ZeroOrMoreParser extends ParentParser {
   @override
   String get label => p.label + ' * 0 or more times';
 
+  @override
+  bool hasEqualProperties(ZeroOrMoreParser other) => true;
+
 }
 
 

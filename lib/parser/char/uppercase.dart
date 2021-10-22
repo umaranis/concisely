@@ -12,6 +12,11 @@ class UppercaseParser extends CharBaseParser{
 
   @override
   String get label => "uppercase";
+
+  @override
+  bool hasEqualProperties(UppercaseParser other) => true;
+
+  
     
 }
 

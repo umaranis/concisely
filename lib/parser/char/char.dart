@@ -3,12 +3,15 @@ import 'package:concisely/parser/base/char_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/char/range.dart';
 import 'package:concisely/parser/combiner/choice.dart';
+import 'package:concisely/parser/combiner/choice_fast.dart';
 import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/transformer/consume_transformer.dart';
 import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:concisely/parser/transformer/pick_transformer.dart';
 import 'package:concisely/parser/transformer/transformer.dart';
 
 import 'any.dart';
+import 'any_of.dart';
 
 /// matches the a character based on the given pattern
 ///
@@ -26,14 +29,40 @@ Parser char(String pattern) {
   if(pattern.length == 1) {
     return CharParser(pattern);
   }
-
-  return parse(pattern, charPatternGrammar).value as Parser;
+  else if(!pattern.substring(1).contains('-')) {
+    return AnyOfParser(pattern);
+  }
+  else {
+    return parse(pattern, charPatternGrammar).value as Parser;
+  }
 }
 
 Parser get charPatternGrammar {
-  var charSingle = any > map((c) => CharParser(c));
+
+  // algorithm:
+  // 1- Creates two streams of output: regular parsing result and [charArray] variable
+  // 2- Any character range goes to regular parsing result as [CharRangeParser] object using map
+  // 3- Any individual character goes to [charArray] using consume
+  // 4- CharRangeParser list is converted to single object (if list.length is 1) or added to ChoiceParser
+  // 5- charArray is converted to CharParser if one character is there or converted to AnyOfParser (using char method)
+  // 6- Range parser(s) and character parser are added to ChoiceParser (if both are there)
+
+  var charArray = '';
+  var charSingle = any > consume((c) => charArray += c);
   var charRange = any & char('-') & any > pick(0,2).map((r) => CharRangeParser(r[0], r[1]));
-  var start = (charRange | charSingle).many > map((r) => ChoiceParser((r as List).cast<Parser>())); // converting List<dynamic> to List<Parser>
+  var start = (charRange | charSingle).many > map((r) {
+    var l = (r as List).cast<Parser>();  // converting List<dynamic> to List<Parser>
+    Parser parser = l.length == 1? l.first : ChoiceFastParser(l); // add range parser or choice of range parsers
+    if(charArray.length > 0) {
+      if(parser is ChoiceParser) {
+        parser.parsers.add(char(charArray));
+      }
+      else {
+        parser = ChoiceFastParser([parser, char(charArray)]);
+      }
+    }
+    return parser;
+  });
   return start;
 }
 
@@ -48,6 +77,11 @@ class CharParser extends CharBaseParser{
   @override
   bool verify(int value) {    
     return value == charCode;
+  }
+
+  @override
+  bool hasEqualProperties(CharParser other) {
+    return charCode == other.charCode;
   }
 }
 

@@ -42,4 +42,7 @@ class ManyParser extends ParentParser {
   @override
   String get label => p.label + ' * many times';
 
+  @override
+  bool hasEqualProperties(ManyParser other) => true;
+
 }

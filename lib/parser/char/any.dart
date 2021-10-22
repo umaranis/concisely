@@ -13,6 +13,11 @@ class AnyParser extends CharBaseParser{
 
   @override
   String get label => 'Any character';
+
+  @override
+  bool hasEqualProperties(AnyParser other) {
+    return this.runtimeType == other.runtimeType;
+  }
     
 }
 

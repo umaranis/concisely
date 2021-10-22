@@ -44,4 +44,7 @@ class EOFParser extends Parser with FastParser {
   @override
   String get label => 'End of File';
 
+  @override
+  bool hasEqualProperties(EOFParser other) => true;
+
 }

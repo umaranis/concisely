@@ -34,4 +34,7 @@ class IntTransformer extends Transformer {
     }
   }
 
+  @override
+  bool hasEqualProperties(IntTransformer other) => true;
+
 }

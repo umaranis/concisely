@@ -128,7 +128,7 @@ SequenceFastParser  [Sequence]
     Success[21]: m
   Success[21]: [c, o, m]
   EOFParser  [End of File]
-  Success[21]: <blank>
+  Success[21]: 
 Success[21]: [h, [e, l, l, o, ., w, o, r, l, d], @, [g, m, a, i, l], ., [c, o, m]]
 """;
     

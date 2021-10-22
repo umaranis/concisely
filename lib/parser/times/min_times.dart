@@ -46,4 +46,7 @@ class MinTimesParser extends ParentParser {
   @override
   String get label => p.label + " * " + min.toString() + " times or more";
 
+  @override
+  bool hasEqualProperties(MinTimesParser other) => this.min == other.min;
+
 }

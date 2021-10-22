@@ -1,3 +1,4 @@
+import 'package:concisely/debug/trace.dart';
 import 'package:concisely/parser/transformer/pick_transformer.dart';
 import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
@@ -97,6 +98,23 @@ void main() {
     expectParse.exception(char('1') & char('2') > pick(0,1,2),
         '12',
         RangeError);
+  });
+
+  test('pick(0) - trace', () {
+    var sb = StringBuffer();
+    expectParse.pass(trace(char('1') & char('2') > pick(0), sb.writeln),
+        '12',
+        '1');
+    expect(sb.toString().toLowerCase().contains('pick'), true);
+  });
+
+
+  test('pick(0,1) - trace', () {
+    var sb = StringBuffer();
+    expectParse.pass(trace(char('1') & char('2') > pick(0,1), sb.writeln),
+        '12',
+        ['1','2']);
+    expect(sb.toString().toLowerCase().contains('pick'), true);
   });
 
 }
