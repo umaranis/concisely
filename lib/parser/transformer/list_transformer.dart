@@ -13,7 +13,7 @@ class ListTransformer extends Transformer {
 
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
-    return p.parse(context, OutputType.list);
+    return parser.parse(context, OutputType.list);
   }
 
   @override

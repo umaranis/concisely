@@ -7,28 +7,32 @@ import 'package:concisely/result/result.dart';
 import 'package:concisely/result/result_combiner/result_combiner.dart';
 import 'package:concisely/result/success.dart';
 
-/// Repeats the given parser one or more times.
-/// Also called 'plus (+)' or '1+' in some parsing systems.
-class ManyParser extends ParentParser {    
-
-  ManyParser(Parser parser) : super(parser);
+/// Repeats the given parser [min] or more times.
+/// e.g. letter * min(5) // match 5 or more letters
+class MinTimesParser extends ParentParser {
+  /// minimum number of times the parser is repeated
+  final int min;
+  MinTimesParser(Parser parser, this.min) : super(parser);
 
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {    
     final combiner = getCombiner(outputType);
     var current = context;
     
-    var result = p.parse(current, outputType);
-    if(result.isSuccess) {
-      combiner.append(result.value);
-      current = result.context;
-    }
-    else {
-      return Failure(current, result.message!); // `result.isSuccess == false` means it is a Failure record where message is not nullable
+    var result;
+    for(int i = 0; i < min; i++) {
+      result = parser.parse(current, outputType);
+      if (result.isSuccess) {
+        combiner.append(result.value);
+        current = result.context;
+      }
+      else {
+        return Failure(current, result.message);
+      }
     }
     
     while(true) {
-      result = p.parse(current, outputType);
+      result = parser.parse(current, outputType);
       if(result.isSuccess) {
         combiner.append(result.value);
         current = result.context;
@@ -40,9 +44,9 @@ class ManyParser extends ParentParser {
   }
 
   @override
-  String get label => p.label + ' * many times';
+  String get label => parser.label + " * " + min.toString() + " times or more";
 
   @override
-  bool hasEqualProperties(ManyParser other) => true;
+  bool hasEqualProperties(MinTimesParser other) => this.min == other.min;
 
 }

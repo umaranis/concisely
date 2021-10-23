@@ -2,7 +2,7 @@ import 'package:concisely/exception.dart';
 import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/none_of.dart';
-import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/repeater/times.dart';
 import 'package:test/test.dart';
 
 void main() {

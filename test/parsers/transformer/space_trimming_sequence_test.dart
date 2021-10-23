@@ -5,7 +5,7 @@ import 'package:concisely/parser/char/char.dart';
 import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/eof.dart';
 import 'package:concisely/parser/combiner/reference.dart';
-import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/repeater/times.dart';
 import 'package:concisely/parser/transformer/trimming_parser.dart';
 import 'package:test/test.dart';
 import '../../expect_parse_helper.dart';

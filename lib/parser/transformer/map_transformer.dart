@@ -6,7 +6,7 @@ import 'package:concisely/result/output_type.dart';
 import 'package:concisely/result/result.dart';
 import 'package:concisely/result/success.dart';
 
-typedef MapCallback<T> = Object Function(T value);
+typedef MapCallback<T> = Object? Function(T value);
 
 class MapTransformer extends Transformer {
   final MapCallback callback;
@@ -17,7 +17,7 @@ class MapTransformer extends Transformer {
 
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
-    var result = p.parse(context);
+    var result = parser.parse(context);
     if(result.isSuccess) {
       return Success(result.context, callback(result.value));
     }

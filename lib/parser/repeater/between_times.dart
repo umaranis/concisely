@@ -26,7 +26,7 @@ class BetweenTimesParser extends ParentParser {
     var result;
     var index = 0;
     for(; index < min; index++) {
-      result = p.parse(current, outputType);
+      result = parser.parse(current, outputType);
       if (result.isSuccess) {
         combiner.append(result.value);
         current = result.context;
@@ -37,7 +37,7 @@ class BetweenTimesParser extends ParentParser {
     }
 
     for(; index < max; index++) {
-      result = p.parse(current, outputType);
+      result = parser.parse(current, outputType);
       if(result.isSuccess) {
         combiner.append(result.value);
         current = result.context;
@@ -51,7 +51,7 @@ class BetweenTimesParser extends ParentParser {
   }
 
   @override
-  String get label => p.label + ' * ' + min.toString() + ' to ' + max.toString() + ' times';
+  String get label => parser.label + ' * ' + min.toString() + ' to ' + max.toString() + ' times';
 
   @override
   bool hasEqualProperties(BetweenTimesParser other) => this.min == other.min && this.max == other.max;

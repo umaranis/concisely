@@ -5,3 +5,8 @@ class ParseException implements Exception {
 
   const ParseException(this.result);
 }
+
+class GrammarMalformed implements Exception {
+  String message;
+  GrammarMalformed(this.message);
+}

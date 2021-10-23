@@ -18,7 +18,7 @@ class ConsumeTransformer extends Transformer {
 
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
-    var result = p.parse(context);
+    var result = parser.parse(context);
     if(result.isSuccess) {
       callback(result.value);
       return Success(result.context, blank);

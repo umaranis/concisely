@@ -3,7 +3,7 @@ import 'package:concisely/parser/char/any.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/repeater/times.dart';
 import 'package:test/test.dart';
 import '../../helper.dart';
 

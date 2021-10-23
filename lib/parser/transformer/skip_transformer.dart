@@ -19,7 +19,7 @@ class SkipTransformer extends Transformer {
 
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
-    var r = p.parse(context, outputType);
+    var r = parser.parse(context, outputType);
     if(r.isSuccess) {
       return Success(r.context, blank);
     }

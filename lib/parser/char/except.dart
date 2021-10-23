@@ -3,7 +3,7 @@ import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/char/none_of.dart';
 import 'package:concisely/parser/combiner/choice.dart';
 import 'package:concisely/parser/combiner/choice_fast.dart';
-import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/repeater/times.dart';
 import 'package:concisely/parser/transformer/consume_transformer.dart';
 import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:concisely/parser/transformer/pick_transformer.dart';

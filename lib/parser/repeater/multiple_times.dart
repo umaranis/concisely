@@ -17,7 +17,7 @@ class MultipleTimesParser extends ParentParser {
     final combiner = getCombiner(outputType);
     var current = context;
     for(int i = 0; i < times; i++) {
-      var result = p.parse(current, outputType);
+      var result = parser.parse(current, outputType);
       if(result.isSuccess) {
         combiner.append(result.value);
         current = result.context;
@@ -31,7 +31,7 @@ class MultipleTimesParser extends ParentParser {
   }
 
   @override
-  String get label => '${p.label} * ${times} times';
+  String get label => '${parser.label} * ${times} times';
 
   @override
   bool hasEqualProperties(MultipleTimesParser other) => this.times == other.times;

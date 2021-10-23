@@ -9,11 +9,11 @@ class TreeTransformer extends Transformer {
   TreeTransformer(Parser parser) : super(parser);
 
   @override
-  String get label => 'Tree Tranformer';
+  String get label => 'Tree Transformer';
 
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
-    return p.parse(context, OutputType.tree);
+    return parser.parse(context, OutputType.tree);
   }
 
   @override

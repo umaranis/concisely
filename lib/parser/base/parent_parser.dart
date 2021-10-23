@@ -3,16 +3,18 @@ import 'package:concisely/parser/base/parser.dart';
 /// A parser enclosing a child parser
 abstract class ParentParser extends Parser {
 
-  Parser p;
+  Parser _parser;
 
-  ParentParser(this.p);
+  Parser get parser => _parser;
+
+  ParentParser(this._parser);
 
   @override  
-  List<Parser> get children => [p];
+  Iterable<Parser> get children => [_parser];
 
   @override
   void replace(Parser source, Parser target) { 
-    p = target;
+    _parser = target;
   }
 
 }

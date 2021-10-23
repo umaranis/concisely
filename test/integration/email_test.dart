@@ -1,13 +1,12 @@
-
 import 'package:concisely/debug/progress.dart';
 import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
 import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/repeater/times.dart';
 import 'package:test/test.dart';
-import '../helper.dart';
+
+import '../expect_parse_helper.dart';
 
 void main() {
   test('email somewhat', () {
@@ -25,8 +24,8 @@ void main() {
                   letter * 3
                   ;
 
-    expectSuccess(
-      parse("hello.world@gmail.com", progress(grammar)), 
+    expectParse.pass(progress(grammar),
+      "hello.world@gmail.com",
       [
         'h',
         ['e', 'l', 'l', 'o', '.', 'w', 'o', 'r', 'l', 'd'],
@@ -37,8 +36,8 @@ void main() {
       ]
     );
 
-    expectSuccess(
-      parse("hello.world@gmail.com", grammar), 
+    expectParse.pass(grammar,
+      "hello.world@gmail.com",
       [
         'h',
         ['e', 'l', 'l', 'o', '.', 'w', 'o', 'r', 'l', 'd'],
@@ -49,13 +48,13 @@ void main() {
       ]
     );
 
-    expectSuccess(
-      parse("hh@gmail.com", grammar > type.string),
+    expectParse.pass(grammar > type.string,
+      "hh@gmail.com",
       "hh@gmail.com"
     );
 
-    expectSuccess(
-      parse("hh@gmail.com", grammar), 
+    expectParse.pass(grammar,
+      "hh@gmail.com",
       ['h', ['h'], '@', ['g', 'm', 'a', 'i', 'l'], '.', ['c', 'o', 'm']]
     );
     

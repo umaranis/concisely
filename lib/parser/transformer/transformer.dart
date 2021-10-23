@@ -1,4 +1,3 @@
-import 'package:concisely/parser/base/exceptions.dart';
 import 'package:concisely/parser/combiner/sequence.dart';
 import 'package:concisely/parser/other/failure_parser.dart';
 import 'package:concisely/parser/base/parent_parser.dart';
@@ -11,8 +10,9 @@ import 'package:concisely/parser/transformer/list_transformer.dart';
 import 'package:concisely/parser/transformer/map_transformer.dart';
 import 'package:concisely/parser/transformer/space_transformer.dart';
 import 'package:concisely/parser/transformer/string_transformer.dart';
-import 'package:concisely/parser/transformer/tree_transformer.dart';
 import 'package:concisely/parser/base/fast_parser.dart';
+
+import '../../exception.dart';
 
 abstract class Transformer extends ParentParser {
   Transformer(Parser parser) : super(parser);
@@ -25,10 +25,10 @@ extension TransformerExtensions on Parser {
     }
     else if (transformer is MapTransformer || transformer is ConsumeTransformer) {
       ParentParser parent = transformer;
-      while(parent.p != ConstantFailureParser()) {
-        parent = parent.p as ParentParser;
+      while(parent.parser != ConstantFailureParser()) {
+        parent = parent.parser as ParentParser;
       }
-      parent.p = this;
+      parent.replace(parent.parser, this);
       return transformer;
     }
     else if(transformer is SpaceTransformer) {
@@ -40,21 +40,24 @@ extension TransformerExtensions on Parser {
       }
     }
     else {
-      transformer.p = this;
+      transformer.replace(transformer.parser, this);
       return transformer;
     }
   }
 }
 
 class TypeTransformers {
-  /// Default behaviour - Presents results in a tree
-  /// parsing 123.34 with   digit.many & char('.') & digit.many > type.tree   gives us  <br/> [ ['1',2','3'] , '.', ['4','5'] ]
-  Transformer get tree => TreeTransformer(ConstantFailureParser());
-  /// Transforms the results into a list
-  /// parsing 123.34 with   digit.many & char('.') & digit.many > type.list   gives us <br/> ['1',2','3','.','4','5']
+  /// Transforms the result into a list
+  ///
+  /// Example:
+  ///     parsing '123.34' with   digit.many & char('.') & digit.many > type.list   gives us   ['1',2','3','.','4','5']
+  ///     without list transformer, the result would be a tree   [ ['1',2','3'] , '.', ['4','5'] ]
   Transformer get list => ListTransformer(ConstantFailureParser());
-  /// Transforms the results into a string
-  /// parsing 123.34 with   digit.many & char('.') & digit.many > type.string   gives us <br/> '123.34'
+  /// Transforms the result into a string
+  ///
+  /// Example:
+  ///     parsing '123.34' with   digit.many & char('.') & digit.many > type.string   gives us   '123.34'
+  ///     without list transformer, the result would be a tree   [ ['1',2','3'] , '.', ['4','5'] ]
   Transformer get string => StringTransformer(ConstantFailureParser());
   /// Transforms the results into an integer
   /// parsing 123 with   digit.many & char('.') & digit.many > type.int   gives us <br/> 123

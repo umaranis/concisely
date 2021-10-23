@@ -1,5 +1,4 @@
 
-import 'package:concisely/exception.dart';
 import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/char/digit.dart';
 import 'package:test/test.dart';

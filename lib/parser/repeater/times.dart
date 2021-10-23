@@ -1,9 +1,9 @@
 import 'package:concisely/parser/base/fast_parser.dart';
 import 'package:concisely/parser/base/parser.dart';
-import 'package:concisely/parser/times/between_times.dart';
-import 'package:concisely/parser/times/min_times.dart';
-import 'package:concisely/parser/times/min_times_fast.dart';
-import 'package:concisely/parser/times/zero_or_more.dart';
+import 'package:concisely/parser/repeater/between_times.dart';
+import 'package:concisely/parser/repeater/min_times.dart';
+import 'package:concisely/parser/repeater/min_times_fast.dart';
+import 'package:concisely/parser/repeater/zero_or_more.dart';
 import 'between_times_fast.dart';
 import 'many.dart';
 import 'many_fast.dart';

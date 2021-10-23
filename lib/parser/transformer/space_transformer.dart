@@ -2,7 +2,7 @@ import 'package:concisely/context.dart';
 import 'package:concisely/parser/base/parser.dart';
 import 'package:concisely/parser/char/whitespace.dart';
 import 'package:concisely/parser/combiner/sequence.dart';
-import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/repeater/times.dart';
 import 'package:concisely/parser/transformer/skip_transformer.dart';
 import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/result/output_type.dart';

@@ -24,7 +24,7 @@ class ZeroOrMoreParser extends ParentParser {
     var result;
     
     while(true) {
-      result = p.parse(current, outputType);
+      result = parser.parse(current, outputType);
       if(result.isSuccess) {
         combiner.append(result.value);
         current = result.context;
@@ -37,7 +37,7 @@ class ZeroOrMoreParser extends ParentParser {
   }
 
   @override
-  String get label => p.label + ' * 0 or more times';
+  String get label => parser.label + ' * 0 or more times';
 
   @override
   bool hasEqualProperties(ZeroOrMoreParser other) => true;

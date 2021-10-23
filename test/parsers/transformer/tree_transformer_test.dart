@@ -1,9 +1,8 @@
-import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
 import 'package:concisely/executor.dart';
 import 'package:concisely/parser/char/digit.dart';
 import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/repeater/times.dart';
 import 'package:test/test.dart';
 
 import '../../helper.dart';
@@ -17,7 +16,7 @@ void main() {
   });
 
   test('tree', () {
-    var grammar = char('A') * 5 & char('G') * 2   > type.tree;
+    var grammar = char('A') * 5 & char('G') * 2   ;
     expectSuccess(
       parse('AAAAAGG', grammar),
       [['A', 'A', 'A', 'A', 'A'], ['G', 'G']]);
@@ -36,7 +35,6 @@ void main() {
                   &
                   letter * 3
                   
-                  > type.tree
                   ;
 
     expectSuccess(
@@ -49,14 +47,6 @@ void main() {
         '.',
         ['c', 'o', 'm']
       ]
-    );
-  });
-
-  test('tree trace', () {
-    var grammar = char('A') * 5 & char('G') * 2   > type.tree;
-    expectTrace(grammar, 'AAAAAGG',
-      [['A', 'A', 'A', 'A', 'A'], ['G', 'G']],
-      'TreeTransformer'
     );
   });
 

@@ -16,7 +16,7 @@ class FloatTransformer extends Transformer {
 
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
-    var r = p.parse(context, OutputType.string);
+    var r = parser.parse(context, OutputType.string);
 
     if(r.isSuccess) {
       if (r.value?.isEmpty ?? true) {

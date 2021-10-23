@@ -1,22 +1,22 @@
-
 import 'package:concisely/parser/transformer/transformer.dart';
 import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/executor.dart';
 import 'package:test/test.dart';
+
+import '../../expect_parse_helper.dart';
 
 void main() {
 
-  test('7times', () {
+  test('7 times', () {
     var grammar =  (char('A') | char('\n')) * 7   > type.string;
-    expect(
-      parseOrThrow("AAA\nAA\n", grammar), 
+    expectParse.pass(grammar,
+      "AAA\nAA\n",
       "AAA\nAA\n");
   });
 
-  test('times_list', () {
-    var grammar = char('A') * 3;            
-    expect(
-      parseOrThrow("AAA", grammar), 
+  test('times list', () {
+    var grammar = char('A') * 3;
+    expectParse.pass(grammar,
+      "AAA",
       ['A','A','A']);
   });
 }

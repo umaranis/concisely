@@ -8,12 +8,15 @@ import 'package:concisely/result/result.dart';
 class ParserReference extends ParentParser {
   ParserReference(Parser parser): super(parser);
 
+  Parser get p => this.parser;
+  void set p(Parser parser) => replace(this.parser, parser);
+
   @override
   String get label => 'Parser reference';
 
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
-    return p.parse(context, outputType);
+    return parser.parse(context, outputType);
   }
 
   @override

@@ -1,5 +1,5 @@
 import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/parser/times/times.dart';
+import 'package:concisely/parser/repeater/times.dart';
 
 /// matches newline
 final newline = char('\n') 
