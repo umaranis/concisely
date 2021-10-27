@@ -1,10 +1,5 @@
-import 'package:concisely/debug/trace.dart';
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/executor.dart';
-import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/parser/repeater/times.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/debug.dart';
 import 'package:test/test.dart';
 
 import '../../helper.dart';
@@ -12,7 +7,7 @@ import '../../helper.dart';
 void main() {
   
   test('list', () {
-    var grammar = char('A') * 5 & char('G') * 2   > type.list;
+    var grammar = char('A') * 5 & char('G') * 2   > toList;
     expectSuccess(
       parse('AAAAAGG', grammar),
       ['A', 'A', 'A', 'A', 'A', 'G', 'G']);
@@ -31,7 +26,7 @@ void main() {
                   &
                   letter * 3
                   
-                  > type.list
+                  > toList
                   ;
 
     expectSuccess(
@@ -41,21 +36,21 @@ void main() {
   });
 
   test('list choice', () {
-    var grammar = (char('A') * 5 & char('C')) | (char('A') * 5 & char('G') * 2)   > type.list;
+    var grammar = (char('A') * 5 & char('C')) | (char('A') * 5 & char('G') * 2)   > toList;
     expectSuccess(
       parse('AAAAAGG', grammar),
       ['A', 'A', 'A', 'A', 'A', 'G', 'G']);
   });
 
   test('list 2 times', () {
-    var grammar = (char('A') * 2 & char('G') * 2) * 2   > type.list;
+    var grammar = (char('A') * 2 & char('G') * 2) * 2   > toList;
     expectSuccess(
       parse('AAGGAAGG', trace(grammar)),
       ['A', 'A', 'G', 'G', 'A', 'A', 'G', 'G']);
   });
 
   test('list many', () {
-    var grammar = (char('A') * 2 & char('G') * 2) * many   > type.list;
+    var grammar = (char('A') * 2 & char('G') * 2) * many   > toList;
     expectSuccess(
       parse('AAGGAAGG', grammar),
       ['A', 'A', 'G', 'G', 'A', 'A', 'G', 'G']);

@@ -1,9 +1,4 @@
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/any.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/parser/repeater/times.dart';
+import 'package:concisely/concisely.dart';
 import 'package:test/test.dart';
 import '../../expect_parse_helper.dart';
 
@@ -32,7 +27,7 @@ void main() {
 
   test('zeroOrMore, fast parse', () {
     var grammar = (digit & letter).zeroOrMore
-      > type.string;
+      > toStr;
     expectParse.pass(grammar,
         '1a2bc3',
         '1a2b');
@@ -40,7 +35,7 @@ void main() {
 
   test('zeroOrMore, 0 matches, fast parse', () {
     var grammar = (digit & letter).zeroOrMore
-        > type.string;
+        > toStr;
     expectParse.pass(grammar,
         'a2bc3',
         '');

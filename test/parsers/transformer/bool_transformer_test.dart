@@ -1,14 +1,10 @@
-import 'package:concisely/executor.dart';
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/eof.dart';
-import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/parser/repeater/times.dart';
+import 'package:concisely/concisely.dart';
 import 'package:test/test.dart';
 import '../../helper.dart';
 
 void main() {
   group('convert to bool', () {
-    final boolean = letter.many & eof  > type.bool;
+    final boolean = letter.many & eof  > toBool;
 
     test('true', () {
       expectParse(boolean,

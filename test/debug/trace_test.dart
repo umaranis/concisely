@@ -1,13 +1,6 @@
-import 'package:concisely/debug/trace.dart';
-import 'package:concisely/debug/wrapper.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/executor.dart';
-import 'package:concisely/parser/char/eof.dart';
-import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/parser/repeater/times.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/debug.dart';
 import 'package:test/test.dart';
-
 import '../helper.dart';
 
 void main() {
@@ -133,7 +126,7 @@ Success[21]: [h, [e, l, l, o, ., w, o, r, l, d], @, [g, m, a, i, l], ., [c, o, m
 """;
     
     final sb = StringBuffer();
-    WrapperParser p = trace(grammar, (obj) => sb.writeln(obj.toString()));              
+    Parser p = trace(grammar, (obj) => sb.writeln(obj.toString()));
     final r = parse("hello.world@gmail.com", p);
     expect(r.isSuccess, true);
     expect(sb.toString(), log);

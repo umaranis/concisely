@@ -1,8 +1,6 @@
-import 'package:concisely/context.dart';
-import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/executor.dart';
-import 'package:concisely/parser/char/eof.dart';
-import 'package:concisely/parser/transformer/skip_transformer.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/src/context.dart';
+import 'package:concisely/src/parser/transformer/skip_transformer.dart';
 import 'package:test/test.dart';
 import '../helper.dart';
 

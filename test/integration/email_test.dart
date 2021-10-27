@@ -1,9 +1,5 @@
-import 'package:concisely/debug/progress.dart';
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/parser/repeater/times.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/debug.dart';
 import 'package:test/test.dart';
 
 import '../expect_parse_helper.dart';
@@ -48,7 +44,7 @@ void main() {
       ]
     );
 
-    expectParse.pass(grammar > type.string,
+    expectParse.pass(grammar > toStr,
       "hh@gmail.com",
       "hh@gmail.com"
     );

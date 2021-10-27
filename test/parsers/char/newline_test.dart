@@ -1,5 +1,4 @@
-import 'package:concisely/parser/char/newline.dart';
-import 'package:concisely/executor.dart';
+import 'package:concisely/concisely.dart';
 import 'package:test/test.dart';
 
 import '../../helper.dart';

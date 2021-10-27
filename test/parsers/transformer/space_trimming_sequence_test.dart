@@ -1,19 +1,11 @@
-import 'package:concisely/parser/combiner/space_trimming_sequence.dart';
-import 'package:concisely/parser/transformer/pick_transformer.dart';
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/parser/char/eof.dart';
-import 'package:concisely/parser/combiner/reference.dart';
-import 'package:concisely/parser/repeater/times.dart';
-import 'package:concisely/parser/transformer/trimming_parser.dart';
+import 'package:concisely/concisely.dart';
 import 'package:test/test.dart';
 import '../../expect_parse_helper.dart';
 
 void main() {
   group('convert to integer', () {
     final expression = ref;
-    final number = digit.many > type.int;
+    final number = digit.many > toInt;
     final bracket = char('(') + expression + char(')');
     expression.p = number  |  bracket;
 
@@ -42,7 +34,7 @@ void main() {
     });
 
     test('number in many brackets', () {
-      expectParse.pass(expression > type.list,
+      expectParse.pass(expression > toList,
           '(( ( 12 )) )',
           ['(', '(', '(', 12, ')', ')', ')']);
     });
@@ -61,7 +53,7 @@ void main() {
     mul.p     = prim + char('*') + prod;
     prod.p    = mul | prim;
     parens.p  = char('(') + term + char(')') > pick(1);
-    number.p  = digit.many > type.int;
+    number.p  = digit.many > toInt;
     prim.p    = parens | number;
 
     final start = term.trim + eof > pick(0);

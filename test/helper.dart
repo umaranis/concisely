@@ -1,10 +1,10 @@
-import 'package:concisely/context.dart';
-import 'package:concisely/debug/progress.dart';
-import 'package:concisely/debug/trace.dart';
-import 'package:concisely/debug/wrapper.dart';
-import 'package:concisely/executor.dart';
-import 'package:concisely/parser/base/parser.dart';
-import 'package:concisely/result/result.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/src/context.dart';
+import 'package:concisely/src/debug/progress.dart';
+import 'package:concisely/src/debug/trace.dart';
+import 'package:concisely/src/debug/wrapper.dart';
+import 'package:concisely/src/parser/base/parser.dart';
+import 'package:concisely/src/result/result.dart';
 import 'package:test/test.dart';
 
 @deprecated

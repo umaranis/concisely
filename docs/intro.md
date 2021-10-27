@@ -21,7 +21,7 @@ Some key features are:
 
 | Parser | Description | Examples |
 | ------ | ----------  | -------- |
-| text(t) | parses any string of characters exactly matching the given string | `text('hello world!')` - parses 'hello world!' <br/> `'hello world!'.p`  - same as above (.p converts text into a parser)  |
+| str(t) | parses any string of characters exactly matching the given string | `str('hello world!')` - parses 'hello world!' <br/> `'hello world!'.p`  - same as above (.p converts text into a parser)  |
 
 **Combining parsers**: combine parsers to create more complex parsers
 
@@ -50,21 +50,29 @@ Some key features are:
 | newline | parses a new line | `newline` - parses '\n', '\r' or '\r\n' |
 | whitespace | parses space, tab or newline | `whitespace` - parses ' ', '\t' or newline |
 | p.trim | trims whitespace around a parser | `digit.trim` - parses '1' and ' 1 ' |
-| + | same as '&' but trim any whitespace between the two parsers  | `'Hello' + 'World!'` - parsers 'Hello World!' (also 'HelloWorld!')
+
+`+` combiner and `separatedBy` repeater also help with trimming whitespaces.
 
 **Transforming parsers**: transform result of a parser
 
 | Parser | Description | Examples |
 | ------ | ----------  | -------- |
-| p \> type.string | transform the result into a string | `char('a').many > string` - parses 'aaaa' into ['a','a','a','a'] which string transformer will transform to 'aaaa' <br/> `char('a').many & char('b').many > string` - parses 'aabb' into [['a','a'],['b','b']] which list transformer will transform to 'aabb'  |
-| p \> type.list | transform the result into a list from a tree | `char('a').many & char('b').many > list` - parses 'aabb' into [['a','a'],['b','b']] which list transformer will transform to ['a','a','b','b'] |
-| p \> type.int | transform the result into a integer | `digit.many > type.int` - parses '1234' into ['1','2','3','4'] which int transformer will transform to 1234 |
-| p \> type.float | transform the result into a floating point number (double) | `digit.many & char('.') & digit.many > type.float` - parses '12.34' into [['1','2'],'.',['3','4']] which float transformer will transform to 12.34 |
-| p \> type.bool | transform the result into a boolean value | `text('false') > type.bool` - parses 'false' into a string which boolean transformer will transform to false |
+| p \> toString | transform the result into a string | `char('a').many > string` - parses 'aaaa' into ['a','a','a','a'] which string transformer will transform to 'aaaa' <br/> `char('a').many & char('b').many > string` - parses 'aabb' into [['a','a'],['b','b']] which list transformer will transform to 'aabb'  |
+| p \> toList | transform the result into a list from a tree | `char('a').many & char('b').many > list` - parses 'aabb' into [['a','a'],['b','b']] which list transformer will transform to ['a','a','b','b'] |
+| p \> toInt | transform the result into a integer | `digit.many > toInt` - parses '1234' into ['1','2','3','4'] which int transformer will transform to 1234 |
+| p \> toFloat | transform the result into a floating point number (double) | `digit.many & char('.') & digit.many > toFloat` - parses '12.34' into [['1','2'],'.',['3','4']] which float transformer will transform to 12.34 |
+| p \> toBool | transform the result into a boolean value | `text('false') > toBool` - parses 'false' into a string which boolean transformer will transform to false |
 | p \> pick(n) | pick an element from the result list | `char('<') & char('a') & char('>') > pick(1)` - parses '\<a>' into [ '<', 'a', '>' ] which is transformed to 'a' |
 | p \> pick(n,n,..) | pick elements from the result list | `char('<') & char('a') & char('>') > pick(0,2)` - parses '\<a>' into [ '<', 'a', '>' ] which is transformed to [ '<', '>' ] |
 | p \> map((r) => {}) | transform the results using custom delegate | `letter > map((r) => (r as String).toUpperCase())` - parses 'a' and transforms it to 'A' |
 | p \> consume((r) => {}) | consumes the results | `letter > map((r) => print(r)` - parses 'a' and prints it. Parse is successful with blank results. <br/> <br/> Using `consume`, we can create multiple streams of parse results. For instance, in parsing code, comments can go to a separate object using consume and actual code can be part of the regular parse tree. |
+
+**Label a parser**: can help during grammar development
+
+| Parser | Description | Examples |
+| ------ | ----------  | -------- |
+| p.label | assign a label to a parser | `digit.many.label('number')` - labels the parser as 'number' |
+
 
 **Lookahead parsers**: match a parser without consuming input
 

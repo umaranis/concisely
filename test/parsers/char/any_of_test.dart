@@ -1,27 +1,24 @@
-import 'package:concisely/exception.dart';
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/executor.dart';
-import 'package:concisely/parser/repeater/times.dart';
-import 'package:concisely/parser/char/any_of.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/src/exception.dart';
 import 'package:test/test.dart' hide anyOf;
 
 void main() {
   test('anyOf 1st char', () {
-    var grammar = anyOf('"/') > type.string;
+    var grammar = anyOf('"/') > toStr;
 
     expect(parseOrThrow('"', grammar),
         '"');
   });
 
   test('anyOf 2nd char', () {
-    var grammar = anyOf('"/') > type.string;
+    var grammar = anyOf('"/') > toStr;
 
     expect(parseOrThrow('/', grammar),
         '/');
   });
 
   test('anyOf fail', () {
-    var grammar = anyOf('"/') > type.string;
+    var grammar = anyOf('"/') > toStr;
 
     expect(
         () => parseOrThrow('1', grammar),
@@ -29,7 +26,7 @@ void main() {
   });
 
   test('anyOf * many', () {
-    var grammar = anyOf(r'"abc\ ') * many > type.string; // r is for raw string
+    var grammar = anyOf(r'"abc\ ') * many > toStr; // r is for raw string
 
     expect(parseOrThrow(r'abc bca cca\ "I am fine.', grammar),
         r'abc bca cca\ "' );

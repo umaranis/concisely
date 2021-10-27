@@ -1,11 +1,4 @@
-import 'package:concisely/executor.dart';
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/parser/char/eof.dart';
-import 'package:concisely/parser/combiner/reference.dart';
-import 'package:concisely/parser/repeater/times.dart';
-import 'package:concisely/parser/transformer/map_transformer.dart';
+import 'package:concisely/concisely.dart';
 import 'package:test/test.dart';
 
 import '../../expect_parse_helper.dart';
@@ -13,7 +6,7 @@ import '../../expect_parse_helper.dart';
 void main() {
   group('convert to float', () {
     final number = ref;
-    number.p = (digit.many & (char('.') & digit.many).optional > type.float)  |  char('(') & number & char(')');
+    number.p = (digit.many & (char('.') & digit.many).optional > toFloat)  |  char('(') & number & char(')');
 
     test('integer', () {
       expectParse.pass(number,
@@ -32,7 +25,7 @@ void main() {
     });
 
     test('number in many brackets', () {
-      expectParse.pass(number > type.list,
+      expectParse.pass(number > toList,
           '(((12)))',
           ['(', '(', '(', 12, ')', ')', ')']);
     });
@@ -51,7 +44,7 @@ void main() {
     mul.p     = prim & char('*') & prod > map((r) => r[0] * r[2]);
     prod.p    = mul | prim;
     parens.p  = char('(') & term & char(')') > map((r) => r[1]);
-    number.p  = digit.many & (char('.') & digit.many).optional > type.float;
+    number.p  = digit.many & (char('.') & digit.many).optional > toFloat;
     prim.p    = parens | number;
 
     final start = term & eof > map((r) => r[0]);

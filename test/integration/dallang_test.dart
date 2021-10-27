@@ -1,7 +1,5 @@
-import 'package:concisely/exception.dart';
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/executor.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/src/exception.dart';
 import 'package:test/test.dart';
 
 void main() { 
@@ -14,7 +12,7 @@ void main() {
 
   test('parse2Chars', () {
     expect(
-      parseOrThrow('99', char('9') & char('9') > type.string),
+      parseOrThrow('99', char('9') & char('9') > toStr),
       '99');
   });
 
@@ -38,7 +36,7 @@ void main() {
   });
 
   test('parseCharsTimes', () {     
-      var grammar = char('9') * 2 & char('8') * 2 > type.string;
+      var grammar = char('9') * 2 & char('8') * 2 > toStr;
       final r = parseOrThrow('9988', grammar);
 
       expect(

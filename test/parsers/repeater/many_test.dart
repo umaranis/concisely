@@ -1,8 +1,4 @@
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/any.dart';
-import 'package:concisely/executor.dart';
-import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/parser/repeater/times.dart';
+import 'package:concisely/concisely.dart';
 import 'package:test/test.dart';
 import '../../helper.dart';
 
@@ -31,7 +27,7 @@ void main() {
 
   test('many failure, fast parse', () {
     var grammar = digit & any * many
-      > type.string;
+      > toStr;
     expectFailure(
         parse('1', grammar),
         'Any');

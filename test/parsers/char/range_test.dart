@@ -1,4 +1,4 @@
-import 'package:concisely/parser/char/char.dart';
+import 'package:concisely/src/parser/char/char.dart';
 import 'package:test/test.dart';
 import '../../expect_parse_helper.dart';
 

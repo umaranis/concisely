@@ -1,13 +1,6 @@
-import 'package:concisely/debug/progress.dart';
-import 'package:concisely/debug/wrapper.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/executor.dart';
-import 'package:concisely/parser/char/eof.dart';
-import 'package:concisely/parser/char/letter.dart';
-import 'package:concisely/parser/repeater/times.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/debug.dart';
 import 'package:test/test.dart';
-
 import '../expect_parse_helper.dart';
 
 void main() {
@@ -83,7 +76,7 @@ void main() {
 """;
     
     final sb = StringBuffer();
-    WrapperParser p = progress(grammar, (obj) => sb.writeln(obj.toString()));              
+    Parser p = progress(grammar, (obj) => sb.writeln(obj.toString()));
     final r = parse("hello.world@gmail.com", p);
     //print(sb.toString());
     expect(r.isSuccess, true);

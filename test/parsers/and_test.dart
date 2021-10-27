@@ -1,22 +1,19 @@
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/executor.dart';
+import 'package:concisely/concisely.dart';
 import 'package:test/test.dart';
-
-import '../helper.dart';
+import '../expect_parse_helper.dart';
 
 void main() {
   test('andParser', () {
-    var grammar = char('A') * 5 & char('G') * 2 > type.string;
-    expect(
-      parseOrThrow('AAAAAGG', grammar),
+    var grammar = char('A') * 5 & char('G') * 2 > toStr;
+    expectParse.pass(grammar,
+      'AAAAAGG',
       'AAAAAGG');
   });
 
   test('andParser 2', () {
-    var grammar = char('A') * 5 & char('G') * 2 > type.string;
-    expectSuccess(
-      parse('AAAAAGG', grammar),
+    var grammar = char('A') * 5 & char('G') * 2 > toStr;
+    expectParse.pass(grammar,
+      'AAAAAGG',
       'AAAAAGG');
   });
 }

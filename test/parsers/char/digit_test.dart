@@ -1,28 +1,26 @@
-
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/digit.dart';
+import 'package:concisely/concisely.dart';
 import 'package:test/test.dart';
 import '../../expect_parse_helper.dart';
 
 
 void main() {
   test('digit', () {
-    var grammar = digit > type.string;
+    var grammar = digit > toStr;
     expectParse.pass(grammar, '1', '1');
   });
 
   test('digits', () {
-    var grammar = digit * 3 > type.string;
+    var grammar = digit * 3 > toStr;
     expectParse.pass(grammar, '123', '123');
   });
 
   test('digits fail', () {
-    var grammar = digit * 3 > type.string;
+    var grammar = digit * 3 > toStr;
     expectParse.fail(grammar, '12');
   });
 
   test('digit fail', () {
-    var grammar = digit > type.string;
+    var grammar = digit > toStr;
     expectParse.fail(grammar, 'A');
   });
 }

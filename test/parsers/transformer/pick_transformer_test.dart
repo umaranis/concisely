@@ -1,19 +1,12 @@
-import 'package:concisely/debug/trace.dart';
-import 'package:concisely/parser/transformer/pick_transformer.dart';
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/parser/char/digit.dart';
-import 'package:concisely/parser/char/eof.dart';
-import 'package:concisely/parser/combiner/reference.dart';
-import 'package:concisely/parser/repeater/times.dart';
-import 'package:concisely/parser/transformer/map_transformer.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/debug.dart';
 import 'package:test/test.dart';
 
 import '../../expect_parse_helper.dart';
 
 void main() {
   group('number in brackets', () {
-    final number = digit.many > type.int;
+    final number = digit.many > toInt;
     final grammar = char('(') & number & char(')');
 
     test('pick number', () {
@@ -50,7 +43,7 @@ void main() {
     mul.p     = prim & char('*') & prod > pick(0, 2).map((r) => r[0] * r[1]);
     prod.p    = mul | prim;
     parens.p  = char('(') & term & char(')') > pick(1);
-    number.p  = digit.many > type.int;
+    number.p  = digit.many > toInt;
     prim.p    = parens | number;
 
     final start = term & eof > pick(0);

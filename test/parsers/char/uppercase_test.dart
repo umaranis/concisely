@@ -1,26 +1,24 @@
-import 'package:concisely/exception.dart';
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/uppercase.dart';
-import 'package:concisely/executor.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/src/exception.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('uppercase', () {
-    var grammar = uppercase > type.string;
+    var grammar = uppercase > toStr;
     expect(
       parseOrThrow('X', grammar),
       'X');
   });
 
   test('uppercase letters', () {
-    var grammar = uppercase * 3 > type.string;
+    var grammar = uppercase * 3 > toStr;
     expect(
       parseOrThrow('XYZ', grammar),
       'XYZ');
   });
 
   test('uppercase fail', () {
-    var grammar = uppercase > type.string;
+    var grammar = uppercase > toStr;
     expect(
       () => parseOrThrow('a', grammar),
       throwsA((e) => e is ParseException));

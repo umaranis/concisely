@@ -1,8 +1,5 @@
-import 'package:concisely/parser/char/any_of.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/parser/char/except.dart';
-import 'package:concisely/parser/char/none_of.dart';
-import 'package:concisely/parser/char/range.dart';
+import 'package:concisely/src/parser/char/except.dart';
+import 'package:concisely/src/parser/char/none_of.dart';
 import 'package:test/test.dart';
 import '../../expect_parse_helper.dart';
 

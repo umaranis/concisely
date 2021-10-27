@@ -1,9 +1,5 @@
-import 'package:concisely/debug/trace.dart';
-import 'package:concisely/debug/wrapper.dart';
-import 'package:concisely/parser/transformer/transformer.dart';
-import 'package:concisely/parser/char/char.dart';
-import 'package:concisely/executor.dart';
-import 'package:concisely/parser/repeater/times.dart';
+import 'package:concisely/concisely.dart';
+import 'package:concisely/debug.dart';
 import 'package:test/test.dart';
 
 import '../helper.dart';
@@ -30,7 +26,7 @@ void main() {
       & 
       char('G') * 2 * optional
 
-      > type.string
+      > toStr
     ;    
     
     expectSuccess(
@@ -47,7 +43,7 @@ void main() {
     ;
 
     final sb = StringBuffer();
-    WrapperParser p = trace(grammar, (obj) => sb.writeln(obj.toString()));
+    Parser p = trace(grammar, (obj) => sb.writeln(obj.toString()));
     final r = parse('AAAAA', p);
     expect(r.isSuccess, true);
     expect(sb.toString().contains('optional'), true);
