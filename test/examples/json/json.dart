@@ -1,4 +1,5 @@
 import 'package:concisely/concisely.dart';
+import 'package:concisely/src/parser/char/eof.dart';
 
 Parser getJsonGrammar() {
 
@@ -55,6 +56,6 @@ Parser getJsonGrammar() {
 
   value.p = stringToken | numberToken | object | array | booleanToken | nullToken;
 
-  return value;
+  return value.end;
 }
 

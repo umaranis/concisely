@@ -7,6 +7,8 @@ import 'package:concisely/src/result/output_type.dart';
 import 'package:concisely/src/result/result.dart';
 import 'package:concisely/src/result/success.dart';
 
+import '../../../concisely.dart';
+
 /// matches with end of input
 final EOFParser eof = EOFParser();
 
@@ -47,4 +49,15 @@ class EOFParser extends Parser with FastParser {
   @override
   bool hasEqualProperties(EOFParser other) => true;
 
+}
+
+extension EndOfInputExtension<T> on Parser<T> {
+  /// matches end of input.
+  ///
+  /// Ensures that the input is fully consumed.
+  ///
+  /// For example, the parser `letter.end` succeeds on the input `'a'`
+  /// and fails on `'ab'`. In contrast the parser `letter` alone would
+  /// succeed on both inputs, but not consume everything for the second input.
+  Parser<T> get end => this & eof > pick(0) as Parser<T>;
 }
