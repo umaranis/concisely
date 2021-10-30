@@ -9,10 +9,10 @@ class Success<T> extends Result<T> {
   bool get isSuccess => true;
 
   @override
-  final T? value;
+  final T value;
 
   @override
-  String? get message => null;
+  String get message => throw UnsupportedError("Successful parse doesn't have an error message.");
 
   @override
   String toString() => "Success[pos:${context.pos + 1}] $value"; 

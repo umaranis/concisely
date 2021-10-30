@@ -24,7 +24,7 @@ class ManyParser extends ParentParser {
       current = result.context;
     }
     else {
-      return Failure(current, result.message!); // `result.isSuccess == false` means it is a Failure record where message is not nullable
+      return Failure(current, result.message);
     }
     
     while(true) {

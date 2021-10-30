@@ -3,6 +3,7 @@ import 'package:concisely/src/parser/combiner/choice.dart';
 import 'package:concisely/src/parser/combiner/choice_fast.dart';
 import 'package:concisely/src/parser/combiner/sequence.dart';
 import 'package:concisely/src/parser/combiner/sequence_fast.dart';
+import 'package:concisely/src/parser/other/space_trim_parser.dart';
 import 'package:concisely/src/parser/repeater/times.dart';
 import 'package:concisely/src/result/output_type.dart';
 import 'package:concisely/src/result/result.dart';
@@ -11,7 +12,7 @@ import 'package:meta/meta.dart';
 import 'fast_parser.dart';
 
 abstract class Parser<T> {
-  Result<T?> parse(Context context, [OutputType outputType = OutputType.tree]);
+  Result<T> parse(Context context, [OutputType outputType = OutputType.tree]);
 
   /// name of the parser like 'Any Character', 'letter', 'digit' etc.
   String get name;
@@ -19,6 +20,14 @@ abstract class Parser<T> {
   SequenceParser operator & (Parser other) => (this is FastParser && other is FastParser)? SequenceFastParser([this, other]) : SequenceParser([this, other]);
   Parser operator * (Object times) => timesFactory(this, times);
   Parser operator | (Parser other) => (this is FastParser && other is FastParser)? ChoiceFastParser([this, other]) : ChoiceParser([this, other]);
+  SequenceParser operator + (Parser other) {
+    if(this is FastParser && other is FastParser) {
+      return SequenceFastParser([this, spaceTrim, other]);
+    }
+    else {
+      return SequenceParser([this, spaceTrim, other]);
+    }
+  }
 
   Iterable<Parser> get children => const [];
   void replace(Parser source, Parser target) {}

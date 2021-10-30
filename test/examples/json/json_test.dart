@@ -1,3 +1,4 @@
+import 'package:concisely/debug.dart';
 import 'package:test/test.dart';
 
 import '../../expect_parse_helper.dart';
@@ -27,116 +28,112 @@ void main() {
       expectParse.fail(grammar, '[1 2]');
       expectParse.fail(grammar, '[]]');
     });
-  // group('objects', () {
-  //   test('empty', () {
-  //     expect(parser.parse('{}').value, {});
-  //   });
-  //   test('small', () {
-  //     expect(parser.parse('{"a": 1}').value, {'a': 1});
-  //   });
-  //   test('large', () {
-  //     expect(parser.parse('{"a": 1, "b": 2, "c": 3}').value,
-  //         {'a': 1, 'b': 2, 'c': 3});
-  //   });
-  //   test('nested', () {
-  //     expect(parser.parse('{"obj": {"a": 1}}').value, {
-  //       'obj': {'a': 1}
-  //     });
-  //   });
-  //   test('invalid', () {
-  //     expect(parser.parse('{').isFailure, isTrue);
-  //     expect(parser.parse("{'a'").isFailure, isTrue);
-  //     expect(parser.parse("{'a':").isFailure, isTrue);
-  //     expect(parser.parse("{'a':'b'").isFailure, isTrue);
-  //     expect(parser.parse("{'a':'b',").isFailure, isTrue);
-  //     expect(parser.parse("{'a'}").isFailure, isTrue);
-  //     expect(parser.parse("{'a':}").isFailure, isTrue);
-  //     expect(parser.parse("{'a':'b',}").isFailure, isTrue);
-  //     expect(parser.parse('{}}').isFailure, isTrue);
-  //   });
-  // });
-  // group('literals', () {
-  //   test('valid true', () {
-  //     expect(parser.parse('true').value, isTrue);
-  //   });
-  //   test('invalid true', () {
-  //     expect(parser.parse('tr').isFailure, isTrue);
-  //     expect(parser.parse('trace').isFailure, isTrue);
-  //     expect(parser.parse('truest').isFailure, isTrue);
-  //   });
-  //   test('valid false', () {
-  //     expect(parser.parse('false').value, isFalse);
-  //   });
-  //   test('invalid false', () {
-  //     expect(parser.parse('fa').isFailure, isTrue);
-  //     expect(parser.parse('falsely').isFailure, isTrue);
-  //     expect(parser.parse('fabulous').isFailure, isTrue);
-  //   });
-  //   test('valid null', () {
-  //     expect(parser.parse('null').value, isNull);
-  //   });
-  //   test('invalid null', () {
-  //     expect(parser.parse('nu').isFailure, isTrue);
-  //     expect(parser.parse('nuclear').isFailure, isTrue);
-  //     expect(parser.parse('nullified').isFailure, isTrue);
-  //   });
-  //   test('valid integer', () {
-  //     expect(parser.parse('0').value, 0);
-  //     expect(parser.parse('1').value, 1);
-  //     expect(parser.parse('-1').value, -1);
-  //     expect(parser.parse('12').value, 12);
-  //     expect(parser.parse('-12').value, -12);
-  //     expect(parser.parse('1e2').value, 100);
-  //     expect(parser.parse('1e+2').value, 100);
-  //   });
-  //   test('invalid integer', () {
-  //     expect(parser.parse('00').isFailure, isTrue);
-  //     expect(parser.parse('01').isFailure, isTrue);
-  //   });
-  //   test('invalid integer', () {
-  //     expect(parser.parse('00').isFailure, isTrue);
-  //     expect(parser.parse('01').isFailure, isTrue);
-  //   });
-  //   test('valid float', () {
-  //     expect(parser.parse('0.0').value, 0.0);
-  //     expect(parser.parse('0.12').value, 0.12);
-  //     expect(parser.parse('-0.12').value, -0.12);
-  //     expect(parser.parse('12.34').value, 12.34);
-  //     expect(parser.parse('-12.34').value, -12.34);
-  //     expect(parser.parse('1.2e-1').value, 1.2e-1);
-  //     expect(parser.parse('1.2E-1').value, 1.2e-1);
-  //   });
-  //   test('invalid float', () {
-  //     expect(parser.parse('.1').isFailure, isTrue);
-  //     expect(parser.parse('0.1.1').isFailure, isTrue);
-  //   });
-  //   test('plain string', () {
-  //     expect(parser.parse('""').value, '');
-  //     expect(parser.parse('"foo"').value, 'foo');
-  //     expect(parser.parse('"foo bar"').value, 'foo bar');
-  //   });
-  //   test('escaped string', () {
-  //     expect(parser.parse('"\\""').value, '"');
-  //     expect(parser.parse('"\\\\"').value, '\\');
-  //     expect(parser.parse('"\\b"').value, '\b');
-  //     expect(parser.parse('"\\f"').value, '\f');
-  //     expect(parser.parse('"\\n"').value, '\n');
-  //     expect(parser.parse('"\\r"').value, '\r');
-  //     expect(parser.parse('"\\t"').value, '\t');
-  //   });
-  //   test('unicode string', () {
-  //     expect(parser.parse('"\\u0030"').value, '0');
-  //     expect(parser.parse('"\\u007B"').value, '{');
-  //     expect(parser.parse('"\\u007d"').value, '}');
-  //   });
-  //   test('invalid string', () {
-  //     expect(parser.parse('"').isFailure, isTrue);
-  //     expect(parser.parse('"a').isFailure, isTrue);
-  //     expect(parser.parse('"a\\"').isFailure, isTrue);
-  //     expect(parser.parse('"\\u00"').isFailure, isTrue);
-  //     expect(parser.parse('"\\u000X"').isFailure, isTrue);
-  //   });
-  // });
+  group('objects', () {
+    test('empty', () {
+      expectParse.pass(grammar, '{}', {});
+    });
+    test('small', () {
+      expectParse.pass(grammar, '{"a": 1}', {'a': 1});
+    });
+    test('large', () {
+      expectParse.pass(grammar, '{"a": 1, "b": 2, "c": 3}',
+          {'a': 1, 'b': 2, 'c': 3});
+    });
+    test('nested', () {
+      expectParse.pass(grammar, '{"obj": {"a": 1}}', {
+        'obj': {'a': 1}
+      });
+    });
+    test('invalid', () {
+      expectParse.fail(grammar, '{');
+      expectParse.fail(grammar, "{'a'");
+      expectParse.fail(grammar, "{'a':");
+      expectParse.fail(grammar, "{'a':'b'");
+      expectParse.fail(grammar, "{'a':'b',");
+      expectParse.fail(grammar, "{'a'}");
+      expectParse.fail(grammar, "{'a':}");
+      expectParse.fail(grammar, "{'a':'b',}");
+      expectParse.fail(grammar, '{}}');
+    });
+  });
+  group('literals', () {
+    test('valid true', () {
+      expectParse.pass(grammar, 'true', true);
+    });
+    test('invalid true', () {
+      expectParse.fail(grammar, 'tr');
+      expectParse.fail(grammar, 'trace');
+      expectParse.fail(grammar, 'truest');
+    });
+    test('valid false', () {
+      expectParse.pass(grammar, 'false', false);
+    });
+    test('invalid false', () {
+      expectParse.fail(grammar, 'fa');
+      expectParse.fail(grammar, 'falsely');
+      expectParse.fail(grammar, 'fabulous');
+    });
+    test('valid null', () {
+      expectParse.pass(grammar, 'null', null);
+    });
+    test('invalid null', () {
+      expectParse.fail(grammar, 'nu');
+      expectParse.fail(grammar, 'nuclear');
+      expectParse.fail(grammar, 'nullified');
+    });
+    test('valid integer', () {
+      expectParse.pass(grammar, '0', 0);
+      expectParse.pass(grammar, '1', 1);
+      expectParse.pass(grammar, '-1', -1);
+      expectParse.pass(grammar, '12', 12);
+      expectParse.pass(grammar, '-12', -12);
+      expectParse.pass(grammar, '1e2', 100);
+      expectParse.pass(grammar, '1e+2', 100);
+    });
+    test('invalid integer', () {
+      expectParse.fail(grammar, '00');
+      expectParse.fail(grammar, '01');
+    });
+    test('valid float', () {
+      expectParse.pass(grammar, '0.0', 0.0);
+      expectParse.pass(grammar, '0.12', 0.12);
+      expectParse.pass(grammar, '-0.12', -0.12);
+      expectParse.pass(grammar, '12.34', 12.34);
+      expectParse.pass(grammar, '-12.34', -12.34);
+      expectParse.pass(grammar, '1.2e-1', 1.2e-1);
+      expectParse.pass(grammar, '1.2E-1', 1.2e-1);
+    });
+    test('invalid float', () {
+      expectParse.fail(grammar, '.1');
+      expectParse.fail(grammar, '0.1.1');
+    });
+   test('plain string', () {
+      expectParse.pass(grammar, '""', '');
+      expectParse.pass(grammar, '"foo"', 'foo');
+      expectParse.pass(grammar, '"foo bar"', 'foo bar');
+    });
+    test('escaped string', () {
+      expectParse.pass(grammar, '"\\""', '"');
+      expectParse.pass(grammar, '"\\\\"', '\\');
+      expectParse.pass(grammar, '"\\b"', '\b');
+      expectParse.pass(grammar, '"\\f"', '\f');
+      expectParse.pass(grammar, '"\\n"', '\n');
+      expectParse.pass(grammar, '"\\r"', '\r');
+      expectParse.pass(grammar, '"\\t"', '\t');
+    });
+    test('unicode string', () {
+      expectParse.pass(grammar, '"\\u0030"', '0');
+      expectParse.pass(grammar, '"\\u007B"', '{');
+      expectParse.pass(grammar, '"\\u007d"', '}');
+    });
+    test('invalid string', () {
+      expectParse.fail(trace(grammar), '"');
+      expectParse.fail(grammar, '"a');
+      expectParse.fail(grammar, '"a\\"');
+      expectParse.fail(grammar, '"\\u00"');
+      expectParse.fail(grammar, '"\\u000X"');
+    });
+   });
   // group('browser', () {
   //   test('Internet Explorer', () {
   //     const input = '{"recordset": null, "type": "change", '
@@ -151,7 +148,7 @@ void main() {
   //         '"propertyName": "", "shiftKey": false, "ctrlLeft": false, '
   //         '"offsetX": 25, "offsetY": 2, "altKey": false}';
   //     expect(grammar.parse(input).isSuccess, isTrue);
-  //     expect(parser.parse(input).isSuccess, isTrue);
+  //     expectParse.pass(grammar, input).isSuccess, isTrue);
   //   });
   //   test('FireFox', () {
   //     const input = '{"type": "change", "eventPhase": 2, "bubbles": true, '
@@ -168,7 +165,7 @@ void main() {
   //         '"BACK": 536870912, "TEXT": 1073741824, "ALT_MASK": 1, '
   //         '"CONTROL_MASK": 2, "SHIFT_MASK": 4, "META_MASK": 8}';
   //     expect(grammar.parse(input).isSuccess, isTrue);
-  //     expect(parser.parse(input).isSuccess, isTrue);
+  //     expectParse.pass(grammar, input).isSuccess, isTrue);
   //   });
   //   test('WebKit', () {
   //     const input = '{"returnValue": true, "timeStamp": 1226697417289, '
@@ -180,7 +177,7 @@ void main() {
   //         '"CAPTURING_PHASE": 1, "MOUSEOVER": 4, "CLICK": 64, "DBLCLICK": 128, '
   //         '"KEYDOWN": 256, "KEYPRESS": 1024, "DRAGDROP": 2048}';
   //     expect(grammar.parse(input).isSuccess, isTrue);
-  //     expect(parser.parse(input).isSuccess, isTrue);
+  //     expectParse.pass(grammar, input).isSuccess, isTrue);
   //   });
   // });
   // group('issues', () {

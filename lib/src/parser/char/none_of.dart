@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:concisely/src/context.dart';
 import 'package:concisely/src/parser/base/char_parser.dart';
 
 /// matches any character except characters given in [chars] variable
@@ -13,7 +14,7 @@ class NoneOfParser extends CharBaseParser {
   String get name => 'none of';
 
   @override
-  bool verify(int charCode) => !chars.contains(charCode);
+  bool verify(int charCode) => !chars.contains(charCode) && charCode != Context.EOF;
 
   @override
   bool hasEqualProperties(NoneOfParser other) => this.chars.equals(other.chars);

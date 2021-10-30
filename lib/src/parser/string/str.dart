@@ -7,8 +7,8 @@ import 'package:concisely/src/result/output_type.dart';
 import 'package:concisely/src/result/result.dart';
 import 'package:concisely/src/result/success.dart';
 
-StringParser str(String text) {
-  return StringParser(text);
+Parser str(String text) {
+  return text.length == 1? char(text) : StringParser(text);
 }
 
 class StringParser extends Parser with FastParser {

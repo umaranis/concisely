@@ -14,7 +14,7 @@ class ExpectParseHelper {
   void fail(Parser p, String input, [String message = '']) {
     var actual = p.parse(Context(input, 0));
     expect(actual.isFailure, true, reason: 'Failure expected instead of Success');
-    var resultString = actual.message!;
+    var resultString = actual.message;
     if(message != '') {
       expect(resultString.contains(message), true, reason: 'Error message is not matching: \n >> ' + resultString + '\n >> ' + message );
     }

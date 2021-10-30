@@ -18,7 +18,6 @@ export 'src/parser/string/str.dart' show str;
 export 'src/parser/combiner/reference.dart' show ref;
 //export 'src/parser/combiner/sequence.dart' show SequenceParser;
 //export 'src/parser/combiner/sequence_fast.dart' show SequenceFastParser;
-export 'src/parser/combiner/space_trimming_sequence.dart' show SpaceTrimmingSequenceExtensions, SpaceTrimmingSequenceExtensions2, SpaceTrimmingSequenceExtensions3;
 
 export 'src/parser/repeater/times.dart' show optional, min, many, between, TimesParser;
 export 'src/parser/repeater/separated_by.dart' show SeparatedByExtensions;

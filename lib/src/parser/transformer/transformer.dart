@@ -7,7 +7,7 @@ import 'package:concisely/src/parser/transformer/map_transformer.dart';
 import 'package:concisely/src/parser/transformer/string_transformer.dart';
 import 'package:concisely/src/parser/base/fast_parser.dart';
 
-abstract class Transformer extends ParentParser {
+abstract class Transformer<T> extends ParentParser<T> {
   Transformer(Parser parser) : super(parser);
 }
 

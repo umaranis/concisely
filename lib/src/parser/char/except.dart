@@ -12,6 +12,13 @@ import '../../executor.dart';
 import 'any.dart';
 import 'char.dart';
 
+/// parses a character if it doesn't match the given pattern
+///
+/// Examples:
+///     except('a') - parses any character expect 'a'
+///     except('ab') or noneOf('ab') - parses any character expect 'a' or 'b'
+///     except('a-c') - parses any character except 'a', 'b' and 'c'
+///     except('a-c' | newline) - parses any character except 'a', 'b', 'c' and newline
 Parser except(String pattern) {
   if(pattern.length == 1) {
     return NotCharParser(pattern);

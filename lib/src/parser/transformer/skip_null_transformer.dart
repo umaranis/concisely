@@ -17,7 +17,7 @@ class SkipTransformer extends Transformer {
   SkipTransformer(Parser parser) : super(parser);
 
   @override
-  String get name => 'skip';
+  String get name => 'skipNull';
 
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {

@@ -1,12 +1,11 @@
 import 'package:concisely/src/parser/base/parser.dart';
-import 'package:concisely/src/parser/combiner/space_trimming_sequence.dart';
 import 'package:concisely/src/parser/repeater/times.dart';
 import 'package:concisely/src/parser/string/str.dart';
 import 'package:concisely/src/parser/transformer/skip_null_transformer.dart';
 import 'package:concisely/src/parser/transformer/skip_transformer.dart';
 import 'package:concisely/src/parser/transformer/transformer.dart';
 import 'package:concisely/src/parser/transformer/trimming_parser.dart';
-
+import 'package:concisely/src/parser/combiner/sequence.dart';
 import '../../../concisely.dart';
 
 extension SeparatedByExtensions on Parser {
@@ -31,7 +30,9 @@ extension SeparatedByExtensions on Parser {
       throw ArgumentError("'separator' argument should be of type Parser or String for 'separatedBy' method.", "separatedBy");
     }
 
-    Parser grammar = this + (sepParser + this.trim).pick(1).zeroOrMore.skipNull;
+    // must use [].toTrimSeq because '&' or '+' will not work as expected if 'this' is a sequence parser.
+    // see subtle difference between '&' and '[].toSeq' in docs.
+    Parser grammar = [this , (sepParser + this.trim).pick(1).zeroOrMore.skipNull].toTrimSeq;
     if(optionalSeparatorAtEnd) {
       grammar += sepParser.optional.skip;
     }

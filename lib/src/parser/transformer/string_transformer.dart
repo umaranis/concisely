@@ -8,10 +8,12 @@ import 'package:concisely/src/parser/base/times_fast_parser.dart';
 import 'package:concisely/src/parser/other/failure_parser.dart';
 import 'package:concisely/src/parser/transformer/list_transformer.dart';
 import 'package:concisely/src/parser/transformer/transformer.dart';
+import 'package:concisely/src/result/failure.dart';
 import 'package:concisely/src/result/output_type.dart';
 import 'package:concisely/src/result/result.dart';
+import 'package:concisely/src/result/success.dart';
 
-class StringTransformer extends Transformer {
+class StringTransformer extends Transformer<String> {
 
   StringTransformer(Parser parser) : super(parser) {
     removeParentParserFromStructure(this, ListTransformer);
@@ -21,8 +23,32 @@ class StringTransformer extends Transformer {
   String get name => 'String Transformer';
 
   @override
-  Result parse(Context context, [OutputType outputType = OutputType.tree]) {
-    return parser.parse(context, OutputType.string);
+  Result<String> parse(Context context, [OutputType outputType = OutputType.tree]) {
+    var r = parser.parse(context, OutputType.string);
+    if(r.isSuccess) {
+      var stringValue = r.value is List ? flatten(r.value) : r.value.toString();
+      return Success(r.context, stringValue);
+    }
+    else {
+      return Failure<String>(r.context, r.message);
+    }
+  }
+
+  String flatten(List list) {
+    StringBuffer buffer = new StringBuffer();
+    _flatten(list, buffer);
+    return buffer.toString();
+  }
+
+  void _flatten(List list, StringBuffer buffer) {
+    for (var value in list) {
+      if(value is List) {
+
+      }
+      else {
+        buffer.write(value);
+      }
+    }
   }
 
   @override
@@ -37,12 +63,23 @@ class StringTransformer extends Transformer {
 }
 
 
-class StringFastTransformer extends StringTransformer with FastParser, ParentFastParser, DefaultFastParseResult, IntrusiveFastParser {
+class StringFastTransformer extends StringTransformer with FastParser, ParentFastParser, DefaultFastParseResult {
   StringFastTransformer(Parser parser) : super(parser);
 
   @override
   int fastParse(Context context, int position) {
     return (parser as FastParser).fastParse(context, position);
+  }
+
+  /// Overriding this method to provide custom implementation instead of using [IntrusiveFastParser]
+  @override
+  Result<String> parse(Context context, [OutputType outputType = OutputType.tree]) {
+    final result = fastParse(context, context.pos);
+    if(result == -1) {
+      return super.parse(context, outputType);
+    }
+
+    return Success(context.moveTo(result), getFastParseResult(context, context.pos, result));
   }
 
 }

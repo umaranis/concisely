@@ -1,4 +1,5 @@
 import 'package:concisely/src/context.dart';
+import 'package:concisely/src/exception.dart';
 import 'package:concisely/src/result/result.dart';
 
 class Failure<T> extends Result<T> {
@@ -11,7 +12,7 @@ class Failure<T> extends Result<T> {
   final String message;
 
   @override  
-  T? get value => null;
+  T get value => throw ParseException(this);
 
   @override
   toString() => "Failure[pos:${context.pos + 1}] $message";

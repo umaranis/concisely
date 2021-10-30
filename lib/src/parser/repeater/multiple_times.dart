@@ -23,7 +23,7 @@ class MultipleTimesParser extends ParentParser {
         current = result.context;
       }
       else {
-        return Failure(current, result.message!); // result.message can't be null for Failure
+        return Failure(current, result.message);
       }
     }   
 

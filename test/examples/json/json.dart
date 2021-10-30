@@ -17,7 +17,11 @@ Parser getJsonGrammar() {
   var characterNormal = except('"\\');
   var characterEscape = char('\\') & char(jsonEscapeChars.keys.join())
       > map((result) => jsonEscapeChars[result[1]]);
-  var characterUnicode = str('\\u') & char('0-9A-Fa-f').times(4);
+  var characterUnicode = str('\\u') & char('0-9A-Fa-f').times(4)
+      > map((each) {
+        final charCode = int.parse(each[1].join(), radix: 16);
+        return String.fromCharCode(charCode);
+      });
   var characterPrimitive = characterNormal | characterEscape | characterUnicode;
   var stringToken = char('"').skip & characterPrimitive.zeroOrMore & char('"').skip
       > toStr;
@@ -48,13 +52,13 @@ Parser getJsonGrammar() {
           }
         }
         return result;
-      });;
+      });
 
   var elements = value.separatedBy(',');
   var array = char('[') + elements.optional + char(']')
       > map((result) => result[1] ?? []);
 
-  value.p = stringToken | numberToken | object | array | booleanToken | nullToken;
+  value.p = stringToken | numberToken | object | array | booleanToken | nullToken; // definition of recursive rule after referred rules are defined
 
   return value.end;
 }

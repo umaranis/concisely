@@ -4,6 +4,7 @@ import 'package:concisely/src/parser/base/fast_parser.dart';
 import 'package:concisely/src/parser/base/intrusive_fast_parser.dart';
 import 'package:concisely/src/parser/base/parser.dart';
 import 'package:concisely/src/parser/combiner/sequence.dart';
+import 'package:concisely/src/parser/other/space_trim_parser.dart';
 
 class SequenceFastParser extends SequenceParser with FastParser, DefaultFastParseResult, IntrusiveFastParser {
   SequenceFastParser(List<Parser> parsers) : super(parsers);
@@ -25,6 +26,13 @@ class SequenceFastParser extends SequenceParser with FastParser, DefaultFastPars
   SequenceParser operator & (Parser other) {
     parsers.add(other);
     return other is FastParser? this : SequenceParser(parsers);
+  }
+
+  @override
+  SequenceParser operator +(Parser other) {
+    parsers.add(spaceTrim);
+    parsers.add(other);
+    return other is FastParser ? this : SequenceParser(parsers);
   }
 
 }

@@ -1,7 +1,7 @@
 import 'package:concisely/src/parser/base/parser.dart';
 
 /// A parser enclosing a child parser
-abstract class ParentParser extends Parser {
+abstract class ParentParser<T> extends Parser<T> {
 
   Parser _parser;
 

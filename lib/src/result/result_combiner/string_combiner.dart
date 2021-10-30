@@ -5,7 +5,12 @@ class StringResultCombiner extends ResultCombiner {
 
   @override
   void append(Object? value) {
-    stringResult.write(value);
+    if(value is List) {
+      value.forEach((element) => stringResult.write(element));
+    }
+    else {
+      stringResult.write(value);
+    }
   }
 
   @override  

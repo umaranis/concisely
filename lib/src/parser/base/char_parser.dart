@@ -6,7 +6,7 @@ import 'package:concisely/src/result/success.dart';
 import 'fast_parser.dart';
 import 'parser.dart';
 
-abstract class CharBaseParser extends Parser with FastParser {
+abstract class CharBaseParser extends Parser<String> with FastParser {
 
   @override
   Result<String> parse(Context context, [OutputType outputType = OutputType.tree]) {
@@ -14,7 +14,7 @@ abstract class CharBaseParser extends Parser with FastParser {
     if (verify(value)) {
       return Success(context.move(1), String.fromCharCode(value));
     }
-    return Failure(context, name + ' expected');
+    return Failure<String>(context, name + ' expected');
   }
   
   @override

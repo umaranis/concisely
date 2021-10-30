@@ -35,8 +35,8 @@ class EOFParser extends Parser with FastParser {
   }
 
   @override
-  String? getFastParseResult(Context context, int startPosition, int endPosition) {
-    return null;
+  String getFastParseResult(Context context, int startPosition, int endPosition) {
+    return '';
   }
   
   bool verify(int value) {
@@ -59,5 +59,5 @@ extension EndOfInputExtension<T> on Parser<T> {
   /// For example, the parser `letter.end` succeeds on the input `'a'`
   /// and fails on `'ab'`. In contrast the parser `letter` alone would
   /// succeed on both inputs, but not consume everything for the second input.
-  Parser<T> get end => this & eof > pick(0) as Parser<T>;
+  Parser<T> get end => this & eof > pick(0) as Parser<T>; //TODO: this looks wrong. What if 'this' is also a SequenceParser with 2 or more parsers
 }

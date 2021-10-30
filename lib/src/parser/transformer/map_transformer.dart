@@ -17,7 +17,8 @@ class MapTransformer extends Transformer {
 
   @override
   Result parse(Context context, [OutputType outputType = OutputType.tree]) {
-    var result = parser.parse(context, outputType);
+    // ignores the given outputType. Otherwise the Type of map result will become dependent on the context and same grammar will produce string type or list type based on context.
+    var result = parser.parse(context);
     if(result.isSuccess) {
       return Success(result.context, callback(result.value));
     }

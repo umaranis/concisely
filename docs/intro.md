@@ -27,9 +27,11 @@ Some key features are:
 
 | Parser | Description | Examples |
 | ------ | ----------  | -------- |
-| & | combines parsers in a sequence | `char('a') & char('b')` - parses 'ab' <br/> `'item'.p & digit` - parser 'item1', 'item2', 'item3' etc. |
 | &#124; | combines parsers with Choice operator. <br/>Returns the result of first parser if it's successful otherwise second. | <code>'hello'.p &#124; 'welcome'.p</code> - parses 'hello' or 'welcome' |
+| & | combines parsers in a sequence | `char('a') & char('b')` - parses 'ab' <br/> `'item'.p & digit` - parser 'item1', 'item2', 'item3' etc. |
 | + | same as '&' but trim any whitespace between the two parsers  | `'Hello' + 'World!'` - parsers 'Hello World!' (also 'HelloWorld!')
+| [p1,p2].toSeq | Converts a list of parsers into a SequenceParser | Similar to `'&'` with a subtle difference: <br/><br/>Parser px = p1 & p2;<br/>Parser py = px & p3;<br/>py is equivalent to p1 & p2 & p3<br/>sample parse result: [ p1Result, p2Result, p3Result ]<br/><br/>Parser px = [p1, p2].toSeq;<br/>Parser py = [px, p3].toSeq;<br/>py is NOT equivalent to p1 & p2 & p3<br/>sample parse result: [ [p1Result, p2Result], p3Result ] |
+| [p1,p2].toTrimSeq | Converts a list of parsers into a SequenceParser which also trims any whitespace between parsers | Similar to `'+'` with the subtle difference explained above for `toSeq` |
 
 **Repeating parsers**: repeat a parser a number of times
 
